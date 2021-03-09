@@ -11,10 +11,12 @@ import CoreML
 struct ContentView: View {
   @State private var wakeUp = Date()
   @State private var sleepAmount = 8.0
-  @State private var coffeeAmount = 1
+  @State private var cupsSelectedIndex = 0
   @State private var alertTitle = ""
   @State private var alertMessage = ""
   @State private var showingAlert = false
+  
+  var coffeeAmount: Int { cupsSelectedIndex + 1 }
   
   var body: some View {
     NavigationView {
@@ -30,8 +32,10 @@ struct ContentView: View {
           }
         }
         Section(header: Text("Daily coffee intake")) {
-          Stepper(value: $coffeeAmount, in: 1...20) {
-            coffeeAmount == 1 ? Text("1 cup") : Text("\(coffeeAmount) cups")
+          Picker("Nummber of cups", selection: $cupsSelectedIndex) {
+            ForEach(1..<21) { amount in
+              amount == 1 ? Text("1 cup") : Text("\(amount) cups")
+            }
           }
         }
       }
