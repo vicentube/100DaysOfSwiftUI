@@ -18,26 +18,23 @@ struct ContentView: View {
   
   var body: some View {
     NavigationView {
-      VStack {
-        Text("When do you want to wake up?")
-          .font(.headline)
-        
-        DatePicker("Please enter a time",
-                   selection: $wakeUp,
-                   displayedComponents: .hourAndMinute)
-          .labelsHidden()
-        Text("Desired amount of sleep")
-          .font(.headline)
-        Stepper(value: $sleepAmount, in: 4...12, step: 0.25) {
-          Text("\(sleepAmount, specifier: "%g") hours")
+      Form {
+        Section(header: Text("When do you want to wake up?")) {
+          DatePicker("Please enter a time",
+                     selection: $wakeUp,
+                     displayedComponents: .hourAndMinute)
         }
-        Text("Daily coffee intake")
-          .font(.headline)
-        Stepper(value: $coffeeAmount, in: 1...20) {
-          coffeeAmount == 1 ? Text("1 cup") : Text("\(coffeeAmount) cups")
+        Section(header: Text("Desired amount of sleep")) {
+          Stepper(value: $sleepAmount, in: 4...12, step: 0.25) {
+            Text("\(sleepAmount, specifier: "%g") hours")
+          }
+        }
+        Section(header: Text("Daily coffee intake")) {
+          Stepper(value: $coffeeAmount, in: 1...20) {
+            coffeeAmount == 1 ? Text("1 cup") : Text("\(coffeeAmount) cups")
+          }
         }
       }
-      .padding()
       .navigationBarTitle("BetterRest")
       .navigationBarItems(
         trailing: Button(action: calculateBedtime) {
