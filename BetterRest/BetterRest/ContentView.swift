@@ -37,6 +37,7 @@ struct ContentView: View {
               amount == 1 ? Text("1 cup") : Text("\(amount) cups")
             }
           }
+          .pickerStyle(WheelPickerStyle())
         }
       }
       .navigationBarTitle("BetterRest")
