@@ -14,6 +14,7 @@ struct ContentView: View {
   @State private var errorTitle = ""
   @State private var errorMessage = ""
   @State private var showingError = false
+  @State private var score = 0
   
   var body: some View {
     NavigationView {
@@ -22,9 +23,15 @@ struct ContentView: View {
           .autocapitalization(.none)
           .textFieldStyle(RoundedBorderTextFieldStyle())
           .padding()
-        List(usedWords, id: \.self) {
-          Image(systemName: "\($0.count).circle")
-          Text($0)
+        List {
+          ForEach(usedWords, id: \.self) { useWord in
+            HStack {
+              Image(systemName: "\(useWord.count).circle")
+              Text(useWord)
+            }
+          }
+          Text("Score: \(score)")
+            .fontWeight(.bold)
         }
       }
       .navigationBarTitle(rootWord)
@@ -62,6 +69,7 @@ struct ContentView: View {
       return
     }
     
+    score += answer.count + usedWords.count
     usedWords.insert(answer, at: 0)
     newWord = ""
   }
@@ -79,6 +87,7 @@ struct ContentView: View {
         
         usedWords.removeAll()
         newWord = ""
+        score = 0
         
         // If we are here everything has worked, so we can exit
         return
