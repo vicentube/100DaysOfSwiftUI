@@ -28,6 +28,8 @@ struct ContentView: View {
         }
       }
       .navigationBarTitle(rootWord)
+      .navigationBarItems(
+        leading: Button("New Game", action: startGame))
       .onAppear(perform: startGame)
       .alert(isPresented: $showingError) {
         Alert(
@@ -74,6 +76,9 @@ struct ContentView: View {
         
         // 4. Pick one random word, or use "silkworm" as a sensible default
         rootWord = allWords.randomElement() ?? "silkworm"
+        
+        usedWords.removeAll()
+        newWord = ""
         
         // If we are here everything has worked, so we can exit
         return
