@@ -9,13 +9,19 @@ import SwiftUI
 
 struct FlagImage: View {
   var country: String
+  var isCorrect: Bool
+  var animated: Bool
   
   var body: some View {
+    let opacity = animated && !isCorrect ? 0.25 : 1.0
+    let degrees = animated && isCorrect ? 360.0 : 0.0
     Image(country)
       .renderingMode(.original)
       .clipShape(Capsule())
       .overlay(Capsule().stroke(Color.black, lineWidth: 1))
       .shadow(color: .black, radius: 2)
+      .opacity(opacity)
+      .rotation3DEffect(.degrees(degrees), axis: (x:0, y: 1, z: 0))
   }
 }
 
@@ -29,6 +35,7 @@ struct ContentView: View {
   @State private var showingScore = false
   @State private var scoreTitle = ""
   @State private var userScore = 0
+  @State private var animateFlags = false
   
   var body: some View {
     ZStack {
@@ -49,7 +56,11 @@ struct ContentView: View {
           Button(action: {
             self.flagTapped(number)
           }) {
-            FlagImage(country: countries[number])
+            let correct = number == correctAnswer
+            FlagImage(
+              country: countries[number],
+              isCorrect: correct,
+              animated: animateFlags)
           }
         }
         Spacer()
@@ -77,6 +88,9 @@ struct ContentView: View {
     if number == correctAnswer {
       scoreTitle = "Correct"
       userScore += 1
+      withAnimation {
+        animateFlags = true
+      }
     } else {
       scoreTitle = "Wrong! That's the flag of \(countries[number])"
       userScore -= 1
@@ -87,6 +101,7 @@ struct ContentView: View {
   func askQuestion() {
     countries.shuffle()
     correctAnswer = Int.random(in: 0...2)
+    animateFlags = false
   }
 }
 
