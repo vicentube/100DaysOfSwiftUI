@@ -14,6 +14,8 @@ struct GameView: View {
   @State private var currentResult: Bool? = nil
   @State private var score = 0
   @State private var gameOver = false
+  @State private var elephantOffset: CGFloat = 300
+  @State private var rotation: Angle = .degrees(0)
   
   var f1: Int {
     game.questions.first?.f1 ?? 0
@@ -29,7 +31,12 @@ struct GameView: View {
   
   var body: some View {
     VStack {
-      Text("🐘").font(Font.system(size: 50))
+      Text("🐘 🐘 🐘").font(Font.system(size: 50))
+        .offset(x: elephantOffset, y: 0)
+        .animation(
+          Animation.linear(duration: 10)
+            .repeatForever(autoreverses: false)
+        )
       VStack {
         Text("Pregunta \(currentQuestion)/\(game.numberOfQuestions)")
           .font(.title)
@@ -37,7 +44,7 @@ struct GameView: View {
           .padding()
         Text("\(f1) x \(f2)")
           .font(.title)
-          .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
+          .fontWeight(.bold)
           .foregroundColor(.white)
         Divider()
         TextField("?", text: $answerText)
@@ -55,9 +62,12 @@ struct GameView: View {
                            endPoint: .bottomTrailing)))
       
       if let currentResult = currentResult {
-        Text(currentResult ? "🤩" : "😩")
-          .font(.largeTitle)
-        Text(currentResult ? "¡Bien hecho!" : "¡Mal! La respuesta correcta es \(mult)")
+        VStack {
+          Text(currentResult ? "🤩" : "😩")
+            .font(.largeTitle)
+          Text(currentResult ? "¡Bien hecho!" : "¡Mal! La respuesta correcta es \(mult)")
+        }
+        .rotation3DEffect(rotation, axis: (x: 0.0, y: 1.0, z: 0.0))
         if gameOver {
           VStack {
             Text("Has acertado \(score) de \(game.numberOfQuestions)")
@@ -75,6 +85,7 @@ struct GameView: View {
                                    startPoint: .topLeading,
                                    endPoint: .bottomTrailing)))
               .shadow(color: Color.black, radius: 2, y: 2)
+              .animation(.default)
               Button(action: playAgain) {
                 Text("Intentar de nuevo")
               }
@@ -87,6 +98,7 @@ struct GameView: View {
                                    startPoint: .topLeading,
                                    endPoint: .bottomTrailing)))
               .shadow(color: Color.black, radius: 2, y: 2)
+              .animation(.default)
             }
           }
         } else {
@@ -102,6 +114,7 @@ struct GameView: View {
                                startPoint: .topLeading,
                                endPoint: .bottomTrailing)))
           .shadow(color: Color.black, radius: 2, y: 2)
+          .animation(.default)
         }
       } else {
         Button(action: checkAnswer)
@@ -116,11 +129,16 @@ struct GameView: View {
                                  startPoint: .topLeading,
                                  endPoint: .bottomTrailing)))
             .shadow(color: Color.black, radius: 2, y: 2)
+            .animation(.default)
         }
       }
       Spacer()
     }
     .padding()
+    .onAppear(perform: {
+      elephantOffset = -300
+      
+    })
   }
   
   func checkAnswer() {
@@ -131,12 +149,16 @@ struct GameView: View {
     } else {
       currentResult = false
     }
+    withAnimation {
+      rotation = .degrees(360)
+    }
     if game.questions.count == 1 {
       gameOver = true
     }
   }
   
   func nextQuestion() {
+    rotation = .degrees(0)
     currentQuestion += 1
     answerText = ""
     currentResult = nil
@@ -144,6 +166,7 @@ struct GameView: View {
   }
   
   func playAgain() {
+    rotation = .degrees(0)
     currentQuestion = 1
     currentResult = nil
     answerText = ""
