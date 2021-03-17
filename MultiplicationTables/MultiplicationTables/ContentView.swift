@@ -8,14 +8,21 @@
 import SwiftUI
 
 struct ContentView: View {
-    var body: some View {
-        Text("Hello, world!")
-            .padding()
+  @State private var game = Game()
+  
+  var body: some View {
+    Group {
+      if self.game.gameActive {
+        GameView(game: $game)
+      } else {
+        SettingsView(game: $game)
+      }
     }
+  }
 }
 
 struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView()
-    }
+  static var previews: some View {
+    ContentView()
+  }
 }
