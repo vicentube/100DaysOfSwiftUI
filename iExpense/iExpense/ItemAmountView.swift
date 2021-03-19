@@ -32,11 +32,12 @@ struct ItemAmountView: View {
           .foregroundColor(.red)
           .fontWeight(.black)
           .opacity(animating ? 0.25 : 1)
-          .animation(Animation.default.repeatForever())
       }
     }
     .onAppear(perform: {
-      animating = true
+      withAnimation(Animation.default.repeatForever()) {
+        animating = true
+      }
     })
   }
 }
