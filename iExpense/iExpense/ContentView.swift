@@ -23,7 +23,7 @@ struct ContentView: View {
               Text(item.type)
             }
             Spacer()
-            Text("$\(item.amount)")
+            ItemAmountView(amount: item.amount)
           }
         }
         .onDelete(perform: expenses.removeItems)
