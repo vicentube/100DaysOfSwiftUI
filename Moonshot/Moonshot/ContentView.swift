@@ -8,14 +8,20 @@
 import SwiftUI
 
 struct ContentView: View {
-    var body: some View {
-        Text("Hello, world!")
-            .padding()
+  var body: some View {
+    VStack {
+      GeometryReader { geo in
+        Image("AppleM1")
+          .resizable()
+          .aspectRatio(contentMode: .fit)
+          .frame(width: geo.size.width)
+      }
     }
+  }
 }
 
 struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView()
-    }
+  static var previews: some View {
+    ContentView()
+  }
 }
