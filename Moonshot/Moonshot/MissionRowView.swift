@@ -9,6 +9,7 @@ import SwiftUI
 
 struct MissionRowView: View {
   let mission: Mission
+  let names: String?
   
   var body: some View {
     HStack {
@@ -20,7 +21,12 @@ struct MissionRowView: View {
       VStack(alignment: .leading) {
         Text(mission.displayName)
           .font(.headline)
-        Text(mission.formattedLaunchDate)
+        if let names = names {
+          Text(names)
+            .font(.footnote)
+        } else {
+          Text(mission.formattedLaunchDate)
+        }
       }
     }
   }
@@ -28,9 +34,8 @@ struct MissionRowView: View {
 
 struct MissionRowView_Previews: PreviewProvider {
   static let missions: [Mission] = Bundle.main.decode("missions.json")
-  static let astronauts: [Astronaut] = Bundle.main.decode("astronauts.json")
   
   static var previews: some View {
-    MissionRowView(mission: missions[0])
+    MissionRowView(mission: missions[0], names: nil)
   }
 }

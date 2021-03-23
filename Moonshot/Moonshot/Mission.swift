@@ -35,4 +35,11 @@ struct Mission: Codable, Identifiable {
       return "N/A"
     }
   }
+  
+  func crewNames(astronauts: [Astronaut]) -> String {
+    let names = crew.map({ member in
+      astronauts.first(where: { $0.id == member.name })?.name ?? ""
+    })
+    return ListFormatter.localizedString(byJoining: names)
+  }
 }

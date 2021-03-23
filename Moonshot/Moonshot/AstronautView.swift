@@ -23,7 +23,7 @@ struct AstronautView: View {
             .font(.headline)
             .padding(.horizontal)
           ForEach(missions) { mission in
-            MissionRowView(mission: mission)
+            MissionRowView(mission: mission, names: nil)
               .padding(.horizontal)
           }
           Text(self.astronaut.description)
