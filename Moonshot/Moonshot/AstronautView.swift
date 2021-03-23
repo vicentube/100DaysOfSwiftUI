@@ -9,16 +9,23 @@ import SwiftUI
 
 struct AstronautView: View {
   let astronaut: Astronaut
+  let missions: [Mission]
   
   var body: some View {
     GeometryReader { geometry in
       ScrollView(.vertical) {
-        VStack {
+        VStack(alignment: .leading) {
           Image(self.astronaut.id)
             .resizable()
             .scaledToFit()
             .frame(width: geometry.size.width)
-          
+          Text("Crew member in:")
+            .font(.headline)
+            .padding(.horizontal)
+          ForEach(missions) { mission in
+            MissionRowView(mission: mission)
+              .padding(.horizontal)
+          }
           Text(self.astronaut.description)
             .padding()
             .layoutPriority(1)
@@ -26,6 +33,16 @@ struct AstronautView: View {
       }
     }
     .navigationBarTitle(Text(astronaut.name), displayMode: .inline)
+  }
+  
+  init(astronaut: Astronaut) {
+    self.astronaut = astronaut
+    let allMissions: [Mission] = Bundle.main.decode("missions.json")
+    self.missions = allMissions.filter( { mission in
+      mission.crew.contains(where: { crewMember in
+        crewMember.name == astronaut.id
+      })
+    })
   }
 }
 
