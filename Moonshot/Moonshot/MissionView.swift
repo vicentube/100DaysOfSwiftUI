@@ -37,7 +37,8 @@ struct MissionView: View {
             .frame(maxWidth: geometry.size.width * 0.7)
             .shadow(color: .black, radius: 5, x: 0, y: 5)
             .padding(.top)
-          
+          Text(mission.formattedLaunchDate)
+            .font(.title)
           Text(self.mission.description)
             .padding()
           ForEach(self.astronauts, id: \.role) { crewMember in
