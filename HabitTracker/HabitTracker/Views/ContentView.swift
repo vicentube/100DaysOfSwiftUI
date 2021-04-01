@@ -8,9 +8,17 @@
 import SwiftUI
 
 struct ContentView: View {
+  @ObservedObject private var store = HabitStore()
+  
   var body: some View {
-    Text("Hello, world!")
-      .padding()
+    NavigationView {
+      List {
+        ForEach(store.habits) { habit in
+          Text(habit.title)
+        }
+      }
+      .navigationBarTitle("Habit Tracker")
+    }
   }
 }
 
