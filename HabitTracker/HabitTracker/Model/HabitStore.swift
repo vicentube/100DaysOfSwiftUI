@@ -19,4 +19,8 @@ class HabitStore: ObservableObject {
   func deleteHabits(at offsets: IndexSet) {
     habits.remove(atOffsets: offsets)
   }
+  
+  func indexOf(_ habit: Habit) -> Int? {
+    return habits.firstIndex(where: { $0.id == habit.id })
+  }
 }

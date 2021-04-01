@@ -16,7 +16,21 @@ struct ContentView: View {
     NavigationView {
       List {
         ForEach(store.habits) { habit in
-          Text(habit.title)
+          if let index = store.indexOf(habit) {
+            NavigationLink(destination: DetailHabitView(store: store, index: index)) {
+              HStack {
+                VStack(alignment: .leading) {
+                  Text(habit.title)
+                  Text(habit.description)
+                    .font(.footnote)
+                    .foregroundColor(.secondary)
+                    .lineLimit(1)
+                }
+                Spacer()
+                Text("\(habit.timesCompleted)")
+              }
+            }
+          }
         }
         .onDelete(perform: store.deleteHabits)
       }
