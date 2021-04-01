@@ -15,4 +15,8 @@ class HabitStore: ObservableObject {
     habits.append(Habit(title: "Lectura", description: "Leer un capítulo de un libro."))
     habits.append(Habit(title: "Ejercicio", description: "Practicar algún deporte."))
   }
+  
+  func deleteHabits(at offsets: IndexSet) {
+    habits.remove(atOffsets: offsets)
+  }
 }

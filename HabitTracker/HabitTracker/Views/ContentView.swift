@@ -10,14 +10,25 @@ import SwiftUI
 struct ContentView: View {
   @ObservedObject private var store = HabitStore()
   
+  @State private var showingAddForm = false
+  
   var body: some View {
     NavigationView {
       List {
         ForEach(store.habits) { habit in
           Text(habit.title)
         }
+        .onDelete(perform: store.deleteHabits)
       }
       .navigationBarTitle("Habit Tracker")
+      .navigationBarItems(
+        leading: EditButton(),
+        trailing: Button(action: { showingAddForm = true }) {
+          Image(systemName: "plus")
+        })
+    }
+    .sheet(isPresented: $showingAddForm) {
+      AddHabitView(store: store)
     }
   }
 }

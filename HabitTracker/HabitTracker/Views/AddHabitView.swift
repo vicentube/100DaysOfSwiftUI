@@ -8,14 +8,44 @@
 import SwiftUI
 
 struct AddHabitView: View {
+  @Environment(\.presentationMode) var presentationMode
+  @ObservedObject var store: HabitStore
+  
+  @State private var titleText = ""
+  @State private var descriptionText = ""
   
   var body: some View {
-    Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+    NavigationView {
+      Form {
+        TextField("Habit title", text: $titleText)
+        TextField("Habit description", text: $descriptionText)
+      }
+      .navigationBarTitle("Add new habit")
+      .navigationBarItems(
+        leading: Button(action: { presentationMode.wrappedValue.dismiss() }) {
+          Text("Cancel")
+        },
+        trailing: Button(action: addHabit) {
+          Text("Add")
+        })
+    }
+  }
+  
+  func addHabit() {
+    guard !titleText.isEmpty else {
+      // Show alert
+      return
+    }
+    let newHabit = Habit(title: titleText, description: descriptionText)
+    store.habits.append(newHabit)
+    presentationMode.wrappedValue.dismiss()
   }
 }
 
 struct AddHabitView_Previews: PreviewProvider {
+  static let store = HabitStore()
+  
   static var previews: some View {
-    AddHabitView()
+    AddHabitView(store: store)
   }
 }
