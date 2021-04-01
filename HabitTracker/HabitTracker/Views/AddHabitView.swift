@@ -13,6 +13,7 @@ struct AddHabitView: View {
   
   @State private var titleText = ""
   @State private var descriptionText = ""
+  @State private var showingAlert = false
   
   var body: some View {
     NavigationView {
@@ -29,11 +30,17 @@ struct AddHabitView: View {
           Text("Add")
         })
     }
+    .alert(isPresented: $showingAlert) {
+      Alert(
+        title: Text("Error"),
+        message: Text("Title can't be empty"),
+        dismissButton: .default(Text("OK")))
+    }
   }
   
   func addHabit() {
     guard !titleText.isEmpty else {
-      // Show alert
+      showingAlert = true
       return
     }
     let newHabit = Habit(title: titleText, description: descriptionText)
