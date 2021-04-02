@@ -9,23 +9,29 @@ import SwiftUI
 
 struct DetailHabitView: View {
   @ObservedObject var store: HabitStore
-  var index: Int
+  @State private var descriptionText = ""
+  
+  let habit: Habit
   
   var body: some View {
     VStack {
       VStack(alignment: .leading) {
         Text("Description")
           .font(.headline)
-        TextField("Habit description", text: $store.habits[index].description)
-          .textFieldStyle(RoundedBorderTextFieldStyle())
+        TextField("Habit description", text: $descriptionText, onCommit: {
+          if let index = store.habits.firstIndex(where: { $0.id == habit.id }) {
+            store.habits[index].description = descriptionText
+          }
+        })
+        .textFieldStyle(RoundedBorderTextFieldStyle())
         HStack {
           Text("Times completed")
           Spacer()
-          Text("\(store.habits[index].timesCompleted)")
+          Text("\(habit.timesCompleted)")
         }
         .font(.title)
       }
-      Button(action: { store.habits[index].timesCompleted += 1 }) {
+      Button(action: habitCompleted) {
         Image(systemName: "goforward.plus")
           .font(.system(size: 75, weight: .bold, design: .rounded))
       }
@@ -33,7 +39,14 @@ struct DetailHabitView: View {
       Spacer()
     }
     .padding()
-    .navigationBarTitle(store.habits[index].title)
+    .navigationBarTitle(habit.title)
+    .onAppear(perform: { descriptionText = habit.description })
+  }
+  
+  func habitCompleted() {
+    if let index = store.habits.firstIndex(where: { $0.id == habit.id }) {
+      store.habits[index].timesCompleted += 1
+    }
   }
 }
 
@@ -41,6 +54,6 @@ struct DetailHabitView_Previews: PreviewProvider {
   static let store = HabitStore()
   
   static var previews: some View {
-    DetailHabitView(store: store, index: 0)
+    DetailHabitView(store: store, habit: Habit(title: "Test"))
   }
 }

@@ -16,19 +16,17 @@ struct ContentView: View {
     NavigationView {
       List {
         ForEach(store.habits) { habit in
-          if let index = store.indexOf(habit) {
-            NavigationLink(destination: DetailHabitView(store: store, index: index)) {
-              HStack {
-                VStack(alignment: .leading) {
-                  Text(habit.title)
-                  Text(habit.description)
-                    .font(.footnote)
-                    .foregroundColor(.secondary)
-                    .lineLimit(1)
-                }
-                Spacer()
-                Text("\(habit.timesCompleted)")
+          NavigationLink(destination: DetailHabitView(store: store, habit: habit)) {
+            HStack {
+              VStack(alignment: .leading) {
+                Text(habit.title)
+                Text(habit.description)
+                  .font(.footnote)
+                  .foregroundColor(.secondary)
+                  .lineLimit(1)
               }
+              Spacer()
+              Text("\(habit.timesCompleted)")
             }
           }
         }

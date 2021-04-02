@@ -8,12 +8,22 @@
 import Foundation
 
 class HabitStore: ObservableObject {
-  @Published var habits: [Habit]
+  @Published var habits: [Habit] {
+    didSet {
+      if let encoded = try? JSONEncoder().encode(habits) {
+        UserDefaults.standard.set(encoded, forKey: "SavedData")
+      }
+    }
+  }
   
   init() {
-    habits = [Habit]()
-    habits.append(Habit(title: "Lectura", description: "Leer un capítulo de un libro."))
-    habits.append(Habit(title: "Ejercicio", description: "Practicar algún deporte."))
+    if let data = UserDefaults.standard.data(forKey: "SavedData") {
+      if let decoded = try? JSONDecoder().decode([Habit].self, from: data) {
+        self.habits = decoded
+        return
+      }
+    }
+    self.habits = []
   }
   
   func deleteHabits(at offsets: IndexSet) {
