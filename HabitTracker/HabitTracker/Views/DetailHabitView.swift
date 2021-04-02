@@ -9,7 +9,6 @@ import SwiftUI
 
 struct DetailHabitView: View {
   @ObservedObject var store: HabitStore
-  @State private var descriptionText = ""
   
   let habit: Habit
   
@@ -18,11 +17,7 @@ struct DetailHabitView: View {
       VStack(alignment: .leading) {
         Text("Description")
           .font(.headline)
-        TextField("Habit description", text: $descriptionText, onCommit: {
-          if let index = store.habits.firstIndex(where: { $0.id == habit.id }) {
-            store.habits[index].description = descriptionText
-          }
-        })
+        TextField("Habit description", text: getDescriptionBinding())
         .textFieldStyle(RoundedBorderTextFieldStyle())
         HStack {
           Text("Times completed")
@@ -40,13 +35,29 @@ struct DetailHabitView: View {
     }
     .padding()
     .navigationBarTitle(habit.title)
-    .onAppear(perform: { descriptionText = habit.description })
   }
   
   func habitCompleted() {
     if let index = store.habits.firstIndex(where: { $0.id == habit.id }) {
       store.habits[index].timesCompleted += 1
     }
+  }
+  
+  func getDescriptionBinding() -> Binding<String> {
+    let description = Binding<String>(
+      get: {
+        if let index = store.habits.firstIndex(where: { $0.id == habit.id }) {
+          return store.habits[index].description
+        } else {
+          return ""
+        }
+      },
+      set: { newValue in
+        if let index = store.habits.firstIndex(where: { $0.id == habit.id }) {
+          store.habits[index].description = newValue
+        }
+      })
+    return description
   }
 }
 
