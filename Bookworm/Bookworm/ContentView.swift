@@ -10,7 +10,12 @@ import CoreData
 
 struct ContentView: View {
   @Environment(\.managedObjectContext) private var moc
-  @FetchRequest(entity: Book.entity(), sortDescriptors: []) var books: FetchedResults<Book>
+  @FetchRequest(
+    entity: Book.entity(),
+    sortDescriptors: [
+      NSSortDescriptor(keyPath: \Book.title, ascending: true),
+      NSSortDescriptor(keyPath: \Book.author, ascending: true)
+    ]) var books: FetchedResults<Book>
   
   @State private var showingAddScreen = false
   
