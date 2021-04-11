@@ -17,6 +17,15 @@ struct AddBookView: View {
   @State private var genre = ""
   @State private var review = ""
   
+  var disableButton: Bool {
+    if title.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty ||
+        author.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty ||
+        genre.isEmpty {
+      return true
+    }
+    return false
+  }
+  
   let genres = ["Fantasy", "Horror", "Kids", "Mystery", "Poetry", "Romance", "Thriller"]
   
   var body: some View {
@@ -50,6 +59,7 @@ struct AddBookView: View {
             try? moc.save()
             presentationMode.wrappedValue.dismiss()
           }
+          .disabled(disableButton)
         }
       }
       .navigationBarTitle("Add Book")
