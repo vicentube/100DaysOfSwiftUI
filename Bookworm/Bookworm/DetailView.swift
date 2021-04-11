@@ -42,6 +42,9 @@ struct DetailView: View {
         RatingView(rating: .constant(Int(book.rating)))
           .font(.largeTitle)
         
+        Text("Date added: \(book.dateFormatted)")
+          .padding()
+        
         Spacer()
       }
     }
@@ -81,5 +84,17 @@ struct DetailView_Previews: PreviewProvider {
     return NavigationView {
       DetailView(book: book)
     }
+  }
+}
+
+extension Book {
+  var dateFormatted: String {
+    let formatter = DateFormatter()
+    formatter.dateStyle = .full
+    formatter.timeStyle = .short
+    if let date = date {
+      return formatter.string(from: date)
+    }
+    return "N/A"
   }
 }
