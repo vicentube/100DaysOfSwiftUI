@@ -7,17 +7,27 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E9BC3452262628A300561DD9 /* Singer+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9BC3450262628A300561DD9 /* Singer+CoreDataClass.swift */; };
+		E9BC3453262628A300561DD9 /* Singer+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9BC3451262628A300561DD9 /* Singer+CoreDataProperties.swift */; };
+		E9BC34562626297D00561DD9 /* FilteredListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9BC34552626297D00561DD9 /* FilteredListView.swift */; };
+		E9BC345926262C9A00561DD9 /* FilteredList.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9BC345826262C9A00561DD9 /* FilteredList.swift */; };
 		E9E4D22A2624F19600EE9165 /* CoreDataProjectApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9E4D2292624F19600EE9165 /* CoreDataProjectApp.swift */; };
 		E9E4D22C2624F19600EE9165 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9E4D22B2624F19600EE9165 /* ContentView.swift */; };
 		E9E4D22E2624F19600EE9165 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E9E4D22D2624F19600EE9165 /* Assets.xcassets */; };
 		E9E4D2312624F19600EE9165 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E9E4D2302624F19600EE9165 /* Preview Assets.xcassets */; };
 		E9E4D2332624F19600EE9165 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9E4D2322624F19600EE9165 /* Persistence.swift */; };
 		E9E4D2362624F19600EE9165 /* CoreDataProject.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E9E4D2342624F19600EE9165 /* CoreDataProject.xcdatamodeld */; };
-		E9E4D2402624F46A00EE9165 /* Movie+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9E4D23E2624F46A00EE9165 /* Movie+CoreDataClass.swift */; };
-		E9E4D2412624F46A00EE9165 /* Movie+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9E4D23F2624F46A00EE9165 /* Movie+CoreDataProperties.swift */; };
+		E9FD1BB026268419001BB539 /* Candy+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9FD1BAC26268419001BB539 /* Candy+CoreDataClass.swift */; };
+		E9FD1BB126268419001BB539 /* Candy+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9FD1BAD26268419001BB539 /* Candy+CoreDataProperties.swift */; };
+		E9FD1BB226268419001BB539 /* Country+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9FD1BAE26268419001BB539 /* Country+CoreDataClass.swift */; };
+		E9FD1BB326268419001BB539 /* Country+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9FD1BAF26268419001BB539 /* Country+CoreDataProperties.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		E9BC3450262628A300561DD9 /* Singer+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Singer+CoreDataClass.swift"; sourceTree = "<group>"; };
+		E9BC3451262628A300561DD9 /* Singer+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Singer+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		E9BC34552626297D00561DD9 /* FilteredListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilteredListView.swift; sourceTree = "<group>"; };
+		E9BC345826262C9A00561DD9 /* FilteredList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilteredList.swift; sourceTree = "<group>"; };
 		E9E4D2262624F19600EE9165 /* CoreDataProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CoreDataProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E9E4D2292624F19600EE9165 /* CoreDataProjectApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataProjectApp.swift; sourceTree = "<group>"; };
 		E9E4D22B2624F19600EE9165 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -26,8 +36,10 @@
 		E9E4D2322624F19600EE9165 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		E9E4D2352624F19600EE9165 /* CoreDataProject.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoreDataProject.xcdatamodel; sourceTree = "<group>"; };
 		E9E4D2372624F19600EE9165 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		E9E4D23E2624F46A00EE9165 /* Movie+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Movie+CoreDataClass.swift"; sourceTree = "<group>"; };
-		E9E4D23F2624F46A00EE9165 /* Movie+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Movie+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		E9FD1BAC26268419001BB539 /* Candy+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Candy+CoreDataClass.swift"; sourceTree = "<group>"; };
+		E9FD1BAD26268419001BB539 /* Candy+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Candy+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		E9FD1BAE26268419001BB539 /* Country+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Country+CoreDataClass.swift"; sourceTree = "<group>"; };
+		E9FD1BAF26268419001BB539 /* Country+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Country+CoreDataProperties.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,10 +72,16 @@
 		E9E4D2282624F19600EE9165 /* CoreDataProject */ = {
 			isa = PBXGroup;
 			children = (
-				E9E4D23E2624F46A00EE9165 /* Movie+CoreDataClass.swift */,
-				E9E4D23F2624F46A00EE9165 /* Movie+CoreDataProperties.swift */,
+				E9FD1BAC26268419001BB539 /* Candy+CoreDataClass.swift */,
+				E9FD1BAD26268419001BB539 /* Candy+CoreDataProperties.swift */,
+				E9FD1BAE26268419001BB539 /* Country+CoreDataClass.swift */,
+				E9FD1BAF26268419001BB539 /* Country+CoreDataProperties.swift */,
+				E9BC3450262628A300561DD9 /* Singer+CoreDataClass.swift */,
+				E9BC3451262628A300561DD9 /* Singer+CoreDataProperties.swift */,
 				E9E4D2292624F19600EE9165 /* CoreDataProjectApp.swift */,
 				E9E4D22B2624F19600EE9165 /* ContentView.swift */,
+				E9BC345826262C9A00561DD9 /* FilteredList.swift */,
+				E9BC34552626297D00561DD9 /* FilteredListView.swift */,
 				E9E4D22D2624F19600EE9165 /* Assets.xcassets */,
 				E9E4D2322624F19600EE9165 /* Persistence.swift */,
 				E9E4D2372624F19600EE9165 /* Info.plist */,
@@ -150,12 +168,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E9BC345926262C9A00561DD9 /* FilteredList.swift in Sources */,
+				E9FD1BB126268419001BB539 /* Candy+CoreDataProperties.swift in Sources */,
 				E9E4D2332624F19600EE9165 /* Persistence.swift in Sources */,
+				E9BC3453262628A300561DD9 /* Singer+CoreDataProperties.swift in Sources */,
+				E9FD1BB226268419001BB539 /* Country+CoreDataClass.swift in Sources */,
 				E9E4D22C2624F19600EE9165 /* ContentView.swift in Sources */,
+				E9BC34562626297D00561DD9 /* FilteredListView.swift in Sources */,
+				E9BC3452262628A300561DD9 /* Singer+CoreDataClass.swift in Sources */,
+				E9FD1BB326268419001BB539 /* Country+CoreDataProperties.swift in Sources */,
 				E9E4D2362624F19600EE9165 /* CoreDataProject.xcdatamodeld in Sources */,
 				E9E4D2402624F46A00EE9165 /* Movie+CoreDataClass.swift in Sources */,
 				E9E4D2412624F46A00EE9165 /* Movie+CoreDataProperties.swift in Sources */,
 				E9E4D22A2624F19600EE9165 /* CoreDataProjectApp.swift in Sources */,
+				E9FD1BB026268419001BB539 /* Candy+CoreDataClass.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
