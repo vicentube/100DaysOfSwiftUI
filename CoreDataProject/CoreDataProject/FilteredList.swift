@@ -21,15 +21,21 @@ struct FilteredList<T: NSManagedObject, Content: View>: View {
     }
   }
   
-  init(predicate: String,
+  init(predicate: Predicate,
     sortDescriptors: [NSSortDescriptor],
        filterKey: String,
        filterValue: String,
        @ViewBuilder content: @escaping (T) -> Content) {
     fetchRequest = FetchRequest<T>(entity: T.entity(),
                                    sortDescriptors: sortDescriptors,
-                                   predicate: NSPredicate(format: "%K \(predicate) %@", filterKey, filterValue))
+                                   predicate: NSPredicate(format: "%K \(predicate.rawValue) %@", filterKey, filterValue))
     self.content = content
   }
 }
 
+enum Predicate: String {
+  case beginsWith = "BEGINSWITH"
+  case begingsWith_ci = "BEGINSWITH[c]"
+  case contains = "CONTAINS"
+  case contains_ci = "CONTAINS[c]"
+}
