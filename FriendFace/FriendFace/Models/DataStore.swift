@@ -10,6 +10,8 @@ import Foundation
 class DataStore: ObservableObject {
   @Published var users = [User]()
   
+  init() { }
+  
   func loadData() {
     guard let url = URL(string: "https://www.hackingwithswift.com/samples/friendface.json") else {
       print("Invalid URL")
@@ -26,7 +28,7 @@ class DataStore: ObservableObject {
         return
       }
       DispatchQueue.main.async {
-        self.users = decodedData
+        self.users = decodedData.sorted(by: { $0.name < $1.name })
       }
     }
     task.resume()

@@ -8,9 +8,17 @@
 import SwiftUI
 
 struct ContentView: View {
+  @ObservedObject var store = DataStore()
+  
   var body: some View {
-    Text("Hello, world!")
-      .padding()
+    VStack {
+      List {
+        ForEach(store.users) { user in
+          UserRow(user: user)
+        }
+      }
+    }
+    .onAppear(perform: store.loadData)
   }
 }
 
