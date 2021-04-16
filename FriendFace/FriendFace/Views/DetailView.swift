@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct DetailView: View {
+  @EnvironmentObject var store: DataStore
   let user: User
   
   var body: some View {
@@ -64,7 +65,11 @@ struct DetailView: View {
         Section(header: Text("Friends")) {
           List {
             ForEach(user.friends) { friend in
-              Text(friend.name)
+              if let friendUser = store.users.first(where: { $0.id == friend.id }) {
+                NavigationLink(destination: DetailView(user: friendUser)) {
+                  UserRow(user: friendUser)
+                }
+              }
             }
           }
         }

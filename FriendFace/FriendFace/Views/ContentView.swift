@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ContentView: View {
-  @ObservedObject var store = DataStore()
+  @EnvironmentObject var store: DataStore
   
   var body: some View {
     NavigationView {

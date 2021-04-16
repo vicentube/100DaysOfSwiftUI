@@ -9,9 +9,11 @@ import SwiftUI
 
 @main
 struct FriendFaceApp: App {
-    var body: some Scene {
-        WindowGroup {
-            ContentView()
-        }
+  @StateObject var store = DataStore()
+  
+  var body: some Scene {
+    WindowGroup {
+      ContentView().environmentObject(store)
     }
+  }
 }
