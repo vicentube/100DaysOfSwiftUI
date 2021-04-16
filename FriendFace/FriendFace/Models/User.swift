@@ -20,6 +20,19 @@ struct User: Codable, Identifiable {
   var tags: [String]
   var friends: [Friend]
   
+  var dateFormatted: String {
+    let getFormatter = DateFormatter()
+    getFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZZZZZ"
+    if let date = getFormatter.date(from: registered) {
+      let printFormatter = DateFormatter()
+      printFormatter.dateStyle = .medium
+      printFormatter.timeStyle = .short
+      return printFormatter.string(from: date)
+    } else {
+      return "N/A"
+    }
+  }
+  
   static var preview: User {
     User(
       id: UUID(),

@@ -11,12 +11,15 @@ struct ContentView: View {
   @ObservedObject var store = DataStore()
   
   var body: some View {
-    VStack {
+    NavigationView {
       List {
         ForEach(store.users) { user in
-          UserRow(user: user)
+          NavigationLink(destination: DetailView(user: user)) {
+            UserRow(user: user)
+          }
         }
       }
+      .navigationBarTitle("Users")
     }
     .onAppear(perform: store.loadData)
   }
