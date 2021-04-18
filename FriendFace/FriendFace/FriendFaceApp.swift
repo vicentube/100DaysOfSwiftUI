@@ -9,11 +9,12 @@ import SwiftUI
 
 @main
 struct FriendFaceApp: App {
-  @StateObject var store = DataStore()
+  let persistenceController = PersistenceController.shared
   
   var body: some Scene {
     WindowGroup {
-      ContentView().environmentObject(store)
+      ContentView()
+        .environment(\.managedObjectContext, persistenceController.container.viewContext)
     }
   }
 }

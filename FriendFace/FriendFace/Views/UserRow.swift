@@ -15,8 +15,8 @@ struct UserRow: View {
       Image(systemName: "person.circle.fill")
         .foregroundColor(user.isActive ? .green : .red)
       VStack(alignment: .leading) {
-        Text(user.name)
-        Text(user.email)
+        Text(user.wName)
+        Text(user.wEmail)
           .font(.footnote)
           .foregroundColor(.secondary)
       }
@@ -24,8 +24,8 @@ struct UserRow: View {
   }
 }
 
-struct UserRow_Previews: PreviewProvider {
-  static var previews: some View {
-    UserRow(user: User.preview)
-  }
-}
+//struct UserRow_Previews: PreviewProvider {
+//  static var previews: some View {
+//    UserRow(user: User.preview)
+//  }
+//}

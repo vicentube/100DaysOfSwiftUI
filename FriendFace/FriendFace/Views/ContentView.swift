@@ -8,12 +8,16 @@
 import SwiftUI
 
 struct ContentView: View {
-  @EnvironmentObject var store: DataStore
+  @Environment(\.managedObjectContext) var moc
+  @FetchRequest(
+    entity: User.entity(),
+    sortDescriptors: [NSSortDescriptor(keyPath: \User.name, ascending: true)]
+  ) var users: FetchedResults<User>
   
   var body: some View {
     NavigationView {
       List {
-        ForEach(store.users) { user in
+        ForEach(users) { user in
           NavigationLink(destination: DetailView(user: user)) {
             UserRow(user: user)
           }
@@ -21,7 +25,11 @@ struct ContentView: View {
       }
       .navigationBarTitle("Users")
     }
-    .onAppear(perform: store.loadData)
+    .onAppear(perform: {
+      if users.isEmpty {
+        PersistenceController.shared.loadData()
+      }
+    })
   }
 }
 

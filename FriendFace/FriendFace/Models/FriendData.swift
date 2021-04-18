@@ -1,4 +1,4 @@
-// Friend.swift
+// FriendData.swift
 // FriendFace
 //
 // Creado el 15/4/21 por Vicente Úbeda (@vicentube)
@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Friend: Codable, Identifiable {
+struct FriendData: Codable, Identifiable {
   var id: UUID
   var name: String
 }

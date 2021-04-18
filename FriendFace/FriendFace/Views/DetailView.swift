@@ -8,12 +8,11 @@
 import SwiftUI
 
 struct DetailView: View {
-  @EnvironmentObject var store: DataStore
   let user: User
   
   var body: some View {
     VStack {
-      Text(user.name)
+      Text(user.wName)
         .font(.title)
         .fontWeight(.bold)
         .padding()
@@ -32,26 +31,27 @@ struct DetailView: View {
         HStack {
           Text("Company")
           Spacer()
-          Text(user.company)
+          Text(user.wCompany)
         }
         HStack {
           Text("E-mail")
           Spacer()
-          Text(user.email)
+          Text(user.wEmail)
         }
         
         Section(header: Text("Address")) {
-          Text(user.address.replacingOccurrences(of: ", ", with: "\n"))
+          Text(user.wAddress.replacingOccurrences(of: ", ", with: "\n"))
         }
         
-        Section(header: Text("About"), footer: Text("Registered: \(user.dateFormatted)")) {
-          Text(user.about)
+        // Section(header: Text("About"), footer: Text("Registered: \(user.dateFormatted)")) {
+        Section(header: Text("About"), footer: Text("Registered: ")) {
+          Text(user.wAbout)
         }
         
         Section(header: Text("Tags")) {
           ScrollView(.horizontal) {
             HStack {
-              ForEach(user.tags, id: \.self) { tag in
+              ForEach(user.wTags, id: \.self) { tag in
                 Text(tag)
                   .font(.footnote)
                   .foregroundColor(.white)
@@ -62,25 +62,25 @@ struct DetailView: View {
           }
         }
         
-        Section(header: Text("Friends")) {
-          List {
-            ForEach(user.friends) { friend in
-              if let friendUser = store.users.first(where: { $0.id == friend.id }) {
-                NavigationLink(destination: DetailView(user: friendUser)) {
-                  UserRow(user: friendUser)
-                }
-              }
-            }
-          }
-        }
+//        Section(header: Text("Friends")) {
+//          List {
+//            ForEach(user.friends) { friend in
+//              if let friendUser = store.users.first(where: { $0.id == friend.id }) {
+//                NavigationLink(destination: DetailView(user: friendUser)) {
+//                  UserRow(user: friendUser)
+//                }
+//              }
+//            }
+//          }
+//        }
       }
     }
     .navigationBarTitle("User details", displayMode: .inline)
   }
 }
 
-struct DetailView_Previews: PreviewProvider {
-  static var previews: some View {
-    DetailView(user: User.preview)
-  }
-}
+//struct DetailView_Previews: PreviewProvider {
+//  static var previews: some View {
+//    DetailView(user: User.preview)
+//  }
+//}
