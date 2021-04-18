@@ -8,6 +8,10 @@
 import SwiftUI
 
 struct DetailView: View {
+  @FetchRequest(
+    entity: User.entity(),
+    sortDescriptors: [NSSortDescriptor(keyPath: \User.name, ascending: true)]
+  ) var users: FetchedResults<User>
   let user: User
   
   var body: some View {
@@ -43,8 +47,7 @@ struct DetailView: View {
           Text(user.wAddress.replacingOccurrences(of: ", ", with: "\n"))
         }
         
-        // Section(header: Text("About"), footer: Text("Registered: \(user.dateFormatted)")) {
-        Section(header: Text("About"), footer: Text("Registered: ")) {
+        Section(header: Text("About"), footer: Text("Registered: \(user.dateFormatted)")) {
           Text(user.wAbout)
         }
         
@@ -62,20 +65,30 @@ struct DetailView: View {
           }
         }
         
-//        Section(header: Text("Friends")) {
-//          List {
-//            ForEach(user.friends) { friend in
-//              if let friendUser = store.users.first(where: { $0.id == friend.id }) {
-//                NavigationLink(destination: DetailView(user: friendUser)) {
-//                  UserRow(user: friendUser)
-//                }
-//              }
-//            }
-//          }
-//        }
+        Section(header: Text("Friends")) {
+          List {
+            ForEach(getFriendUsers()) { friend in
+              NavigationLink(destination: DetailView(user: friend)) {
+                UserRow(user: friend)
+              }
+            }
+          }
+        }
       }
     }
     .navigationBarTitle("User details", displayMode: .inline)
+  }
+  
+  func getFriendUsers() -> [User] {
+    var friendUsers = [User]()
+    if let friends = user.friends as? Set<Friend> {
+      for friend in friends {
+        if let friendUser = users.first(where: { $0.id == friend.id }) {
+          friendUsers.append(friendUser)
+        }
+      }
+    }
+    return friendUsers
   }
 }
 

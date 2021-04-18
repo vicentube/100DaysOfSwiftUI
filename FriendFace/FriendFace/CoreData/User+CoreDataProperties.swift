@@ -36,6 +36,17 @@ extension User {
   var wName: String { name ?? "N/A" }
   var wRegistered: Date { registered ?? Date() }
   var wTags: [String] { tags ?? [] }
+  
+  var dateFormatted: String {
+    let formatter = DateFormatter()
+    formatter.dateStyle = .medium
+    formatter.timeStyle = .short
+    if let date = registered {
+      return formatter.string(from: date)
+    } else {
+      return "N/A"
+    }
+  }
 }
 
 // MARK: Generated accessors for friends
