@@ -32,6 +32,8 @@ struct TestView2: View {
   func loadImage() {
     guard let inputImage = inputImage else { return }
     image = Image(uiImage: inputImage)
+    let imageSaver = ImageSaver()
+    imageSaver.writeToPhotoAlbum(image: inputImage)
   }
   
 //  func loadImage() {
@@ -75,5 +77,15 @@ struct TestView2: View {
 struct TestView2_Previews: PreviewProvider {
   static var previews: some View {
     TestView2()
+  }
+}
+
+class ImageSaver: NSObject {
+  func writeToPhotoAlbum(image: UIImage) {
+    UIImageWriteToSavedPhotosAlbum(image, self, #selector(saveError), nil)
+  }
+  
+  @objc func saveError(_ image: UIImage, didFinishSavingWithError error: Error?, contextInfo: UnsafeRawPointer) {
+    print("Save finished!")
   }
 }
