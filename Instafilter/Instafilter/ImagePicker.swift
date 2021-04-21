@@ -6,7 +6,6 @@
 // Copyright © 2021 Vicente Úbeda. Todos los derechos reservados.
 
 import SwiftUI
-import Foundation
 
 struct ImagePicker: UIViewControllerRepresentable {
   @Environment(\.presentationMode) var presentationMode
