@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		E90C1431262DC4E3009CA575 /* TestView2.swift in Sources */ = {isa = PBXBuildFile; fileRef = E90C1430262DC4E3009CA575 /* TestView2.swift */; };
 		E90C1435262DCEF5009CA575 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = E90C1434262DCEF5009CA575 /* ImagePicker.swift */; };
+		E95B02E22631936900688075 /* ImageSaver.swift in Sources */ = {isa = PBXBuildFile; fileRef = E95B02E12631936900688075 /* ImageSaver.swift */; };
 		E95BE6D3262C56C5007137CD /* InstafilterApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E95BE6D2262C56C5007137CD /* InstafilterApp.swift */; };
 		E95BE6D5262C56C5007137CD /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E95BE6D4262C56C5007137CD /* ContentView.swift */; };
 		E95BE6D7262C56C5007137CD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E95BE6D6262C56C5007137CD /* Assets.xcassets */; };
@@ -19,6 +20,7 @@
 /* Begin PBXFileReference section */
 		E90C1430262DC4E3009CA575 /* TestView2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestView2.swift; sourceTree = "<group>"; };
 		E90C1434262DCEF5009CA575 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
+		E95B02E12631936900688075 /* ImageSaver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageSaver.swift; sourceTree = "<group>"; };
 		E95BE6CF262C56C5007137CD /* Instafilter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Instafilter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E95BE6D2262C56C5007137CD /* InstafilterApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstafilterApp.swift; sourceTree = "<group>"; };
 		E95BE6D4262C56C5007137CD /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -63,6 +65,7 @@
 				E95BE6E2262C578F007137CD /* TestView.swift */,
 				E90C1430262DC4E3009CA575 /* TestView2.swift */,
 				E90C1434262DCEF5009CA575 /* ImagePicker.swift */,
+				E95B02E12631936900688075 /* ImageSaver.swift */,
 				E95BE6D6262C56C5007137CD /* Assets.xcassets */,
 				E95BE6DB262C56C5007137CD /* Info.plist */,
 				E95BE6D8262C56C5007137CD /* Preview Content */,
@@ -148,6 +151,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E95BE6E3262C578F007137CD /* TestView.swift in Sources */,
+				E95B02E22631936900688075 /* ImageSaver.swift in Sources */,
 				E95BE6D5262C56C5007137CD /* ContentView.swift in Sources */,
 				E90C1435262DCEF5009CA575 /* ImagePicker.swift in Sources */,
 				E95BE6D3262C56C5007137CD /* InstafilterApp.swift in Sources */,
