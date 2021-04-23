@@ -59,7 +59,8 @@ struct ContentView: View {
         .padding(.vertical)
         
         HStack {
-          Button("Change Filter") {
+          let filterName = CIFilter.localizedName(forFilterName: currentFilter.name) ?? "Unknown filter"
+          Button(filterName) {
             showingFilterSheet = true
           }
           
