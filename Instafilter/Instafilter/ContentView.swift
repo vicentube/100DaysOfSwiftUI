@@ -17,6 +17,7 @@ struct ContentView: View {
   @State private var currentFilter: CIFilter = CIFilter.sepiaTone()
   @State private var showingFilterSheet = false
   @State private var processedImage: UIImage?
+  @State private var showingNoImageError = false
   
   let context = CIContext()
   
@@ -65,7 +66,10 @@ struct ContentView: View {
           Spacer()
           
           Button("Save") {
-            guard let processedImage = processedImage else { return }
+            guard let processedImage = processedImage else {
+              showingNoImageError = true
+              return
+            }
             
             let imageSaver = ImageSaver()
             
@@ -97,6 +101,11 @@ struct ContentView: View {
           .default(Text("Vignette")) { setFilter(CIFilter.vignette()) },
           .cancel()
         ])
+      }
+      .alert(isPresented: $showingNoImageError) {
+        Alert(title: Text("Error"),
+              message: Text("There is no image loaded."),
+              dismissButton: .default(Text("OK")))
       }
     }
   }
