@@ -12,25 +12,41 @@ import CoreImage.CIFilterBuiltins
 struct ContentView: View {
   @State private var image: Image?
   @State private var filterIntensity = 0.5
+  @State private var filterRadius = 100.0
+  @State private var filterScale = 5.0
   @State private var showingImagePicker = false
   @State private var inputImage: UIImage?
   @State private var currentFilter: CIFilter = CIFilter.sepiaTone()
   @State private var showingFilterSheet = false
   @State private var processedImage: UIImage?
   @State private var showingNoImageError = false
+  @State private var disableIntensity = false
+  @State private var disableRadius = false
+  @State private var disableScale = false
   
   let context = CIContext()
   
   var body: some View {
     let intensity = Binding<Double>(
-      get: {
-        filterIntensity
-      },
+      get: { filterIntensity },
       set: {
         filterIntensity = $0
         applyProcessing()
-      }
-    )
+      })
+    
+    let radius = Binding<Double>(
+      get: { filterRadius },
+      set: {
+        filterRadius = $0
+        applyProcessing()
+      })
+    
+    let scale = Binding<Double>(
+      get: { filterScale },
+      set: {
+        filterScale = $0
+        applyProcessing()
+      })
     
     return NavigationView {
       VStack {
@@ -52,11 +68,34 @@ struct ContentView: View {
           showingImagePicker = true
         }
         
-        HStack {
-          Text("Intensity")
-          Slider(value: intensity)
+        VStack {
+          HStack {
+            Text("Intensity")
+            Spacer()
+            Slider(value: intensity)
+              .frame(maxWidth: 260)
+          }
+          .disabled(disableIntensity)
+          .padding(.vertical)
+
+          HStack {
+            Text("Radius")
+            Spacer()
+            Slider(value: radius, in: 0...200)
+              .frame(maxWidth: 260)
+          }
+          .disabled(disableRadius)
+          .padding(.vertical)
+
+          HStack {
+            Text("Scale")
+            Spacer()
+            Slider(value: scale, in: 0...10)
+              .frame(maxWidth: 260)
+          }
+          .disabled(disableScale)
+          .padding(.vertical)
         }
-        .padding(.vertical)
         
         HStack {
           let filterName = CIFilter.localizedName(forFilterName: currentFilter.name) ?? "Unknown filter"
@@ -126,14 +165,17 @@ struct ContentView: View {
   
   func applyProcessing() {
     let inputKeys = currentFilter.inputKeys
-    if inputKeys.contains(kCIInputIntensityKey) {
+    disableIntensity =  !inputKeys.contains(kCIInputIntensityKey)
+    if !disableIntensity {
       currentFilter.setValue(filterIntensity, forKey: kCIInputIntensityKey)
     }
-    if inputKeys.contains(kCIInputRadiusKey) {
-      currentFilter.setValue(filterIntensity * 200, forKey: kCIInputRadiusKey)
+    disableRadius = !inputKeys.contains(kCIInputRadiusKey)
+    if !disableRadius {
+      currentFilter.setValue(filterRadius, forKey: kCIInputRadiusKey)
     }
-    if inputKeys.contains(kCIInputScaleKey) {
-      currentFilter.setValue(filterIntensity * 10, forKey: kCIInputScaleKey)
+    self.disableScale = !inputKeys.contains(kCIInputScaleKey)
+    if !disableScale {
+      currentFilter.setValue(filterScale, forKey: kCIInputScaleKey)
     }
     
     guard let outputImage = currentFilter.outputImage else { return }
