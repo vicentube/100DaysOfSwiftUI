@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E9066D312636143E00B06031 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9066D302636143E00B06031 /* MapView.swift */; };
 		E920AE452634A541009C571A /* BucketListApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E920AE442634A541009C571A /* BucketListApp.swift */; };
 		E920AE472634A541009C571A /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E920AE462634A541009C571A /* ContentView.swift */; };
 		E920AE492634A541009C571A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E920AE482634A541009C571A /* Assets.xcassets */; };
@@ -17,6 +18,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		E9066D302636143E00B06031 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		E920AE412634A541009C571A /* BucketList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BucketList.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E920AE442634A541009C571A /* BucketListApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BucketListApp.swift; sourceTree = "<group>"; };
 		E920AE462634A541009C571A /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -60,6 +62,7 @@
 			children = (
 				E920AE442634A541009C571A /* BucketListApp.swift */,
 				E920AE462634A541009C571A /* ContentView.swift */,
+				E9066D302636143E00B06031 /* MapView.swift */,
 				E920AE482634A541009C571A /* Assets.xcassets */,
 				E920AE4D2634A541009C571A /* Info.plist */,
 				E920AE4A2634A541009C571A /* Preview Content */,
@@ -148,6 +151,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E920AE472634A541009C571A /* ContentView.swift in Sources */,
+				E9066D312636143E00B06031 /* MapView.swift in Sources */,
 				E920AE542634A5ED009C571A /* Test1View.swift in Sources */,
 				E920AE452634A541009C571A /* BucketListApp.swift in Sources */,
 				E920AE562634A9DA009C571A /* Test2View.swift in Sources */,
