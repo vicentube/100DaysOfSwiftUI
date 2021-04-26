@@ -1,7 +1,7 @@
 // MapView.swift
 // BucketList
 //
-// Creado el 25/4/21 por Vicente Úbeda (@vicentube)
+// Creado el 26/4/21 por Vicente Úbeda (@vicentube)
 // https://appeleando.com
 // Copyright © 2021 Vicente Úbeda. Todos los derechos reservados.
 
@@ -9,6 +9,26 @@ import SwiftUI
 import MapKit
 
 struct MapView: UIViewRepresentable {
+  @Binding var centerCoordinate: CLLocationCoordinate2D
+  var annotations: [MKPointAnnotation]
+  
+  func makeUIView(context: Context) -> MKMapView {
+    let mapView = MKMapView()
+    mapView.delegate = context.coordinator
+    return mapView
+  }
+  
+  func updateUIView(_ view: MKMapView, context: Context) {
+    if annotations.count != view.annotations.count {
+      view.removeAnnotations(view.annotations)
+      view.addAnnotations(annotations)
+    }
+  }
+  
+  func makeCoordinator() -> Coordinator {
+    Coordinator(self)
+  }
+  
   class Coordinator: NSObject, MKMapViewDelegate {
     var parent: MapView
     
@@ -17,41 +37,7 @@ struct MapView: UIViewRepresentable {
     }
     
     func mapViewDidChangeVisibleRegion(_ mapView: MKMapView) {
-      print(mapView.centerCoordinate)
+      parent.centerCoordinate = mapView.centerCoordinate
     }
-    
-    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-      let view = MKPinAnnotationView(annotation: annotation, reuseIdentifier: nil)
-      view.canShowCallout = true
-      return view
-    }
-  }
-  
-  
-  func makeUIView(context: Context) -> MKMapView {
-    let mapView = MKMapView()
-    mapView.delegate = context.coordinator
-    
-    let annotation = MKPointAnnotation()
-    annotation.title = "London"
-    annotation.subtitle = "Capital of England"
-    annotation.coordinate = CLLocationCoordinate2D(latitude: 51.5, longitude: 0.13)
-    mapView.addAnnotation(annotation)
-    
-    return mapView
-  }
-  
-  func updateUIView(_ uiView: MKMapView, context: Context) {
-    
-  }
-  
-  func makeCoordinator() -> Coordinator {
-    Coordinator(self)
-  }
-}
-
-struct MapView_Previews: PreviewProvider {
-  static var previews: some View {
-    MapView()
   }
 }
