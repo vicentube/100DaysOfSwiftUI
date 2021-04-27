@@ -17,6 +17,8 @@
 		E920AE582634ADBF009C571A /* Test3View.swift in Sources */ = {isa = PBXBuildFile; fileRef = E920AE572634ADBF009C571A /* Test3View.swift */; };
 		E92C0BC326370AB100335152 /* Test4View.swift in Sources */ = {isa = PBXBuildFile; fileRef = E92C0BC226370AB100335152 /* Test4View.swift */; };
 		E92C0BC526370BAA00335152 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E92C0BC426370BAA00335152 /* MapView.swift */; };
+		E96A39F4263852D600EC4547 /* MKPointAnnotation-ObservableObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = E96A39F3263852D600EC4547 /* MKPointAnnotation-ObservableObject.swift */; };
+		E96A39F6263853A700EC4547 /* EditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E96A39F5263853A700EC4547 /* EditView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +34,8 @@
 		E920AE572634ADBF009C571A /* Test3View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Test3View.swift; sourceTree = "<group>"; };
 		E92C0BC226370AB100335152 /* Test4View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Test4View.swift; sourceTree = "<group>"; };
 		E92C0BC426370BAA00335152 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
+		E96A39F3263852D600EC4547 /* MKPointAnnotation-ObservableObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MKPointAnnotation-ObservableObject.swift"; sourceTree = "<group>"; };
+		E96A39F5263853A700EC4547 /* EditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,6 +71,8 @@
 				E920AE442634A541009C571A /* BucketListApp.swift */,
 				E920AE462634A541009C571A /* ContentView.swift */,
 				E92C0BC426370BAA00335152 /* MapView.swift */,
+				E96A39F5263853A700EC4547 /* EditView.swift */,
+				E96A39F3263852D600EC4547 /* MKPointAnnotation-ObservableObject.swift */,
 				E920AE482634A541009C571A /* Assets.xcassets */,
 				E920AE4D2634A541009C571A /* Info.plist */,
 				E920AE4A2634A541009C571A /* Preview Content */,
@@ -160,7 +166,9 @@
 				E92C0BC526370BAA00335152 /* MapView.swift in Sources */,
 				E9066D312636143E00B06031 /* MapTestView.swift in Sources */,
 				E920AE542634A5ED009C571A /* Test1View.swift in Sources */,
+				E96A39F4263852D600EC4547 /* MKPointAnnotation-ObservableObject.swift in Sources */,
 				E920AE452634A541009C571A /* BucketListApp.swift in Sources */,
+				E96A39F6263853A700EC4547 /* EditView.swift in Sources */,
 				E92C0BC326370AB100335152 /* Test4View.swift in Sources */,
 				E920AE562634A9DA009C571A /* Test2View.swift in Sources */,
 				E920AE582634ADBF009C571A /* Test3View.swift in Sources */,
