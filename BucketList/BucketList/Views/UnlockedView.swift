@@ -9,8 +9,8 @@ import SwiftUI
 import MapKit
 
 struct UnlockedView: View {
+  @ObservedObject var model: Model
   @State private var centerCoordinate = CLLocationCoordinate2D()
-  @State private var locations = [CodableMKPointAnnotation]()
   @State private var selectedPlace: MKPointAnnotation?
   @State private var showingPlaceDetails = false
   @State private var showingEditScreen = false
@@ -21,7 +21,7 @@ struct UnlockedView: View {
         centerCoordinate: $centerCoordinate,
         selectedPlace: $selectedPlace,
         showingPlaceDetails: $showingPlaceDetails,
-        annotations: locations)
+        annotations: model.locations)
         .edgesIgnoringSafeArea(.all)
       Circle()
         .fill(Color.blue)
@@ -36,7 +36,7 @@ struct UnlockedView: View {
             newLocation.title = "Example location"
             newLocation.subtitle = "n/a"
             newLocation.coordinate = centerCoordinate
-            locations.append(newLocation)
+            model.locations.append(newLocation)
             selectedPlace = newLocation
             showingEditScreen = true
           }) {
@@ -60,45 +60,17 @@ struct UnlockedView: View {
           showingEditScreen = true
         })
     }
-    .sheet(isPresented: $showingEditScreen, onDismiss: saveData) {
+    .sheet(isPresented: $showingEditScreen, onDismiss: model.saveData) {
       if let selectedPlace = selectedPlace {
-        EditView(placemark: selectedPlace)
+        EditView(model: model, placemark: selectedPlace)
       }
     }
-    .onAppear(perform: loadData)
-  }
-  
-  func getDocumentsDirectory() -> URL {
-    let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
-    return paths[0]
-  }
-  
-  func loadData() {
-    let filename = getDocumentsDirectory().appendingPathComponent("SavedPlaces")
-    
-    do {
-      print(filename.absoluteString)
-      let data = try Data(contentsOf: filename)
-      locations = try JSONDecoder().decode([CodableMKPointAnnotation].self, from: data)
-    } catch {
-      print("Unable to load saved data.")
-    }
-  }
-  
-  func saveData() {
-    do {
-      let filename = getDocumentsDirectory().appendingPathComponent("SavedPlaces")
-      let data = try JSONEncoder().encode(locations)
-      try data.write(to: filename, options: [.atomicWrite])
-      // try data.write(to: filename, options: [.atomicWrite, .completeFileProtection])
-    } catch {
-      print("Unable to save data.")
-    }
+    .onAppear(perform: model.loadData)
   }
 }
 
 struct UnlockedView_Previews: PreviewProvider {
   static var previews: some View {
-    UnlockedView()
+    UnlockedView(model: Model())
   }
 }

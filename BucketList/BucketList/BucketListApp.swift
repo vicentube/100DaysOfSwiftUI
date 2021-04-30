@@ -9,9 +9,11 @@ import SwiftUI
 
 @main
 struct BucketListApp: App {
+  @StateObject private var model = Model()
+  
   var body: some Scene {
     WindowGroup {
-      ContentView()
+      ContentView(model: model)
     }
   }
 }
