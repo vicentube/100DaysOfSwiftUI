@@ -11,6 +11,8 @@ import LocalAuthentication
 
 struct ContentView: View {
   @State private var isUnlocked = false
+  @State private var showingAuthenticationError = false
+  @State private var errorDescription = ""
   
   var body: some View {
     ZStack {
@@ -26,6 +28,9 @@ struct ContentView: View {
         .clipShape(Capsule())
       }
     }
+    .alert(isPresented: $showingAuthenticationError) {
+      Alert(title: Text("Error"), message: Text(errorDescription), dismissButton: .default(Text("OK")))
+    }
   }
   
   func authenticate() {
@@ -40,12 +45,14 @@ struct ContentView: View {
           if success {
             isUnlocked = true
           } else {
-            // error
+            errorDescription = authenticationError?.localizedDescription ?? "Unknown error"
+            showingAuthenticationError = true
           }
         }
       }
     } else {
-      // no biometrics
+      errorDescription = error?.localizedDescription ?? "Unknown error"
+      showingAuthenticationError = true
     }
   }
 }
