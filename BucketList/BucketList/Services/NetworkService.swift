@@ -36,6 +36,10 @@ class NetworkService {
             handler(pages, nil)
             return
           }
+        } else {
+          networkError = "Decoding error: \(String(decoding: data, as: UTF8.self))"
+          handler(nil, networkError)
+          return
         }
       }
       

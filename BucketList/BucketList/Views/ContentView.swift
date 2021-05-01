@@ -27,11 +27,12 @@ struct ContentView: View {
             .foregroundColor(.white)
             .clipShape(Capsule())
         }
+        .alert(isPresented: $showingAlert) {
+          Alert(title: alertTitle, message: alertMessage, dismissButton: .default(Text("OK")))
+        }
       }
     }
-    .alert(isPresented: $showingAlert) {
-      Alert(title: alertTitle, message: alertMessage, dismissButton: .default(Text("OK")))
-    }
+    
   }
   
   func authenticate() {

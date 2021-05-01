@@ -23,6 +23,15 @@ struct UnlockedView: View {
         showingPlaceDetails: $showingPlaceDetails,
         annotations: model.locations)
         .edgesIgnoringSafeArea(.all)
+        .alert(isPresented: $showingPlaceDetails) {
+          Alert(
+            title: Text(selectedPlace?.title ?? "Unknown"),
+            message: Text(selectedPlace?.subtitle ?? "Missing place information"),
+            primaryButton: .default(Text("OK")),
+            secondaryButton: .default(Text("Edit")) {
+              showingEditScreen = true
+            })
+        }
       Circle()
         .fill(Color.blue)
         .opacity(0.3)
@@ -50,15 +59,6 @@ struct UnlockedView: View {
           }
         }
       }
-    }
-    .alert(isPresented: $showingPlaceDetails) {
-      Alert(
-        title: Text(selectedPlace?.title ?? "Unknown"),
-        message: Text(selectedPlace?.subtitle ?? "Missing place information"),
-        primaryButton: .default(Text("OK")),
-        secondaryButton: .default(Text("Edit")) {
-          showingEditScreen = true
-        })
     }
     .sheet(isPresented: $showingEditScreen, onDismiss: model.saveData) {
       if let selectedPlace = selectedPlace {
