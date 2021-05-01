@@ -8,12 +8,10 @@
 import SwiftUI
 
 @main
-struct BucketListApp: App {
-  @StateObject private var model = Model()
-  
+struct BucketListApp: App {  
   var body: some Scene {
     WindowGroup {
-      ContentView(model: model)
+      ContentView()
     }
   }
 }

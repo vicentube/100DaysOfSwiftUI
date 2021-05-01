@@ -6,30 +6,25 @@
 // Copyright © 2021 Vicente Úbeda. Todos los derechos reservados.
 
 import SwiftUI
-import MapKit
 
 struct UnlockedView: View {
-  @ObservedObject var model: Model
-  @State private var centerCoordinate = CLLocationCoordinate2D()
-  @State private var selectedPlace: MKPointAnnotation?
-  @State private var showingPlaceDetails = false
-  @State private var showingEditScreen = false
+  @StateObject private var vm = UnlockedViewModel()
   
   var body: some View {
     ZStack {
       MapView(
-        centerCoordinate: $centerCoordinate,
-        selectedPlace: $selectedPlace,
-        showingPlaceDetails: $showingPlaceDetails,
-        annotations: model.locations)
+        centerCoordinate: $vm.centerCoordinate,
+        selectedPlace: $vm.selectedPlace,
+        showingPlaceDetails: $vm.showingPlaceDetails,
+        annotations: vm.locations)
         .edgesIgnoringSafeArea(.all)
-        .alert(isPresented: $showingPlaceDetails) {
+        .alert(isPresented: $vm.showingPlaceDetails) {
           Alert(
-            title: Text(selectedPlace?.title ?? "Unknown"),
-            message: Text(selectedPlace?.subtitle ?? "Missing place information"),
+            title: Text(vm.selectedPlace?.title ?? "Unknown"),
+            message: Text(vm.selectedPlace?.subtitle ?? "Missing place information"),
             primaryButton: .default(Text("OK")),
             secondaryButton: .default(Text("Edit")) {
-              showingEditScreen = true
+              vm.showingEditScreen = true
             })
         }
       Circle()
@@ -44,10 +39,10 @@ struct UnlockedView: View {
             let newLocation = CodableMKPointAnnotation()
             newLocation.title = "Example location"
             newLocation.subtitle = "n/a"
-            newLocation.coordinate = centerCoordinate
-            model.locations.append(newLocation)
-            selectedPlace = newLocation
-            showingEditScreen = true
+            newLocation.coordinate = vm.centerCoordinate
+            vm.locations.append(newLocation)
+            vm.selectedPlace = newLocation
+            vm.showingEditScreen = true
           }) {
             Image(systemName: "plus")
               .padding()
@@ -60,17 +55,18 @@ struct UnlockedView: View {
         }
       }
     }
-    .sheet(isPresented: $showingEditScreen, onDismiss: model.saveData) {
-      if let selectedPlace = selectedPlace {
-        EditView(model: model, placemark: selectedPlace)
+    .sheet(isPresented: $vm.showingEditScreen, onDismiss: vm.saveData) {
+      if let selectedPlace = vm.selectedPlace {
+        EditView(placemark: selectedPlace)
       }
     }
-    .onAppear(perform: model.loadData)
+    .onAppear(perform: vm.loadData)
   }
 }
 
 struct UnlockedView_Previews: PreviewProvider {
   static var previews: some View {
-    UnlockedView(model: Model())
+    UnlockedView()
   }
 }
+

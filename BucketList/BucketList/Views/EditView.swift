@@ -10,32 +10,30 @@ import MapKit
 
 struct EditView: View {
   @Environment(\.presentationMode) var presentationMode
-  @ObservedObject var model: Model
-  @ObservedObject var placemark: MKPointAnnotation
+  @StateObject private var vm: EditViewModel
   
-  @State private var loadingState = LoadingState.loading
-  @State private var pages = [Page]()
-  @State private var showingAlert = false
-  @State private var alertMessage = Text("")
+  init(placemark: MKPointAnnotation) {
+    self._vm = StateObject(wrappedValue: EditViewModel(placemark: placemark))
+  }
   
   var body: some View {
     NavigationView {
       Form {
         Section {
-          TextField("Place name", text: $placemark.wrappedTitle)
-          TextField("Description", text: $placemark.wrappedSubtitle)
+          TextField("Place name", text: $vm.placemark.wrappedTitle)
+          TextField("Description", text: $vm.placemark.wrappedSubtitle)
         }
         
         Section(header: Text("Nearby...")) {
-          if loadingState == .loaded {
-            List(pages, id: \.pageid) { page in
+          if vm.loadingState == .loaded {
+            List(vm.pages, id: \.pageid) { page in
               Text(page.title)
                 .font(.headline)
                 + Text(": ") +
                 Text(page.description)
                 .italic()
             }
-          } else if loadingState == .loading {
+          } else if vm.loadingState == .loading {
             Text("Loading...")
           } else {
             Text("Please try again later.")
@@ -46,23 +44,10 @@ struct EditView: View {
       .navigationBarItems(trailing: Button("Done") {
         presentationMode.wrappedValue.dismiss()
       })
-      .alert(isPresented: $showingAlert) {
-        Alert(title: Text("Error"), message: alertMessage, dismissButton: .default(Text("OK")))
+      .alert(isPresented: $vm.showingAlert) {
+        Alert(title: Text("Error"), message: Text(vm.alertMessage), dismissButton: .default(Text("OK")))
       }
-      .onAppear(perform: fetchNearbyPlaces)
-    }
-  }
-  
-  func fetchNearbyPlaces() {
-    model.getNearbyPlaces(placemark: placemark) { pages, error in
-      if let pages = pages {
-        loadingState = .loaded
-        self.pages = pages
-      } else if let error = error {
-        loadingState = .failed
-        alertMessage = Text(error)
-        showingAlert = true
-      }
+      .onAppear(perform: vm.fetchNearbyPlaces)
     }
   }
 }

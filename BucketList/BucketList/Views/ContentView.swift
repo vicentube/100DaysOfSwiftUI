@@ -6,44 +6,25 @@
 // Copyright © 2021 Vicente Úbeda. Todos los derechos reservados.
 
 import SwiftUI
-import MapKit
-import LocalAuthentication
 
 struct ContentView: View {
-  @ObservedObject var model: Model
-  @State private var showingAlert = false
-  @State private var alertTitle = Text("")
-  @State private var alertMessage = Text("")
+  @StateObject private var vm = ContentViewModel()
   
   var body: some View {
     ZStack {
-      if model.isUnlocked {
-        UnlockedView(model: model)
+      if vm.isUnlocked {
+        UnlockedView()
       } else {
-        Button(action: authenticate) {
+        Button(action: vm.authenticate) {
           Text("Unlock Places")
             .padding()
             .background(Color.blue)
             .foregroundColor(.white)
             .clipShape(Capsule())
         }
-        .alert(isPresented: $showingAlert) {
-          Alert(title: alertTitle, message: alertMessage, dismissButton: .default(Text("OK")))
+        .alert(isPresented: $vm.showingAlert) {
+          Alert(title: Text("Error"), message: Text(vm.alertMessage), dismissButton: .default(Text("OK")))
         }
-      }
-    }
-    
-  }
-  
-  func authenticate() {
-    model.authenticate { error in
-      if let error = error {
-        alertTitle = Text("Error")
-        alertMessage = Text(error)
-        showingAlert = true
-      }
-      else {
-        model.isUnlocked = true
       }
     }
   }
@@ -51,6 +32,6 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
   static var previews: some View {
-    ContentView(model: Model())
+    ContentView()
   }
 }

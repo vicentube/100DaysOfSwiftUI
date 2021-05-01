@@ -8,26 +8,29 @@
 import LocalAuthentication
 import Combine
 
-class AuthenticationService {
-  static func authenticate(handler: @escaping (String?) -> Void) {
+protocol AuthenticationService {
+  func authenticate(completion: @escaping (Bool, String?) -> Void) -> Void
+}
+
+final class BiometricAuthenticationService: AuthenticationService {
+  func authenticate(completion: @escaping (Bool, String?) -> Void) {
     let context = LAContext()
     var error: NSError?
-    var resultError: String? = nil
     
     if context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: &error) {
       let reason = "Please authenticate yourself to unlock your places."
       
       context.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: reason) { success, authenticationError in
         DispatchQueue.main.async {
-          if !success {
-            resultError = authenticationError?.localizedDescription ?? "Unknown error"
+          if success {
+            completion(true, nil)
+          } else {
+            completion(false, authenticationError?.localizedDescription ?? "Unknown error")
           }
-          handler(resultError)
         }
       }
     } else {
-      resultError = error?.localizedDescription ?? "Unknown error"
-      handler(resultError)
+      completion(false, error?.localizedDescription ?? "Unknown error")
     }
   }
 }

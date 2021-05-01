@@ -1,22 +1,14 @@
-// Model.swift
+// LocationsRepo.swift
 // BucketList
 //
-// Creado el 30/4/21 por Vicente Úbeda (@vicentube)
+// Creado el 1/5/21 por Vicente Úbeda (@vicentube)
 // https://appeleando.com
 // Copyright © 2021 Vicente Úbeda. Todos los derechos reservados.
 
 import Foundation
-import MapKit
 
-final class Model: ObservableObject {
-  @Published var isUnlocked = false
+final class LocationsRepo: ObservableObject {
   @Published var locations = [CodableMKPointAnnotation]()
-  
-  var errorDescription = ""
-  
-  func authenticate(handler: @escaping (String?) -> Void) {
-    AuthenticationService.authenticate(handler: handler)
-  }
   
   private func getDocumentsDirectory() -> URL {
     let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
@@ -44,9 +36,5 @@ final class Model: ObservableObject {
     } catch {
       print("Unable to save data.")
     }
-  }
-  
-  func getNearbyPlaces(placemark: MKPointAnnotation, handler: @escaping ([Page]?, String?) -> Void) {
-    NetworkService.fetchNearbyPlaces(latitude: placemark.coordinate.latitude, longitude: placemark.coordinate.longitude, handler: handler)
   }
 }
