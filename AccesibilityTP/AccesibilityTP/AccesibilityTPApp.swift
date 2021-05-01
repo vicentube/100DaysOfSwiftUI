@@ -11,7 +11,7 @@ import SwiftUI
 struct AccesibilityTPApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            Test1View()
         }
     }
 }
