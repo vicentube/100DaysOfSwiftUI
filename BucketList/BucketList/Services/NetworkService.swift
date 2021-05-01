@@ -37,8 +37,8 @@ class NetworkService {
             return
           }
         } else {
-          networkError = "Decoding error: \(String(decoding: data, as: UTF8.self))"
-          handler(nil, networkError)
+          pages = [Page]()
+          handler(pages, nil)
           return
         }
       }
