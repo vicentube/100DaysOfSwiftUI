@@ -36,8 +36,7 @@ final class UnlockedViewModel: ObservableObject {
     do {
       let filename = getDocumentsDirectory().appendingPathComponent("SavedPlaces")
       let data = try JSONEncoder().encode(locations)
-      try data.write(to: filename, options: [.atomicWrite])
-      // try data.write(to: filename, options: [.atomicWrite, .completeFileProtection])
+      try data.write(to: filename, options: [.atomicWrite, .completeFileProtection])
     } catch {
       print("Unable to save data.")
     }

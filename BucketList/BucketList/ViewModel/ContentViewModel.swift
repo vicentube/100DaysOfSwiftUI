@@ -19,11 +19,11 @@ final class ContentViewModel: ObservableObject {
   }
   
   func authenticate() {
-    authService.authenticate { success, error in
-      self.isUnlocked = success
+    authService.authenticate { [weak self] success, error in
+      self?.isUnlocked = success
       if let error = error {
-        self.alertMessage = error
-        self.showingAlert = true
+        self?.alertMessage = error
+        self?.showingAlert = true
       }
     }
   }

@@ -23,14 +23,16 @@ final class EditViewModel: ObservableObject {
   }
   
   func fetchNearbyPlaces() {
-    networkService.fetchNearbyPlaces(latitude: placemark.coordinate.latitude, longitude: placemark.coordinate.longitude) { pages, error in
+    networkService.fetchNearbyPlaces(
+      latitude: placemark.coordinate.latitude,
+      longitude: placemark.coordinate.longitude) { [weak self] pages, error in
       if let pages = pages {
-        self.loadingState = .loaded
-        self.pages = pages
+        self?.loadingState = .loaded
+        self?.pages = pages
       } else if let error = error {
-        self.loadingState = .failed
-        self.alertMessage = error
-        self.showingAlert = true
+        self?.loadingState = .failed
+        self?.alertMessage = error
+        self?.showingAlert = true
       }
     }
   }
