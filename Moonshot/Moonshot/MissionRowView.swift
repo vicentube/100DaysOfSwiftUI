@@ -13,7 +13,7 @@ struct MissionRowView: View {
   
   var body: some View {
     HStack {
-      Image(mission.image)
+      Image(decorative: mission.image)
         .resizable()
         .scaledToFit()
         .frame(width: 44, height: 44)
