@@ -13,6 +13,7 @@
 		E98EF3312640F00D00F52702 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E98EF3302640F00D00F52702 /* Preview Assets.xcassets */; };
 		E98EF3332640F00D00F52702 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = E98EF3322640F00D00F52702 /* Persistence.swift */; };
 		E98EF3362640F00D00F52702 /* PeopleNames.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E98EF3342640F00D00F52702 /* PeopleNames.xcdatamodeld */; };
+		E98EF3422640F2C700F52702 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = E98EF3412640F2C700F52702 /* ImagePicker.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		E98EF3322640F00D00F52702 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		E98EF3352640F00D00F52702 /* PeopleNames.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = PeopleNames.xcdatamodel; sourceTree = "<group>"; };
 		E98EF3372640F00D00F52702 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E98EF3412640F2C700F52702 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,6 +59,9 @@
 			isa = PBXGroup;
 			children = (
 				E98EF3292640F00C00F52702 /* PeopleNamesApp.swift */,
+				E98EF33D2640F18500F52702 /* Views */,
+				E98EF33E2640F19400F52702 /* ViewModels */,
+				E98EF33F2640F1AE00F52702 /* Models */,
 				E98EF32B2640F00C00F52702 /* ContentView.swift */,
 				E98EF32D2640F00D00F52702 /* Assets.xcassets */,
 				E98EF3322640F00D00F52702 /* Persistence.swift */,
@@ -73,6 +78,28 @@
 				E98EF3302640F00D00F52702 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		E98EF33D2640F18500F52702 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				E98EF3412640F2C700F52702 /* ImagePicker.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		E98EF33E2640F19400F52702 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		E98EF33F2640F1AE00F52702 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -146,6 +173,7 @@
 			files = (
 				E98EF3332640F00D00F52702 /* Persistence.swift in Sources */,
 				E98EF3362640F00D00F52702 /* PeopleNames.xcdatamodeld in Sources */,
+				E98EF3422640F2C700F52702 /* ImagePicker.swift in Sources */,
 				E98EF32C2640F00C00F52702 /* ContentView.swift in Sources */,
 				E98EF32A2640F00C00F52702 /* PeopleNamesApp.swift in Sources */,
 			);
