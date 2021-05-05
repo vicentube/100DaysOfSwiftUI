@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E90482B12642139500EA366A /* ContactRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E90482B02642139500EA366A /* ContactRowView.swift */; };
+		E90482B3264213BB00EA366A /* ContactRowViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E90482B2264213BB00EA366A /* ContactRowViewModel.swift */; };
+		E92BFE5826419CCA0069B01A /* PreviewDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E92BFE5726419CCA0069B01A /* PreviewDataService.swift */; };
 		E98EF32A2640F00C00F52702 /* PeopleNamesApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E98EF3292640F00C00F52702 /* PeopleNamesApp.swift */; };
 		E98EF32C2640F00C00F52702 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E98EF32B2640F00C00F52702 /* ContentView.swift */; };
 		E98EF32E2640F00D00F52702 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E98EF32D2640F00D00F52702 /* Assets.xcassets */; };
@@ -14,9 +17,17 @@
 		E98EF3332640F00D00F52702 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = E98EF3322640F00D00F52702 /* Persistence.swift */; };
 		E98EF3362640F00D00F52702 /* PeopleNames.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E98EF3342640F00D00F52702 /* PeopleNames.xcdatamodeld */; };
 		E98EF3422640F2C700F52702 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = E98EF3412640F2C700F52702 /* ImagePicker.swift */; };
+		E9CA336E2641623700031669 /* ContactListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9CA336D2641623700031669 /* ContactListView.swift */; };
+		E9CA33702641625600031669 /* ContactListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9CA336F2641625600031669 /* ContactListViewModel.swift */; };
+		E9CA3373264163F300031669 /* Contact.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9CA3372264163F300031669 /* Contact.swift */; };
+		E9CA33752641659C00031669 /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9CA33742641659C00031669 /* DataService.swift */; };
+		E9CA3378264168EB00031669 /* CDDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9CA3377264168EB00031669 /* CDDataService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		E90482B02642139500EA366A /* ContactRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactRowView.swift; sourceTree = "<group>"; };
+		E90482B2264213BB00EA366A /* ContactRowViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactRowViewModel.swift; sourceTree = "<group>"; };
+		E92BFE5726419CCA0069B01A /* PreviewDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewDataService.swift; sourceTree = "<group>"; };
 		E98EF3262640F00C00F52702 /* PeopleNames.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PeopleNames.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E98EF3292640F00C00F52702 /* PeopleNamesApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleNamesApp.swift; sourceTree = "<group>"; };
 		E98EF32B2640F00C00F52702 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -26,6 +37,11 @@
 		E98EF3352640F00D00F52702 /* PeopleNames.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = PeopleNames.xcdatamodel; sourceTree = "<group>"; };
 		E98EF3372640F00D00F52702 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E98EF3412640F2C700F52702 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
+		E9CA336D2641623700031669 /* ContactListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactListView.swift; sourceTree = "<group>"; };
+		E9CA336F2641625600031669 /* ContactListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactListViewModel.swift; sourceTree = "<group>"; };
+		E9CA3372264163F300031669 /* Contact.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Contact.swift; sourceTree = "<group>"; };
+		E9CA33742641659C00031669 /* DataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
+		E9CA3377264168EB00031669 /* CDDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CDDataService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +78,7 @@
 				E98EF33D2640F18500F52702 /* Views */,
 				E98EF33E2640F19400F52702 /* ViewModels */,
 				E98EF33F2640F1AE00F52702 /* Models */,
+				E9CA3371264162C000031669 /* Services */,
 				E98EF32B2640F00C00F52702 /* ContentView.swift */,
 				E98EF32D2640F00D00F52702 /* Assets.xcassets */,
 				E98EF3322640F00D00F52702 /* Persistence.swift */,
@@ -75,6 +92,7 @@
 		E98EF32F2640F00D00F52702 /* Preview Content */ = {
 			isa = PBXGroup;
 			children = (
+				E92BFE5726419CCA0069B01A /* PreviewDataService.swift */,
 				E98EF3302640F00D00F52702 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
@@ -84,6 +102,8 @@
 			isa = PBXGroup;
 			children = (
 				E98EF3412640F2C700F52702 /* ImagePicker.swift */,
+				E9CA336D2641623700031669 /* ContactListView.swift */,
+				E90482B02642139500EA366A /* ContactRowView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -91,6 +111,8 @@
 		E98EF33E2640F19400F52702 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				E9CA336F2641625600031669 /* ContactListViewModel.swift */,
+				E90482B2264213BB00EA366A /* ContactRowViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -98,8 +120,26 @@
 		E98EF33F2640F1AE00F52702 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				E9CA3372264163F300031669 /* Contact.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		E9CA3371264162C000031669 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				E9CA33742641659C00031669 /* DataService.swift */,
+				E9CA3376264168B800031669 /* Implementations */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		E9CA3376264168B800031669 /* Implementations */ = {
+			isa = PBXGroup;
+			children = (
+				E9CA3377264168EB00031669 /* CDDataService.swift */,
+			);
+			path = Implementations;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -171,11 +211,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E9CA33752641659C00031669 /* DataService.swift in Sources */,
 				E98EF3332640F00D00F52702 /* Persistence.swift in Sources */,
+				E9CA3378264168EB00031669 /* CDDataService.swift in Sources */,
+				E9CA336E2641623700031669 /* ContactListView.swift in Sources */,
 				E98EF3362640F00D00F52702 /* PeopleNames.xcdatamodeld in Sources */,
+				E9CA33702641625600031669 /* ContactListViewModel.swift in Sources */,
 				E98EF3422640F2C700F52702 /* ImagePicker.swift in Sources */,
 				E98EF32C2640F00C00F52702 /* ContentView.swift in Sources */,
+				E9CA3373264163F300031669 /* Contact.swift in Sources */,
+				E90482B3264213BB00EA366A /* ContactRowViewModel.swift in Sources */,
 				E98EF32A2640F00C00F52702 /* PeopleNamesApp.swift in Sources */,
+				E90482B12642139500EA366A /* ContactRowView.swift in Sources */,
+				E92BFE5826419CCA0069B01A /* PreviewDataService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
