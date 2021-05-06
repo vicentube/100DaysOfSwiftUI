@@ -16,6 +16,7 @@ struct ContactRowView: View {
         .resizable()
         .scaledToFill()
         .frame(width: 50, height: 50)
+        .cornerRadius(10)
       VStack(alignment: .leading) {
         Text(contact.name)
         Text(contact.notes)
@@ -27,11 +28,13 @@ struct ContactRowView: View {
 }
 
 struct ContactRowView_Previews: PreviewProvider {
+  static let dataService = PreviewDataService()
+  
   static var previews: some View {
     Group {
-      ContactRowView(contact: PreviewDataService.getContact(index: 0))
+      ContactRowView(contact: dataService.getContact(index: 0))
         .previewLayout(.sizeThatFits)
-      ContactRowView(contact: PreviewDataService.getContact(index: 1))
+      ContactRowView(contact: dataService.getContact(index: 1))
         .previewLayout(.sizeThatFits)
     }
   }

@@ -10,10 +10,11 @@ import SwiftUI
 @main
 struct PeopleNamesApp: App {
   let persistenceController = PersistenceController.shared
+  @StateObject private var store = ContactStore()
   
   var body: some Scene {
     WindowGroup {
-      ContactListView()
+      ContactListView(store: store)
       //            ContentView()
       //                .environment(\.managedObjectContext, persistenceController.container.viewContext)
     }

@@ -7,40 +7,51 @@
 
 import SwiftUI
 
-struct ContactListView: View {
-  @StateObject var vm: ContactListViewModel
+struct ContactListView: View  {
+  @ObservedObject var store: ContactStore
+  
+  @State private var newContactImage: UIImage? = nil
+  @State private var showingImagePicker = false
+  @State private var showingAddView = false
   
   var body: some View {
     NavigationView {
       List {
-        ForEach(vm.contacts) { contact in
+        ForEach(store.contacts) { contact in
           ContactRowView(contact: contact)
         }
       }
       .navigationBarTitle("Contacts")
       .toolbar {
         ToolbarItem(placement: .navigationBarTrailing) {
-          Button(action: vm.onAddButtonAction) {
+          Button(action: { showingImagePicker = true }) {
             Image(systemName: "plus")
           }
         }
       }
-      .sheet(isPresented: $vm.showingImagePicker, onDismiss: vm.onImagePickerDismiss) {
-        ImagePicker(image: $vm.newContactImage)
+      .sheet(isPresented: $showingImagePicker, onDismiss: onImagePickerDismiss) {
+        ImagePicker(image: $newContactImage)
       }
-      .sheet(isPresented: $vm.showingAddView) {
-        Text("View for editing contact.")
+      .sheet(isPresented: $showingAddView) {
+        AddContactView(store: store, image: $newContactImage)
+      }
+      .onAppear {
+        store.getAllContacts()
       }
     }
   }
   
-  init(dataService: DataServiceOption = .runtime) {
-    self._vm = StateObject(wrappedValue: ContactListViewModel(dataService))
+  func onImagePickerDismiss() {
+    if newContactImage != nil {
+      showingAddView = true
+    }
   }
 }
 
 struct ContactListView_Previews: PreviewProvider {
+  static let store = ContactStore(PreviewDataService())
+  
   static var previews: some View {
-    ContactListView(dataService: .preview)
+    ContactListView(store: store)
   }
 }
