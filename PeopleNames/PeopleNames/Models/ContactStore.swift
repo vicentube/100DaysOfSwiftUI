@@ -16,19 +16,21 @@ final class ContactStore: ObservableObject {
   
   init(_ dataService: DataService = CDDataService()) {
     self.service = dataService
+    getAllContacts()
   }
   
   func getAllContacts() {
     service.getAllContacts { [weak self] result in
       if let result = result {
-        self?.contacts = result
+        self?.contacts = result.sorted()
       } else {
         self?.error = self?.service.error ?? "Failed to load contacts"
       }
     }
   }
   
-  func saveContact(contact: Contact, image: UIImage) {
+  func saveContact(contact: Contact) {
+    guard let image = contact.image else { return }
     if let jpegData = image.jpegData(compressionQuality: 0.8) {
       let url = getDocumentsDirectory().appendingPathComponent("\(contact.id)")
       do {

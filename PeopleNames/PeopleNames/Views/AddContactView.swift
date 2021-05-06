@@ -14,14 +14,6 @@ struct AddContactView: View {
   @Environment(\.presentationMode) var presentationMode
   @State private var contact = Contact(id: UUID(), name: "", notes: "")
   
-  var imageView: Image {
-    if let image = image {
-      return Image(uiImage: image)
-    } else {
-      return Image(systemName: "photo.fill")
-    }
-  }
-  
   var body: some View {
     VStack {
       HStack{
@@ -39,7 +31,7 @@ struct AddContactView: View {
         }
       }
       .padding()
-      imageView
+      Image(contact: contact)
         .resizable()
         .scaledToFit()
         .frame(maxHeight: 250)
@@ -57,7 +49,8 @@ struct AddContactView: View {
   
   private func onDoneAction() {
     guard image != nil else { return }
-    store.saveContact(contact: contact, image: image!)
+    contact.image = image
+    store.saveContact(contact: contact)
     presentationMode.wrappedValue.dismiss()
   }
 }
@@ -67,7 +60,7 @@ struct AddContactView_Previews: PreviewProvider {
   
   static var previews: some View {
     Group {
-      AddContactView(store: store, image: .constant(PreviewDataService().getImage(index: 0)))
+      AddContactView(store: store, image: .constant(store.contacts[0].image))
       AddContactView(store: store, image: .constant(nil))
     }
   }

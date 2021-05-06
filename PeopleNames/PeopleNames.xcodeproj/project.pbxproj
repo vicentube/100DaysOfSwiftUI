@@ -17,6 +17,8 @@
 		E98EF3362640F00D00F52702 /* PeopleNames.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E98EF3342640F00D00F52702 /* PeopleNames.xcdatamodeld */; };
 		E98EF3422640F2C700F52702 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = E98EF3412640F2C700F52702 /* ImagePicker.swift */; };
 		E9B0992B26440CB700ACAA39 /* FileHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9B0992A26440CB700ACAA39 /* FileHelper.swift */; };
+		E9B0992F26443DE400ACAA39 /* ContactDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9B0992E26443DE400ACAA39 /* ContactDetailView.swift */; };
+		E9B0993126443EAF00ACAA39 /* ImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9B0993026443EAF00ACAA39 /* ImageView.swift */; };
 		E9CA336E2641623700031669 /* ContactListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9CA336D2641623700031669 /* ContactListView.swift */; };
 		E9CA3373264163F300031669 /* Contact.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9CA3372264163F300031669 /* Contact.swift */; };
 		E9CA33752641659C00031669 /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9CA33742641659C00031669 /* DataService.swift */; };
@@ -40,6 +42,8 @@
 		E98EF3372640F00D00F52702 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E98EF3412640F2C700F52702 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		E9B0992A26440CB700ACAA39 /* FileHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileHelper.swift; sourceTree = "<group>"; };
+		E9B0992E26443DE400ACAA39 /* ContactDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactDetailView.swift; sourceTree = "<group>"; };
+		E9B0993026443EAF00ACAA39 /* ImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageView.swift; sourceTree = "<group>"; };
 		E9CA336D2641623700031669 /* ContactListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactListView.swift; sourceTree = "<group>"; };
 		E9CA3372264163F300031669 /* Contact.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Contact.swift; sourceTree = "<group>"; };
 		E9CA33742641659C00031669 /* DataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
@@ -107,10 +111,12 @@
 		E98EF33D2640F18500F52702 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				E98EF3412640F2C700F52702 /* ImagePicker.swift */,
 				E9CA336D2641623700031669 /* ContactListView.swift */,
 				E90482B02642139500EA366A /* ContactRowView.swift */,
+				E9B0992E26443DE400ACAA39 /* ContactDetailView.swift */,
 				E9FE8E6626431C7C007C0229 /* AddContactView.swift */,
+				E98EF3412640F2C700F52702 /* ImagePicker.swift */,
+				E9B0993026443EAF00ACAA39 /* ImageView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -226,8 +232,10 @@
 				E9CA336E2641623700031669 /* ContactListView.swift in Sources */,
 				E98EF3362640F00D00F52702 /* PeopleNames.xcdatamodeld in Sources */,
 				E9FE8E6A2643310B007C0229 /* CDContact+CoreDataClass.swift in Sources */,
+				E9B0993126443EAF00ACAA39 /* ImageView.swift in Sources */,
 				E98EF3422640F2C700F52702 /* ImagePicker.swift in Sources */,
 				E9FE8E6B2643310B007C0229 /* CDContact+CoreDataProperties.swift in Sources */,
+				E9B0992F26443DE400ACAA39 /* ContactDetailView.swift in Sources */,
 				E98EF32C2640F00C00F52702 /* ContentView.swift in Sources */,
 				E9CA3373264163F300031669 /* Contact.swift in Sources */,
 				E98EF32A2640F00C00F52702 /* PeopleNamesApp.swift in Sources */,

@@ -12,7 +12,7 @@ struct ContactRowView: View {
   
   var body: some View {
     HStack {
-      Image("\(contact.id)")
+      Image(contact: contact)
         .resizable()
         .scaledToFill()
         .frame(width: 50, height: 50)
@@ -28,13 +28,13 @@ struct ContactRowView: View {
 }
 
 struct ContactRowView_Previews: PreviewProvider {
-  static let dataService = PreviewDataService()
+  static let store = ContactStore(PreviewDataService())
   
   static var previews: some View {
     Group {
-      ContactRowView(contact: dataService.getContact(index: 0))
+      ContactRowView(contact: store.contacts[0])
         .previewLayout(.sizeThatFits)
-      ContactRowView(contact: dataService.getContact(index: 1))
+      ContactRowView(contact: store.contacts[1])
         .previewLayout(.sizeThatFits)
     }
   }

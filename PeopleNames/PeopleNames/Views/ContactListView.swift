@@ -18,7 +18,9 @@ struct ContactListView: View  {
     NavigationView {
       List {
         ForEach(store.contacts) { contact in
-          ContactRowView(contact: contact)
+          NavigationLink(destination: ContactDetailView(contact: contact)) {
+            ContactRowView(contact: contact)
+          }
         }
       }
       .navigationBarTitle("Contacts")
@@ -34,9 +36,6 @@ struct ContactListView: View  {
       }
       .sheet(isPresented: $showingAddView) {
         AddContactView(store: store, image: $newContactImage)
-      }
-      .onAppear {
-        store.getAllContacts()
       }
     }
   }
