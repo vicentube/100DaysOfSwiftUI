@@ -8,22 +8,8 @@
 import Foundation
 
 protocol DataService {
-  func getAllContacts(_ completion: @escaping ([Contact]?, String?) -> Void)
-}
-
-enum DataServiceOption {
-  case runtime, coreData, encodedFile, preview
-}
-
-extension DataServiceOption {
-  func createDataService() -> DataService {
-    switch self {
-    case .runtime:
-      return PreviewDataService()
-    case .coreData:
-      return CDDataService()
-    default:
-      return PreviewDataService()
-    }
-  }
+  var error: String { get set }
+  
+  func getAllContacts(_ completion: @escaping ([Contact]?) -> Void)
+  func saveContact(contact: Contact, _ completion: @escaping (Bool) -> Void)
 }
