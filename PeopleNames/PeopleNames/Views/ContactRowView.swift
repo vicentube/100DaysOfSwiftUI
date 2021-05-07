@@ -12,7 +12,7 @@ struct ContactRowView: View {
   
   var body: some View {
     HStack {
-      Image(contact: contact)
+      Image(contactImage: contact.image)
         .resizable()
         .scaledToFill()
         .frame(width: 50, height: 50)

@@ -42,3 +42,22 @@ final class CDDataService: DataService {
     completion(true)
   }
 }
+
+extension CDContact {
+  func convertToDto() -> Contact {
+    Contact(
+      id: id ?? UUID(),
+      name: name ?? "",
+      notes: notes ?? "",
+      location: CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
+    )
+  }
+
+  func fillFromDto(_ dto: Contact) {
+    id = dto.id
+    name = dto.name
+    notes = dto.notes
+    latitude = dto.location.latitude
+    longitude = dto.location.longitude
+  }
+}

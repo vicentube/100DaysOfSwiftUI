@@ -6,13 +6,16 @@
 // Copyright © 2021 Vicente Úbeda. Todos los derechos reservados.
 
 import SwiftUI
+import MapKit
 
 struct AddContactView: View {
   @ObservedObject var store: ContactStore
   @Binding var image: UIImage?
   
   @Environment(\.presentationMode) var presentationMode
-  @State private var contact = Contact(id: UUID(), name: "", notes: "")
+  @StateObject private var locationFetcher = LocationFetcher()
+  @State private var textName = ""
+  @State private var textNotes = ""
   
   var body: some View {
     VStack {
@@ -31,14 +34,22 @@ struct AddContactView: View {
         }
       }
       .padding()
-      Image(contact: contact)
+      Image(contactImage: image)
         .resizable()
         .scaledToFit()
         .frame(maxHeight: 250)
-      Form {
-        TextField("Name of contact", text: $contact.name)
-        TextField("Notes", text: $contact.notes)
-      }
+      TextField("Name of contact", text: $textName)
+        .padding()
+        .textFieldStyle(RoundedBorderTextFieldStyle())
+      TextField("Notes", text: $textNotes)
+        .padding(.horizontal)
+        .textFieldStyle(RoundedBorderTextFieldStyle())
+      Map(
+        coordinateRegion: $locationFetcher.region,
+        showsUserLocation: true).edgesIgnoringSafeArea(.all)
+    }
+    .onAppear {
+      locationFetcher.start()
     }
   }
   
@@ -49,7 +60,12 @@ struct AddContactView: View {
   
   private func onDoneAction() {
     guard image != nil else { return }
-    contact.image = image
+    let contact = Contact(
+      id: UUID(),
+      name: textName,
+      notes: textNotes,
+      image: image,
+      location: locationFetcher.region.center)
     store.saveContact(contact: contact)
     presentationMode.wrappedValue.dismiss()
   }

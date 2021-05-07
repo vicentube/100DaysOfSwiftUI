@@ -8,8 +8,8 @@
 import SwiftUI
 
 extension Image {
-  init(contact: Contact) {
-    if let image = contact.image {
+  init(contactImage: UIImage?) {
+    if let image = contactImage {
       self.init(uiImage: image)
     } else {
       self.init(systemName: "photo.fill")

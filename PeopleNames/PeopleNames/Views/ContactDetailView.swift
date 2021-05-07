@@ -6,22 +6,34 @@
 // Copyright © 2021 Vicente Úbeda. Todos los derechos reservados.
 
 import SwiftUI
+import MapKit
 
 struct ContactDetailView: View {
   let contact: Contact
   
+  @StateObject private var locationFetcher = LocationFetcher()
+  
   var body: some View {
     VStack {
-      Image(contact: contact)
+      Image(contactImage: contact.image)
         .resizable()
         .scaledToFit()
         .frame(maxHeight: 250)
       Text(contact.notes)
         .padding()
       Spacer()
+      Map(
+        coordinateRegion: $locationFetcher.region,
+        annotationItems: [contact],
+        annotationContent: { (contact) -> MapMarker in
+          MapMarker(coordinate: contact.location, tint: .green)
+        }).edgesIgnoringSafeArea(.all)
     }
-    .padding(.vertical)
+    .padding(.top)
     .navigationBarTitle(contact.name)
+    .onAppear {
+      locationFetcher.region.center = contact.location
+    }
   }
 }
 

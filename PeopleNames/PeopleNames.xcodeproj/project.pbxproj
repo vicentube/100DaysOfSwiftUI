@@ -23,6 +23,7 @@
 		E9CA3373264163F300031669 /* Contact.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9CA3372264163F300031669 /* Contact.swift */; };
 		E9CA33752641659C00031669 /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9CA33742641659C00031669 /* DataService.swift */; };
 		E9CA3378264168EB00031669 /* CDDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9CA3377264168EB00031669 /* CDDataService.swift */; };
+		E9F641752645815600683BDE /* LocationFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F641742645815600683BDE /* LocationFetcher.swift */; };
 		E9FE8E652643180D007C0229 /* ContactStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9FE8E642643180D007C0229 /* ContactStore.swift */; };
 		E9FE8E6726431C7C007C0229 /* AddContactView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9FE8E6626431C7C007C0229 /* AddContactView.swift */; };
 		E9FE8E6A2643310B007C0229 /* CDContact+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9FE8E682643310B007C0229 /* CDContact+CoreDataClass.swift */; };
@@ -48,6 +49,7 @@
 		E9CA3372264163F300031669 /* Contact.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Contact.swift; sourceTree = "<group>"; };
 		E9CA33742641659C00031669 /* DataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
 		E9CA3377264168EB00031669 /* CDDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CDDataService.swift; sourceTree = "<group>"; };
+		E9F641742645815600683BDE /* LocationFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationFetcher.swift; sourceTree = "<group>"; };
 		E9FE8E642643180D007C0229 /* ContactStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactStore.swift; sourceTree = "<group>"; };
 		E9FE8E6626431C7C007C0229 /* AddContactView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddContactView.swift; sourceTree = "<group>"; };
 		E9FE8E682643310B007C0229 /* CDContact+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CDContact+CoreDataClass.swift"; sourceTree = "<group>"; };
@@ -141,6 +143,7 @@
 		E9CA3371264162C000031669 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				E9F641742645815600683BDE /* LocationFetcher.swift */,
 				E9CA33742641659C00031669 /* DataService.swift */,
 				E9CA3376264168B800031669 /* Implementations */,
 			);
@@ -235,6 +238,7 @@
 				E9B0993126443EAF00ACAA39 /* ImageView.swift in Sources */,
 				E98EF3422640F2C700F52702 /* ImagePicker.swift in Sources */,
 				E9FE8E6B2643310B007C0229 /* CDContact+CoreDataProperties.swift in Sources */,
+				E9F641752645815600683BDE /* LocationFetcher.swift in Sources */,
 				E9B0992F26443DE400ACAA39 /* ContactDetailView.swift in Sources */,
 				E98EF32C2640F00C00F52702 /* ContentView.swift in Sources */,
 				E9CA3373264163F300031669 /* Contact.swift in Sources */,

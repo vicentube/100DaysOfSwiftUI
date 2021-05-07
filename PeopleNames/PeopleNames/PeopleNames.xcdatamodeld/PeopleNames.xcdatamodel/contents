@@ -2,10 +2,12 @@
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="18154" systemVersion="20E241" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="CDContact" representedClassName="CDContact" syncable="YES">
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="latitude" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="longitude" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="name" optional="YES" attributeType="String"/>
         <attribute name="notes" optional="YES" attributeType="String"/>
     </entity>
     <elements>
-        <element name="CDContact" positionX="-63" positionY="-18" width="128" height="74"/>
+        <element name="CDContact" positionX="-63" positionY="-18" width="128" height="104"/>
     </elements>
 </model>
