@@ -9,9 +9,9 @@ import SwiftUI
 
 @main
 struct HotProspectsApp: App {
-    var body: some Scene {
-        WindowGroup {
-            ContentView()
-        }
+  var body: some Scene {
+    WindowGroup {
+      Test2View()
     }
+  }
 }
