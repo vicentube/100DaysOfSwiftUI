@@ -11,7 +11,7 @@ import SwiftUI
 struct HotProspectsApp: App {
   var body: some Scene {
     WindowGroup {
-      Test6View()
+      Test7View()
     }
   }
 }
