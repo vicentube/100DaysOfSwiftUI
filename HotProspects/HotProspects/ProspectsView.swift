@@ -46,20 +46,20 @@ struct ProspectsView: View {
           }
         }
       }
-        .navigationBarTitle(title)
-        .toolbar {
-          ToolbarItem(placement: .navigationBarTrailing) {
-            Button(action: {
-              let prospect = Prospect()
-              prospect.name = "Paul Hudson"
-              prospect.emailAddress = "paul@hackingwithswift.com"
-              prospects.people.append(prospect)
-            }) {
-              Image(systemName: "qrcode.viewfinder")
-              Text("Scan")
-            }
+      .navigationBarTitle(title)
+      .toolbar {
+        ToolbarItem(placement: .navigationBarTrailing) {
+          Button(action: {
+            let prospect = Prospect()
+            prospect.name = "Paul Hudson"
+            prospect.emailAddress = "paul@hackingwithswift.com"
+            prospects.people.append(prospect)
+          }) {
+            Image(systemName: "qrcode.viewfinder")
+            Text("Scan")
           }
         }
+      }
     }
   }
   
