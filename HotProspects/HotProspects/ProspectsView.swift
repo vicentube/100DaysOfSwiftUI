@@ -6,11 +6,14 @@
 // Copyright © 2021 Vicente Úbeda. Todos los derechos reservados.
 
 import SwiftUI
+import CodeScanner
 
 struct ProspectsView: View {
   let filter: FilterType
   
   @EnvironmentObject var prospects: Prospects
+  
+  @State private var isShowingScanner = false
   
   var filteredProspects: [Prospect] {
     switch filter {
@@ -49,22 +52,37 @@ struct ProspectsView: View {
       .navigationBarTitle(title)
       .toolbar {
         ToolbarItem(placement: .navigationBarTrailing) {
-          Button(action: {
-            let prospect = Prospect()
-            prospect.name = "Paul Hudson"
-            prospect.emailAddress = "paul@hackingwithswift.com"
-            prospects.people.append(prospect)
-          }) {
+          Button(action: { isShowingScanner = true }) {
             Image(systemName: "qrcode.viewfinder")
             Text("Scan")
           }
         }
+      }
+      .sheet(isPresented: $isShowingScanner) {
+        CodeScannerView(codeTypes: [.qr], simulatedData: "Paul Hudson\npaul@hackingwithswift.com", completion: handleScan)
       }
     }
   }
   
   enum FilterType {
     case none, contacted, uncontacted
+  }
+  
+  func handleScan(result: Result<String, CodeScannerView.ScanError>) {
+    isShowingScanner = false
+    switch result {
+    case .success(let code):
+      let details = code.components(separatedBy: "\n")
+      guard details.count == 2 else { return }
+      
+      let person = Prospect()
+      person.name = details[0]
+      person.emailAddress = details[1]
+      
+      self.prospects.people.append(person)
+    case .failure(let error):
+      print("Scanning failed: \(error.localizedDescription)")
+    }
   }
 }
 
