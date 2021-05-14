@@ -42,12 +42,7 @@ struct ProspectsView: View {
     NavigationView {
       List {
         ForEach(filteredProspects) { prospect in
-          VStack(alignment: .leading) {
-            Text(prospect.name)
-              .font(.headline)
-            Text(prospect.emailAddress)
-              .foregroundColor(.secondary)
-          }
+          RowView(prospect)
           .contextMenu {
             Button(prospect.isContacted ? "Mark Uncontacted" : "Mark Contacted" ) {
               prospects.toggle(prospect)
@@ -71,6 +66,21 @@ struct ProspectsView: View {
       }
       .sheet(isPresented: $isShowingScanner) {
         CodeScannerView(codeTypes: [.qr], simulatedData: "Paul Hudson\npaul@hackingwithswift.com", completion: handleScan)
+      }
+    }
+  }
+  
+  func RowView(_ prospect: Prospect) -> some View {
+    HStack {
+      VStack(alignment: .leading) {
+        Text(prospect.name)
+          .font(.headline)
+        Text(prospect.emailAddress)
+          .foregroundColor(.secondary)
+      }
+      Spacer()
+      if filter == .none {
+        Text(prospect.isContacted ? "✅" : "⚠️")
       }
     }
   }
