@@ -8,10 +8,11 @@
 import SwiftUI
 
 class Prospect: Identifiable, Codable {
-  let id = UUID()
+  var id = UUID()
   var name = "Anonymous"
   var emailAddress = ""
   fileprivate(set) var isContacted = false
+  fileprivate(set) var created = Date()
 }
 
 class Prospects: ObservableObject {
@@ -53,6 +54,15 @@ class Prospects: ObservableObject {
       print("Unable to save data.")
     }
   }
+  
+  func sort(by field: SortField) {
+    switch field {
+    case .name:
+      people.sort(by: { $0.name < $1.name })
+    case .mostRecent:
+      people.sort(by: { $0.created > $1.created })
+    }
+  }
 }
 
 extension FileManager {
@@ -60,4 +70,8 @@ extension FileManager {
     let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
     return paths[0]
   }
+}
+
+enum SortField {
+  case name, mostRecent
 }

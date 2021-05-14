@@ -14,6 +14,7 @@ struct ProspectsView: View {
   
   @EnvironmentObject var prospects: Prospects
   
+  @State private var isShowingActionSheet = false
   @State private var isShowingScanner = false
   
   var filteredProspects: [Prospect] {
@@ -57,6 +58,12 @@ struct ProspectsView: View {
       }
       .navigationBarTitle(title)
       .toolbar {
+        ToolbarItem(placement: .navigationBarLeading) {
+          Button( action: { isShowingActionSheet = true }) {
+            Image(systemName: "arrow.up.arrow.down")
+            Text("Sort")
+          }
+        }
         ToolbarItem(placement: .navigationBarTrailing) {
           Button(action: { isShowingScanner = true }) {
             Image(systemName: "qrcode.viewfinder")
@@ -66,6 +73,12 @@ struct ProspectsView: View {
       }
       .sheet(isPresented: $isShowingScanner) {
         CodeScannerView(codeTypes: [.qr], simulatedData: "Paul Hudson\npaul@hackingwithswift.com", completion: handleScan)
+      }
+      .actionSheet(isPresented: $isShowingActionSheet) {
+        ActionSheet(title: Text("Change sorting"), message: Text("Select a sorting field"), buttons: [
+                      .default(Text("By name")) { prospects.sort(by: .name) },
+                      .default(Text("Most recent")) { prospects.sort(by: .mostRecent) }
+        ])
       }
     }
   }
