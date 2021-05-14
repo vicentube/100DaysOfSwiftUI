@@ -42,7 +42,7 @@ struct ProspectsView: View {
     NavigationView {
       List {
         ForEach(filteredProspects) { prospect in
-          RowView(prospect)
+          rowView(prospect)
           .contextMenu {
             Button(prospect.isContacted ? "Mark Uncontacted" : "Mark Contacted" ) {
               prospects.toggle(prospect)
@@ -70,7 +70,7 @@ struct ProspectsView: View {
     }
   }
   
-  func RowView(_ prospect: Prospect) -> some View {
+  func rowView(_ prospect: Prospect) -> some View {
     HStack {
       VStack(alignment: .leading) {
         Text(prospect.name)
