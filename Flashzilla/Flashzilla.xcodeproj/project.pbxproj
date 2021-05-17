@@ -14,6 +14,7 @@
 		E91280B62650669100878EDA /* Test2View.swift in Sources */ = {isa = PBXBuildFile; fileRef = E91280B52650669100878EDA /* Test2View.swift */; };
 		E91280B82650676500878EDA /* Test3View.swift in Sources */ = {isa = PBXBuildFile; fileRef = E91280B72650676500878EDA /* Test3View.swift */; };
 		E91280BA2650687100878EDA /* Test4View.swift in Sources */ = {isa = PBXBuildFile; fileRef = E91280B92650687100878EDA /* Test4View.swift */; };
+		E9374F2526519C7A001CB835 /* Test5View.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9374F2426519C7A001CB835 /* Test5View.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		E91280B52650669100878EDA /* Test2View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Test2View.swift; sourceTree = "<group>"; };
 		E91280B72650676500878EDA /* Test3View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Test3View.swift; sourceTree = "<group>"; };
 		E91280B92650687100878EDA /* Test4View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Test4View.swift; sourceTree = "<group>"; };
+		E9374F2426519C7A001CB835 /* Test5View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Test5View.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +68,7 @@
 				E91280B52650669100878EDA /* Test2View.swift */,
 				E91280B72650676500878EDA /* Test3View.swift */,
 				E91280B92650687100878EDA /* Test4View.swift */,
+				E9374F2426519C7A001CB835 /* Test5View.swift */,
 			);
 			path = Flashzilla;
 			sourceTree = "<group>";
@@ -149,6 +152,7 @@
 			files = (
 				E91280B82650676500878EDA /* Test3View.swift in Sources */,
 				E91280B62650669100878EDA /* Test2View.swift in Sources */,
+				E9374F2526519C7A001CB835 /* Test5View.swift in Sources */,
 				E91280A92650639400878EDA /* Test1View.swift in Sources */,
 				E91280A72650639400878EDA /* FlashzillaApp.swift in Sources */,
 				E91280BA2650687100878EDA /* Test4View.swift in Sources */,
