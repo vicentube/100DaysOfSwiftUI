@@ -16,6 +16,9 @@
 		E91280BA2650687100878EDA /* Test4View.swift in Sources */ = {isa = PBXBuildFile; fileRef = E91280B92650687100878EDA /* Test4View.swift */; };
 		E9374F2526519C7A001CB835 /* Test5View.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9374F2426519C7A001CB835 /* Test5View.swift */; };
 		E9374F2726520B16001CB835 /* Test6View.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9374F2626520B16001CB835 /* Test6View.swift */; };
+		E94C801726535C5500CC2960 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = E94C801626535C5500CC2960 /* Card.swift */; };
+		E94C801926535E5B00CC2960 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E94C801826535E5B00CC2960 /* CardView.swift */; };
+		E94C801B2653615E00CC2960 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E94C801A2653615E00CC2960 /* ContentView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +33,9 @@
 		E91280B92650687100878EDA /* Test4View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Test4View.swift; sourceTree = "<group>"; };
 		E9374F2426519C7A001CB835 /* Test5View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Test5View.swift; sourceTree = "<group>"; };
 		E9374F2626520B16001CB835 /* Test6View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Test6View.swift; sourceTree = "<group>"; };
+		E94C801626535C5500CC2960 /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
+		E94C801826535E5B00CC2960 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
+		E94C801A2653615E00CC2960 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +69,9 @@
 			isa = PBXGroup;
 			children = (
 				E91280A62650639400878EDA /* FlashzillaApp.swift */,
+				E94C801A2653615E00CC2960 /* ContentView.swift */,
+				E94C801826535E5B00CC2960 /* CardView.swift */,
+				E94C801626535C5500CC2960 /* Card.swift */,
 				E91280AA2650639500878EDA /* Assets.xcassets */,
 				E91280AF2650639500878EDA /* Info.plist */,
 				E91280AC2650639500878EDA /* Preview Content */,
@@ -154,12 +163,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				E91280B82650676500878EDA /* Test3View.swift in Sources */,
+				E94C801926535E5B00CC2960 /* CardView.swift in Sources */,
 				E91280B62650669100878EDA /* Test2View.swift in Sources */,
 				E9374F2526519C7A001CB835 /* Test5View.swift in Sources */,
 				E91280A92650639400878EDA /* Test1View.swift in Sources */,
 				E9374F2726520B16001CB835 /* Test6View.swift in Sources */,
+				E94C801B2653615E00CC2960 /* ContentView.swift in Sources */,
 				E91280A72650639400878EDA /* FlashzillaApp.swift in Sources */,
 				E91280BA2650687100878EDA /* Test4View.swift in Sources */,
+				E94C801726535C5500CC2960 /* Card.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
