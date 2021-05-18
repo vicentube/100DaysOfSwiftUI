@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct ContentView: View {
+  @Environment(\.accessibilityDifferentiateWithoutColor) var differentiateWithoutColor
   @State private var cards = [Card](repeating: Card.example, count: 10)
   
   var body: some View {
@@ -17,6 +18,26 @@ struct ContentView: View {
         .scaledToFill()
         .edgesIgnoringSafeArea(.all)
       VStack {
+        if differentiateWithoutColor {
+          VStack {
+            Spacer()
+            
+            HStack {
+              Image(systemName: "xmark.circle")
+                .padding()
+                .background(Color.black.opacity(0.7))
+                .clipShape(Circle())
+              Spacer()
+              Image(systemName: "checkmark.circle")
+                .padding()
+                .background(Color.black.opacity(0.7))
+                .clipShape(Circle())
+            }
+            .foregroundColor(.white)
+            .font(.largeTitle)
+            .padding()
+          }
+        }
         ZStack {
           ForEach(0..<cards.count, id: \.self) { index in
             CardView(card: cards[index]) {
