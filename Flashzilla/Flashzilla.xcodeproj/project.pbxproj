@@ -20,6 +20,7 @@
 		E94C801726535C5500CC2960 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = E94C801626535C5500CC2960 /* Card.swift */; };
 		E94C801926535E5B00CC2960 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E94C801826535E5B00CC2960 /* CardView.swift */; };
 		E94C801B2653615E00CC2960 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E94C801A2653615E00CC2960 /* ContentView.swift */; };
+		E99EFF9F2656CB30000B6A65 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = E99EFF9E2656CB30000B6A65 /* Settings.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +39,7 @@
 		E94C801626535C5500CC2960 /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 		E94C801826535E5B00CC2960 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		E94C801A2653615E00CC2960 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		E99EFF9E2656CB30000B6A65 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,6 +76,7 @@
 				E94C801A2653615E00CC2960 /* ContentView.swift */,
 				E94C801826535E5B00CC2960 /* CardView.swift */,
 				E93E44F42655536F000B7E8F /* EditCards.swift */,
+				E99EFF9E2656CB30000B6A65 /* Settings.swift */,
 				E94C801626535C5500CC2960 /* Card.swift */,
 				E91280AA2650639500878EDA /* Assets.xcassets */,
 				E91280AF2650639500878EDA /* Info.plist */,
@@ -171,6 +174,7 @@
 				E9374F2526519C7A001CB835 /* Test5View.swift in Sources */,
 				E93E44F52655536F000B7E8F /* EditCards.swift in Sources */,
 				E91280A92650639400878EDA /* Test1View.swift in Sources */,
+				E99EFF9F2656CB30000B6A65 /* Settings.swift in Sources */,
 				E9374F2726520B16001CB835 /* Test6View.swift in Sources */,
 				E94C801B2653615E00CC2960 /* ContentView.swift in Sources */,
 				E91280A72650639400878EDA /* FlashzillaApp.swift in Sources */,

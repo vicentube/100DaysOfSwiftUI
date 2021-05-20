@@ -11,9 +11,11 @@ struct ContentView: View {
   @Environment(\.accessibilityDifferentiateWithoutColor) var differentiateWithoutColor
   @Environment(\.accessibilityEnabled) var accessibilityEnabled
   @State private var cards = [Card]()
-  @State private var timeRemaining = 100
+  @State private var timeRemaining = 5
   @State private var isActive = true
   @State private var showingEditScreen = false
+  @State private var scaleAmount: CGFloat = 1
+  @State private var feedback = UINotificationFeedbackGenerator()
   
   let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
   
@@ -26,17 +28,14 @@ struct ContentView: View {
       VStack {
         HStack {
           Spacer()
-          
-          Button(action: {
-            self.showingEditScreen = true
-          }) {
+          Button(action: { self.showingEditScreen = true }) {
             Image(systemName: "plus.circle")
               .padding()
               .background(Color.black.opacity(0.7))
               .clipShape(Circle())
           }
+          .frame(minWidth: 200)
         }
-        
         Spacer()
       }
       .foregroundColor(.white)
@@ -80,6 +79,7 @@ struct ContentView: View {
         }
       }
       VStack {
+        if (timeRemaining > 0) {
         Text("Time: \(timeRemaining)")
           .font(.largeTitle)
           .foregroundColor(.white)
@@ -90,6 +90,23 @@ struct ContentView: View {
               .fill(Color.black)
               .opacity(0.75)
           )
+        } else {
+          Text("Time Up!")
+            .font(.largeTitle)
+            .foregroundColor(.red)
+            .padding(.horizontal, 20)
+            .padding(.vertical, 5)
+            .background(
+              Capsule()
+                .fill(Color.white)
+                .opacity(0.75)
+            )
+            .scaleEffect(scaleAmount)
+            .animation(
+              Animation.easeInOut(duration: 0.5)
+                .repeatForever(autoreverses: true)
+            )
+        }
         ZStack {
           ForEach(0..<cards.count, id: \.self) { index in
             CardView(card: cards[index]) {
@@ -120,6 +137,11 @@ struct ContentView: View {
       guard isActive else { return }
       if timeRemaining > 0 {
         timeRemaining -= 1
+        feedback.prepare()
+      } else {
+        scaleAmount = 1.5
+        feedback.notificationOccurred(.warning)
+        isActive = false
       }
     }
     .onReceive(
@@ -145,7 +167,8 @@ struct ContentView: View {
   }
   
   func resetCards() {
-    timeRemaining = 100
+    timeRemaining = 5
+    scaleAmount = 1
     isActive = true
     loadData()
   }
