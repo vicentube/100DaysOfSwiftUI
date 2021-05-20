@@ -9,7 +9,7 @@ import SwiftUI
 
 struct CardView: View {
   let card: Card
-  var removal: (() -> Void)? = nil
+  var removal: ((Bool) -> Void)? = nil
   
   @Environment(\.accessibilityDifferentiateWithoutColor) var differentiateWithoutColor
   @Environment(\.accessibilityEnabled) var accessibilityEnabled
@@ -54,6 +54,9 @@ struct CardView: View {
       .padding(20)
       .multilineTextAlignment(.center)
     }
+    .onAppear() {
+      print("\(card.prompt); offset: \(offset)")
+    }
     .frame(width: 450, height: 250)
     .rotationEffect(.degrees(Double(offset.width / 5)))
     .offset(x: offset.width * 5, y: 0)
@@ -70,11 +73,11 @@ struct CardView: View {
           if abs(offset.width) > 100 {
             if offset.width > 0 {
               feedback.notificationOccurred(.success)
+              removal?(true)
             } else {
               feedback.notificationOccurred(.error)
+              removal?(false)
             }
-            
-            removal?()
           } else {
             offset = .zero
           }

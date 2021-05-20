@@ -11,11 +11,13 @@ struct ContentView: View {
   @Environment(\.accessibilityDifferentiateWithoutColor) var differentiateWithoutColor
   @Environment(\.accessibilityEnabled) var accessibilityEnabled
   @State private var cards = [Card]()
-  @State private var timeRemaining = 5
+  @State private var timeRemaining = 100
   @State private var isActive = true
   @State private var showingEditScreen = false
   @State private var scaleAmount: CGFloat = 1
   @State private var feedback = UINotificationFeedbackGenerator()
+  @State private var showingSettings = false
+  @State private var returnCardIfWrongSetting = false
   
   let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
   
@@ -27,8 +29,15 @@ struct ContentView: View {
         .edgesIgnoringSafeArea(.all)
       VStack {
         HStack {
+          Button(action: { showingSettings = true }) {
+            Image(systemName: "gearshape")
+              .padding()
+              .background(Color.black.opacity(0.7))
+              .clipShape(Circle())
+          }
+          .frame(minWidth: 200)
           Spacer()
-          Button(action: { self.showingEditScreen = true }) {
+          Button(action: { showingEditScreen = true }) {
             Image(systemName: "plus.circle")
               .padding()
               .background(Color.black.opacity(0.7))
@@ -48,7 +57,7 @@ struct ContentView: View {
           HStack {
             Button(action: {
               withAnimation {
-                self.removeCard(at: self.cards.count - 1)
+                self.removeCard(at: self.cards.count - 1, right: false)
               }
             }) {
               Image(systemName: "xmark.circle")
@@ -62,7 +71,7 @@ struct ContentView: View {
             
             Button(action: {
               withAnimation {
-                self.removeCard(at: self.cards.count - 1)
+                self.removeCard(at: self.cards.count - 1, right: true)
               }
             }) {
               Image(systemName: "checkmark.circle")
@@ -80,16 +89,16 @@ struct ContentView: View {
       }
       VStack {
         if (timeRemaining > 0) {
-        Text("Time: \(timeRemaining)")
-          .font(.largeTitle)
-          .foregroundColor(.white)
-          .padding(.horizontal, 20)
-          .padding(.vertical, 5)
-          .background(
-            Capsule()
-              .fill(Color.black)
-              .opacity(0.75)
-          )
+          Text("Time: \(timeRemaining)")
+            .font(.largeTitle)
+            .foregroundColor(.white)
+            .padding(.horizontal, 20)
+            .padding(.vertical, 5)
+            .background(
+              Capsule()
+                .fill(Color.black)
+                .opacity(0.75)
+            )
         } else {
           Text("Time Up!")
             .font(.largeTitle)
@@ -109,13 +118,13 @@ struct ContentView: View {
         }
         ZStack {
           ForEach(0..<cards.count, id: \.self) { index in
-            CardView(card: cards[index]) {
+            CardView(card: cards[index]) { right in
               withAnimation  {
-                removeCard(at: index)
+                removeCard(at: index, right: right)
               }
             }
             .stacked(at: index, in: cards.count)
-            .allowsHitTesting(index == cards.count - 1)
+            //.allowsHitTesting(index == cards.count - 1)
             .accessibilityHidden(index < cards.count - 1)
           }
         }
@@ -131,6 +140,9 @@ struct ContentView: View {
     }
     .sheet(isPresented: $showingEditScreen, onDismiss: resetCards) {
       EditCards()
+    }
+    .sheet(isPresented: $showingSettings) {
+      Settings(returnCard: $returnCardIfWrongSetting)
     }
     .onAppear(perform: resetCards)
     .onReceive(timer) { time in
@@ -158,16 +170,22 @@ struct ContentView: View {
     )
   }
   
-  func removeCard(at index: Int) {
+  func removeCard(at index: Int, right: Bool) {
     guard index >= 0 else { return }
-    cards.remove(at: index)
+    if returnCardIfWrongSetting && !right {
+      print(cards[0].prompt)
+      cards.shuffle()
+      print(cards[0].prompt)
+    } else {
+      cards.remove(at: index)
+    }
     if cards.isEmpty {
       isActive = false
     }
   }
   
   func resetCards() {
-    timeRemaining = 5
+    timeRemaining = 100
     scaleAmount = 1
     isActive = true
     loadData()
