@@ -54,9 +54,6 @@ struct CardView: View {
       .padding(20)
       .multilineTextAlignment(.center)
     }
-    .onAppear() {
-      print("\(card.prompt); offset: \(offset)")
-    }
     .frame(width: 450, height: 250)
     .rotationEffect(.degrees(Double(offset.width / 5)))
     .offset(x: offset.width * 5, y: 0)
@@ -78,9 +75,8 @@ struct CardView: View {
               feedback.notificationOccurred(.error)
               removal?(false)
             }
-          } else {
-            offset = .zero
           }
+          offset = .zero
         }
     )
     .onTapGesture {

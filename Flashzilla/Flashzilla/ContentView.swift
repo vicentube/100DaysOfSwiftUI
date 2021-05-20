@@ -124,7 +124,7 @@ struct ContentView: View {
               }
             }
             .stacked(at: index, in: cards.count)
-            //.allowsHitTesting(index == cards.count - 1)
+            .allowsHitTesting(index == cards.count - 1)
             .accessibilityHidden(index < cards.count - 1)
           }
         }
@@ -173,9 +173,8 @@ struct ContentView: View {
   func removeCard(at index: Int, right: Bool) {
     guard index >= 0 else { return }
     if returnCardIfWrongSetting && !right {
-      print(cards[0].prompt)
-      cards.shuffle()
-      print(cards[0].prompt)
+      let card = cards.remove(at: index)
+      cards.insert(card, at: 0)
     } else {
       cards.remove(at: index)
     }
