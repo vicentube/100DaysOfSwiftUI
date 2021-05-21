@@ -26,12 +26,7 @@ struct CardView: View {
             : Color.white.opacity(1 - Double(abs(offset.width / 50)))
             .opacity(1 - Double(abs(offset.width / 50)))
         )
-        .background(
-          differentiateWithoutColor
-            ? nil
-            : RoundedRectangle(cornerRadius: 25, style: .continuous)
-            .fill(offset.width > 0 ? Color.green : Color.red)
-        )
+        .cardBackgorund(colorBlind: differentiateWithoutColor, offset: offset.width)
         .shadow(radius: 10)
       
       VStack {
@@ -90,5 +85,26 @@ struct CardView_Previews: PreviewProvider {
   static var previews: some View {
     CardView(card: Card.example)
     
+  }
+}
+
+struct CardBackground: ViewModifier {
+  var colorBlind: Bool
+  var offset: CGFloat
+  
+  func body(content: Content) -> some View {
+    content
+      .background(
+        colorBlind
+          ? nil
+          : RoundedRectangle(cornerRadius: 25, style: .continuous)
+          .fill(offset > 0 ? Color.green : (offset == 0 ? Color.white : Color.red))
+      )
+  }
+}
+
+extension View {
+  func cardBackgorund(colorBlind: Bool, offset: CGFloat) -> some View {
+    self.modifier(CardBackground(colorBlind: colorBlind, offset: offset))
   }
 }
