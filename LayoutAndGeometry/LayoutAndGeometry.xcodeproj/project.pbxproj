@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E96097F52659A0A000C528A9 /* Day93_1View.swift in Sources */ = {isa = PBXBuildFile; fileRef = E96097F42659A0A000C528A9 /* Day93_1View.swift */; };
 		E98C7C3E2657D51300C9A6E1 /* LayoutAndGeometryApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E98C7C3D2657D51300C9A6E1 /* LayoutAndGeometryApp.swift */; };
 		E98C7C402657D51300C9A6E1 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E98C7C3F2657D51300C9A6E1 /* ContentView.swift */; };
 		E98C7C422657D51400C9A6E1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E98C7C412657D51400C9A6E1 /* Assets.xcassets */; };
@@ -16,6 +17,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		E96097F42659A0A000C528A9 /* Day93_1View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Day93_1View.swift; sourceTree = "<group>"; };
 		E98C7C3A2657D51300C9A6E1 /* LayoutAndGeometry.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LayoutAndGeometry.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E98C7C3D2657D51300C9A6E1 /* LayoutAndGeometryApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayoutAndGeometryApp.swift; sourceTree = "<group>"; };
 		E98C7C3F2657D51300C9A6E1 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -63,6 +65,7 @@
 				E98C7C432657D51400C9A6E1 /* Preview Content */,
 				E98C7C4C2657D69300C9A6E1 /* Test1View.swift */,
 				E98C7C4E2657DFA300C9A6E1 /* Test2View.swift */,
+				E96097F42659A0A000C528A9 /* Day93_1View.swift */,
 			);
 			path = LayoutAndGeometry;
 			sourceTree = "<group>";
@@ -146,6 +149,7 @@
 			files = (
 				E98C7C402657D51300C9A6E1 /* ContentView.swift in Sources */,
 				E98C7C4D2657D69300C9A6E1 /* Test1View.swift in Sources */,
+				E96097F52659A0A000C528A9 /* Day93_1View.swift in Sources */,
 				E98C7C3E2657D51300C9A6E1 /* LayoutAndGeometryApp.swift in Sources */,
 				E98C7C4F2657DFA300C9A6E1 /* Test2View.swift in Sources */,
 			);
