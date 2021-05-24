@@ -29,6 +29,13 @@ struct ContentView: View {
               GeometryReader { geoChild in
                 HStack {
                   Image(systemName: "\(useWord.count).circle")
+                    .foregroundColor(
+                      Color(.sRGB,
+                            red: getColor(parent: geoParent, child: geoChild),
+                            green: 0.0,
+                            blue: 0.0,
+                            opacity: 1.0)
+                    )
                   Text(useWord)
                 }
                 .accessibilityElement(children: .ignore)
@@ -51,6 +58,21 @@ struct ContentView: View {
           message: Text(errorMessage),
           dismissButton: .default(Text("OK")))
       }
+    }
+  }
+  
+  func getColor(parent: GeometryProxy, child: GeometryProxy) -> Double {
+    let parentRect = parent.frame(in: .global)
+    let top = parentRect.minY
+    let pos = child.frame(in: .global).minY - top
+    let maxPos = parentRect.height
+    let color = Double(pos / maxPos)
+    if color < 0.0 {
+      return 0.0
+    } else if color > 1.0 {
+      return 1.0
+    } else {
+      return color
     }
   }
   
