@@ -28,15 +28,23 @@ struct MissionView: View {
   }
   
   var body: some View {
-    GeometryReader { geometry in
+    GeometryReader { geoParent in
       ScrollView(.vertical) {
         VStack(spacing: 30) {
-          Image(decorative: self.mission.image)
-            .resizable()
-            .scaledToFit()
-            .frame(maxWidth: geometry.size.width * 0.7)
-            .shadow(color: .black, radius: 5, x: 0, y: 5)
+          GeometryReader { geoChild in
+            HStack {
+              Spacer()
+              Image(decorative: self.mission.image)
+                .resizable()
+                .scaledToFit()
+                .frame(maxWidth: geoParent.size.width * 0.8)
+                .shadow(color: .black, radius: 5, x: 0, y: 5)
+                .scaleEffect(getScale(parent: geoParent, child: geoChild))
+              Spacer()
+            }
             .padding(.top)
+          }
+          .frame(width: geoParent.size.width, height: geoParent.size.width * 0.8)
           Text(mission.formattedLaunchDate)
             .font(.title)
           Text(self.mission.description)
@@ -78,6 +86,20 @@ struct MissionView: View {
   struct CrewMember {
     let role: String
     let astronaut: Astronaut
+  }
+  
+  private func getScale(parent: GeometryProxy, child: GeometryProxy) -> CGFloat {
+    let bottomChild = child.frame(in: .global).maxY
+    let topParent = parent.frame(in: .global).minY
+    let bottom = child.frame(in: .local).maxY + topParent
+    let ratio = bottomChild / bottom
+    if ratio > 1.0 {
+      return 1.0
+    } else if ratio < 0.8 {
+      return 0.8
+    } else {
+      return ratio
+    }
   }
 }
 
