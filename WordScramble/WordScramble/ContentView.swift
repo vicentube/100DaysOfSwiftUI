@@ -23,17 +23,22 @@ struct ContentView: View {
           .autocapitalization(.none)
           .textFieldStyle(RoundedBorderTextFieldStyle())
           .padding()
-        List {
-          ForEach(usedWords, id: \.self) { useWord in
-            HStack {
-              Image(systemName: "\(useWord.count).circle")
-              Text(useWord)
+        GeometryReader { geoParent in
+          List {
+            ForEach(usedWords, id: \.self) { useWord in
+              GeometryReader { geoChild in
+                HStack {
+                  Image(systemName: "\(useWord.count).circle")
+                  Text(useWord)
+                }
+                .accessibilityElement(children: .ignore)
+                .accessibility(label: Text("\(useWord), \(useWord.count) letters"))
+                .offset(x: getOffset(parent: geoParent, child: geoChild), y: 0)
+              }
             }
-            .accessibilityElement(children: .ignore)
-            .accessibility(label: Text("\(useWord), \(useWord.count) letters"))
+            Text("Score: \(score)")
+              .fontWeight(.bold)
           }
-          Text("Score: \(score)")
-            .fontWeight(.bold)
         }
       }
       .navigationBarTitle(rootWord)
@@ -46,6 +51,17 @@ struct ContentView: View {
           message: Text(errorMessage),
           dismissButton: .default(Text("OK")))
       }
+    }
+  }
+  
+  func getOffset(parent: GeometryProxy, child: GeometryProxy) -> CGFloat {
+    let top = parent.frame(in: .global).minY
+    let pos = child.frame(in: .global).minY
+    let offset = pos - top - 200
+    if offset < 0 {
+      return 0
+    } else {
+      return offset
     }
   }
   
