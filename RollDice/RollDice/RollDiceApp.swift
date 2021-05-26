@@ -9,12 +9,13 @@ import SwiftUI
 
 @main
 struct RollDiceApp: App {
-    let persistenceController = PersistenceController.shared
-
-    var body: some Scene {
-        WindowGroup {
-            ContentView()
-                //.environment(\.managedObjectContext, persistenceController.container.viewContext)
-        }
+  let persistenceController = PersistenceController.shared
+  @StateObject private var model = AppModelFile()
+  
+  var body: some Scene {
+    WindowGroup {
+      ContentViewModel(model: model)
+      //.environment(\.managedObjectContext, persistenceController.container.viewContext)
     }
+  }
 }
