@@ -13,6 +13,7 @@
 		E99646DD265CB65100862171 /* RollRoundFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = E99646DC265CB65100862171 /* RollRoundFile.swift */; };
 		E9B5602D265DC3F4000FCD2B /* ModelFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9B5602C265DC3F4000FCD2B /* ModelFile.swift */; };
 		E9B56032265DF540000FCD2B /* ModelPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9B56031265DF540000FCD2B /* ModelPreview.swift */; };
+		E9B56035265DF939000FCD2B /* OptionalInt+String.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9B56034265DF939000FCD2B /* OptionalInt+String.swift */; };
 		E9DBE027265C94F300D22F31 /* RollDiceApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9DBE026265C94F300D22F31 /* RollDiceApp.swift */; };
 		E9DBE02B265C94F400D22F31 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E9DBE02A265C94F400D22F31 /* Assets.xcassets */; };
 		E9DBE02E265C94F400D22F31 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E9DBE02D265C94F400D22F31 /* Preview Assets.xcassets */; };
@@ -29,6 +30,7 @@
 		E99646DC265CB65100862171 /* RollRoundFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RollRoundFile.swift; sourceTree = "<group>"; };
 		E9B5602C265DC3F4000FCD2B /* ModelFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelFile.swift; sourceTree = "<group>"; };
 		E9B56031265DF540000FCD2B /* ModelPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelPreview.swift; sourceTree = "<group>"; };
+		E9B56034265DF939000FCD2B /* OptionalInt+String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OptionalInt+String.swift"; sourceTree = "<group>"; };
 		E9DBE023265C94F300D22F31 /* RollDice.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RollDice.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E9DBE026265C94F300D22F31 /* RollDiceApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RollDiceApp.swift; sourceTree = "<group>"; };
 		E9DBE02A265C94F400D22F31 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -68,6 +70,14 @@
 			path = File;
 			sourceTree = "<group>";
 		};
+		E9B56033265DF8E9000FCD2B /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				E9B56034265DF939000FCD2B /* OptionalInt+String.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		E9DBE01A265C94F300D22F31 = {
 			isa = PBXGroup;
 			children = (
@@ -90,6 +100,7 @@
 				E9DBE026265C94F300D22F31 /* RollDiceApp.swift */,
 				E9DBE03A265C95BE00D22F31 /* Views */,
 				E9DBE03B265C960300D22F31 /* Models */,
+				E9B56033265DF8E9000FCD2B /* Extensions */,
 				E9DBE02A265C94F400D22F31 /* Assets.xcassets */,
 				E9DBE02F265C94F400D22F31 /* Persistence.swift */,
 				E9DBE034265C94F400D22F31 /* Info.plist */,
@@ -203,6 +214,7 @@
 				E9B56032265DF540000FCD2B /* ModelPreview.swift in Sources */,
 				E99646D7265CAD9100862171 /* HistoryView.swift in Sources */,
 				E99646D9265CAEFD00862171 /* Model.swift in Sources */,
+				E9B56035265DF939000FCD2B /* OptionalInt+String.swift in Sources */,
 				E9DBE041265C97EB00D22F31 /* RollView.swift in Sources */,
 				E9DBE027265C94F300D22F31 /* RollDiceApp.swift in Sources */,
 				E99646DD265CB65100862171 /* RollRoundFile.swift in Sources */,

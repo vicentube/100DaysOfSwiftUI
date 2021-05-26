@@ -9,15 +9,12 @@ import SwiftUI
 
 struct RollView<T: Model>: View {
   @ObservedObject var model: T
-  
-  var sides: String { "\(model.sides)" }
-  var lastRoll: String { model.lastRoll.map { String($0) } ?? "" }
 
   var body: some View {
     VStack {
-      Text(lastRoll)
+      Text(model.lastRoll.string)
         .font(.largeTitle)
-      Text("Ready to roll a \(sides)-sided dice...")
+      Text("Ready to roll a \(model.sides)-sided dice...")
         .padding()
       Button(action: model.rollDice) {
         Text("Roll Dice")
