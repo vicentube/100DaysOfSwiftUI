@@ -7,14 +7,19 @@
 
 import SwiftUI
 
-extension RollViewModel: View {
+struct RollView<T: Model>: View {
+  @ObservedObject var model: T
+  
+  var sides: String { "\(model.sides)" }
+  var lastRoll: String { model.lastRoll.map { String($0) } ?? "" }
+
   var body: some View {
     VStack {
       Text(lastRoll)
         .font(.largeTitle)
       Text("Ready to roll a \(sides)-sided dice...")
         .padding()
-      Button(action: rollDice) {
+      Button(action: model.rollDice) {
         Text("Roll Dice")
       }
     }
@@ -23,6 +28,6 @@ extension RollViewModel: View {
 
 struct RollView_Previews: PreviewProvider {
   static var previews: some View {
-    RollViewModel(model: AppModelFile())
+    RollView(model: ModelPreview())
   }
 }

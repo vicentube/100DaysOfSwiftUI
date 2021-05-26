@@ -1,4 +1,4 @@
-// DataService.swift
+// RollRoundFile.swift
 // RollDice
 //
 // Creado el 25/5/21 por Vicente Úbeda (@vicentube)
@@ -7,8 +7,12 @@
 
 import Foundation
 
-protocol DataService {
-  associatedtype DataType: RollRound
+struct RollRoundFile: RollRound {
+  var id: UUID
+  var result: Int
   
-  var history: [DataType] { get set }
+  init(_ result: Int) {
+    self.id = UUID()
+    self.result = result
+  }
 }

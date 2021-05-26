@@ -7,16 +7,18 @@
 
 import SwiftUI
 
-extension ContentViewModel: View {
+struct ContentView<T: Model>: View {
+  @ObservedObject var model: T
+  
   var body: some View {
     TabView {
-      rollView
+      RollView(model: model)
         .tabItem {
           Image(systemName: "circle.fill.square.fill")
           Text("Roll")
         }
       
-      historyView
+      HistoryView(model: model)
         .tabItem {
           Image(systemName: "clock.fill")
           Text("History")
@@ -27,6 +29,6 @@ extension ContentViewModel: View {
 
 struct ContentView_Previews: PreviewProvider {
   static var previews: some View {
-    ContentViewModel(model: AppModelFile())
+    ContentView(model: ModelFile())
   }
 }
