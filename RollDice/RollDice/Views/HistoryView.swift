@@ -11,9 +11,21 @@ struct HistoryView<T: Model>: View {
   @ObservedObject var model: T
   
   var body: some View {
-    List {
-      ForEach(model.history) { item in
-        Text("\(item.result)")
+    NavigationView {
+      List {
+        ForEach(model.history) { item in
+          Text("\(item.result)")
+        }
+      }
+      .navigationBarTitle("History")
+      .toolbar { toolbar }
+    }
+  }
+  
+  var toolbar: some ToolbarContent {
+    ToolbarItem(placement: .navigationBarTrailing) {
+      Button(action: model.clearHistory) {
+        Text("Clear history")
       }
     }
   }

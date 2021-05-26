@@ -14,4 +14,8 @@ final class ModelFile: ModelBase, Model {
     self.history = [RollRoundFile]()
     super.init(sides: sides, numOfDice: numOfDice)
   }
+  
+  func clearHistory() {
+    history = [RollRoundFile]()
+  }
 }

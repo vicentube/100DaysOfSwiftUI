@@ -21,4 +21,8 @@ final class ModelPreview: ModelBase, Model {
     ]
     super.init(sides: sides, numOfDice: numOfDice)
   }
+  
+  func clearHistory() {
+    history = [RollRoundFile]()
+  }
 }

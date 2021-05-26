@@ -15,29 +15,62 @@ struct RollView<T: Model>: View {
   var body: some View {
     NavigationView {
       VStack {
-        HStack {
-          if let lastRoll = model.lastRoll {
-            ForEach(lastRoll, id: \.self) { die in
-              DieView(value: die)
-            }
-          }
-        }
-        .padding()
-        .frame(maxWidth: .infinity)
-        Text(model.lastRollTotal.string)
-          .font(.largeTitle)
-        Text("Ready to roll \(model.numOfDice) \(model.sides)-sided dice...")
-          .padding()
-        Button(action: model.rollDice) {
-          Text("Roll Dice")
-        }
+        diceView
+        Spacer()
+        totalView
+        Spacer()
+        rollButton
       }
+      .padding()
       .navigationBarTitle("Roll Dice")
       .toolbar { toolbar }
       .sheet(isPresented: $showingSettings) {
         SettingsView(model: model)
       }
     }
+  }
+  
+  var diceView: some View {
+    HStack {
+      if let lastRoll = model.lastRoll {
+        ForEach(lastRoll, id: \.self) { die in
+          DieView(value: die)
+        }
+      }
+    }
+    .frame(maxWidth: .infinity)
+  }
+  
+  var totalView: some View {
+    Group {
+      if let lastRollTotal = model.lastRollTotal {
+        VStack {
+          Text("Total")
+            .font(.title)
+          Text("\(lastRollTotal)")
+        }
+        .font(.largeTitle)
+        .foregroundColor(.white)
+        .frame(width: 150, height: 150)
+        .background(Color.gray)
+        .clipShape(RoundedRectangle(cornerRadius: 20))
+      } else {
+        Text("Ready to roll \(model.numOfDice) \(model.numOfDice == 1 ? "die" : "dice") (\(model.sides)-sided)...")
+          .padding()
+      }
+    }
+  }
+  
+  var rollButton: some View {
+    Button(action: model.rollDice) {
+      Text("Roll Dice")
+    }
+    .padding()
+    .font(.title)
+    .foregroundColor(.white)
+    .background(Color.accentColor)
+    .clipShape(RoundedRectangle(cornerRadius: 20))
+    .padding(.bottom)
   }
   
   var toolbar: some ToolbarContent {

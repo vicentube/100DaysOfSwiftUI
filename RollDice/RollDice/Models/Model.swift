@@ -15,6 +15,9 @@ protocol Model: ObservableObject {
   var numOfDice: Int { get set }
   var lastRoll: [Int]? { get set }
   var history: [RollRoundType] { get set }
+  
+  func rollDice()
+  func clearHistory()
 }
 
 extension Model {
