@@ -11,7 +11,7 @@ import SwiftUI
 struct SnowSeekerApp: App {
     var body: some Scene {
         WindowGroup {
-            Day96_1()
+            Day96_3()
         }
     }
 }
