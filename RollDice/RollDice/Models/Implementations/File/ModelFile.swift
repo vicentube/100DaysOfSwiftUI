@@ -7,14 +7,11 @@
 
 import Foundation
 
-final class ModelFile: ObservableObject, Model {
-  @Published var sides: Int
-  @Published var lastRoll: Int?
+final class ModelFile: ModelBase, Model {
   @Published var history: [RollRoundFile]
   
-  init() {
-    self.sides = 6
-    self.lastRoll = nil
+  override init(sides: Int = 6, numOfDice: Int = 1) {
     self.history = [RollRoundFile]()
+    super.init(sides: sides, numOfDice: numOfDice)
   }
 }

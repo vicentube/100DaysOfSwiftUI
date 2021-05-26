@@ -10,16 +10,25 @@ import Combine
 protocol Model: ObservableObject {
   associatedtype RollRoundType: RollRound
   
+  var possibleSides: [Int] { get }
   var sides: Int { get set }
-  var lastRoll: Int? { get set }
+  var numOfDice: Int { get set }
+  var lastRoll: [Int]? { get set }
   var history: [RollRoundType] { get set }
 }
 
 extension Model {
+  var lastRollTotal: Int? {
+    guard let lastRoll = lastRoll else { return nil }
+    return lastRoll.reduce(0, +)
+  }
+  
   func rollDice() {
-    let roll = Int.random(in: 1...sides)
-    let round = RollRoundType(roll)
-    history.append(round)
-    lastRoll = roll
+    let rolledDice = [Int].init(repeating: 0, count: numOfDice)
+    lastRoll = rolledDice.map { _ in Int.random(in: 1...sides) }
+    if let lastRollTotal = lastRollTotal {
+      let round = RollRoundType(lastRollTotal)
+      history.append(round)
+    }
   }
 }

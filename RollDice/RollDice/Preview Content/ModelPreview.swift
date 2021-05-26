@@ -7,14 +7,10 @@
 
 import Foundation
 
-final class ModelPreview: ObservableObject, Model {
-  @Published var sides: Int
-  @Published var lastRoll: Int?
+final class ModelPreview: ModelBase, Model {
   @Published var history: [RollRoundFile]
   
-  init() {
-    self.sides = 6
-    self.lastRoll = nil
+  override init(sides: Int = 6, numOfDice: Int = 1) {
     self.history = [
       RollRoundFile(1),
       RollRoundFile(2),
@@ -23,5 +19,6 @@ final class ModelPreview: ObservableObject, Model {
       RollRoundFile(5),
       RollRoundFile(6)
     ]
+    super.init(sides: sides, numOfDice: numOfDice)
   }
 }
