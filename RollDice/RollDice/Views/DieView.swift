@@ -7,9 +7,7 @@
 
 import SwiftUI
 
-struct DieView: View {
-  let value: Int
-  
+extension DieView: View {
   var body: some View {
     ZStack {
       RoundedRectangle(cornerRadius: 20.0)

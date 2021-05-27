@@ -15,9 +15,11 @@ protocol Model: ObservableObject {
   var numOfDice: Int { get set }
   var lastRoll: [Int]? { get set }
   var history: [RollRoundType] { get set }
+  var errorMsg: String? { get }
   
   func rollDice()
   func clearHistory()
+  func saveData()
 }
 
 extension Model {
@@ -32,6 +34,7 @@ extension Model {
     if let lastRollTotal = lastRollTotal {
       let round = RollRoundType(lastRollTotal)
       history.append(round)
+      saveData()
     }
   }
 }

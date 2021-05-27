@@ -7,10 +7,7 @@
 
 import SwiftUI
 
-struct SettingsView<T: Model>: View {
-  @Environment(\.presentationMode) var presentationMode
-  @ObservedObject var model: T
-  
+extension SettingsView: View {
   var body: some View {
     NavigationView {
       Form {
@@ -39,7 +36,7 @@ struct SettingsView<T: Model>: View {
   
   var toolbar: some ToolbarContent {
     ToolbarItem(placement: .navigationBarTrailing) {
-      Button(action: { presentationMode.wrappedValue.dismiss() }) {
+      Button(action: saveSettings) {
         Text("Done")
       }
     }

@@ -7,9 +7,7 @@
 
 import SwiftUI
 
-struct HistoryView<T: Model>: View {
-  @ObservedObject var model: T
-  
+extension HistoryView: View {
   var body: some View {
     NavigationView {
       List {

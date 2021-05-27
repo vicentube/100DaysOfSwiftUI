@@ -10,7 +10,7 @@ import SwiftUI
 @main
 struct RollDiceApp: App {
   let persistenceController = PersistenceController.shared
-  @StateObject private var model = ModelFile()
+  @StateObject private var model = ModelFile.load()
   
   var body: some Scene {
     WindowGroup {

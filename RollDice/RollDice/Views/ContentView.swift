@@ -7,9 +7,7 @@
 
 import SwiftUI
 
-struct ContentView<T: Model>: View {
-  @ObservedObject var model: T
-  
+extension ContentView: View {  
   var body: some View {
     TabView {
       RollView(model: model)

@@ -7,11 +7,7 @@
 
 import SwiftUI
 
-struct RollView<T: Model>: View {
-  @ObservedObject var model: T
-  
-  @State private var showingSettings = false
-
+extension RollView: View {
   var body: some View {
     NavigationView {
       VStack {
@@ -55,7 +51,7 @@ struct RollView<T: Model>: View {
         .background(Color.gray)
         .clipShape(RoundedRectangle(cornerRadius: 20))
       } else {
-        Text("Ready to roll \(model.numOfDice) \(model.numOfDice == 1 ? "die" : "dice") (\(model.sides)-sided)...")
+        Text(noDiceText)
           .padding()
       }
     }
@@ -75,7 +71,7 @@ struct RollView<T: Model>: View {
   
   var toolbar: some ToolbarContent {
     ToolbarItem(placement: .navigationBarTrailing) {
-      Button(action: { showingSettings = true }) {
+      Button(action: showSettings) {
         Image(systemName: "gearshape")
       }
     }

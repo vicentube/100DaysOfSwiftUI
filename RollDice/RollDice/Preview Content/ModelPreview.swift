@@ -8,6 +8,8 @@
 import Foundation
 
 final class ModelPreview: ModelBase, Model {
+  var errorMsg: String?
+  
   @Published var history: [RollRoundFile]
   
   override init(sides: Int = 6, numOfDice: Int = 1) {
@@ -22,7 +24,13 @@ final class ModelPreview: ModelBase, Model {
     super.init(sides: sides, numOfDice: numOfDice)
   }
   
+  required init(from decoder: Decoder) throws {
+    fatalError("init(from:) has not been implemented")
+  }
+  
   func clearHistory() {
     history = [RollRoundFile]()
   }
+  
+  func saveData() { }
 }
