@@ -1,4 +1,4 @@
-// RollRound.swift
+// RollRoundProtocol.swift
 // RollDice
 //
 // Creado el 25/5/21 por Vicente Úbeda (@vicentube)
@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol RollRound: Codable, Identifiable {
+protocol RollRoundProtocol: Codable, Identifiable {
   var id: UUID { get }
   var result: Int { get set }
   

@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct RollView<T: Model> {
+struct RollView<T: ModelProtocol> {
   @ObservedObject var model: T
   
   @State var showingSettings = false

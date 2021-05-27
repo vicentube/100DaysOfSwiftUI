@@ -22,6 +22,7 @@ extension ContentView: View {
           Text("History")
         }
     }
+    .alert(item: $model.errorMsg, content: showAlert)
   }
 }
 

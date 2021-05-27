@@ -7,6 +7,6 @@
 
 import SwiftUI
 
-struct HistoryView<T: Model> {
+struct HistoryView<T: ModelProtocol> {
   @ObservedObject var model: T
 }

@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct SettingsView<T: Model> {
+struct SettingsView<T: ModelProtocol> {
   @Environment(\.presentationMode) var presentationMode
   @ObservedObject var model: T
   

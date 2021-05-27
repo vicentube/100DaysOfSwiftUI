@@ -7,9 +7,9 @@
 
 import Foundation
 
-final class ModelFile: ModelBase, Model {
+final class ModelFile: ModelBase, ModelProtocol {
   @Published var history: [RollRoundFile]
-  @Published var errorMsg: String?
+  @Published var errorMsg: ErrorMsg?
   
   static let url = FileManager.getDocumentsDirectory().appendingPathComponent("app_data")
   
@@ -25,13 +25,13 @@ final class ModelFile: ModelBase, Model {
   
   func saveData() {
     guard let data = try? JSONEncoder().encode(self) else {
-      errorMsg = "Data could not be encoded"
+      errorMsg = ErrorMsg("Data could not be encoded")
       return
     }
     do {
       try data.write(to: ModelFile.url, options: [.atomicWrite, .completeFileProtection])
     } catch {
-      errorMsg = "Data could not be written to disk"
+      errorMsg = ErrorMsg("Data could not be written to disk")
       print(error.localizedDescription)
     }
   }

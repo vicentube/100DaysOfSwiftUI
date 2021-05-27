@@ -1,4 +1,4 @@
-// Model.swift
+// ModelProtocol.swift
 // RollDice
 //
 // Creado el 25/5/21 por Vicente Úbeda (@vicentube)
@@ -7,22 +7,22 @@
 
 import Combine
 
-protocol Model: ObservableObject {
-  associatedtype RollRoundType: RollRound
+protocol ModelProtocol: ObservableObject {
+  associatedtype RollRoundType: RollRoundProtocol
   
   var possibleSides: [Int] { get }
   var sides: Int { get set }
   var numOfDice: Int { get set }
   var lastRoll: [Int]? { get set }
   var history: [RollRoundType] { get set }
-  var errorMsg: String? { get }
+  var errorMsg: ErrorMsg? { get set }
   
   func rollDice()
   func clearHistory()
   func saveData()
 }
 
-extension Model {
+extension ModelProtocol {
   var lastRollTotal: Int? {
     guard let lastRoll = lastRoll else { return nil }
     return lastRoll.reduce(0, +)

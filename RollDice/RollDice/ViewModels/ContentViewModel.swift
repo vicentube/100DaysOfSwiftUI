@@ -7,6 +7,14 @@
 
 import SwiftUI
 
-struct ContentView<T: Model> {
+struct ContentView<T: ModelProtocol> {
   @ObservedObject var model: T
+  
+  func showAlert(_ error: ErrorMsg) -> Alert {
+    Alert(
+      title: Text("Error"),
+      message: Text(error.message),
+      dismissButton: .default(Text("OK"))
+    )
+  }
 }

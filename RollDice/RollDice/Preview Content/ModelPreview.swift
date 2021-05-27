@@ -7,8 +7,8 @@
 
 import Foundation
 
-final class ModelPreview: ModelBase, Model {
-  var errorMsg: String?
+final class ModelPreview: ModelBase, ModelProtocol {
+  var errorMsg: ErrorMsg?
   
   @Published var history: [RollRoundFile]
   

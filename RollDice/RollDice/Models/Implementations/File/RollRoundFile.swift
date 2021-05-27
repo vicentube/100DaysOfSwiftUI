@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct RollRoundFile: RollRound, Codable {
+struct RollRoundFile: RollRoundProtocol, Codable {
   var id: UUID
   var result: Int
   
