@@ -9,7 +9,7 @@ import SwiftUI
 
 @main
 struct RollDiceApp: App {
-  @StateObject private var model = ModelFile()
+  @StateObject private var model = ModelCD()
   
   var body: some Scene {
     WindowGroup {
