@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		E93503BC2660597300887B83 /* UserDefaults-ValueExists.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93503BB2660597300887B83 /* UserDefaults-ValueExists.swift */; };
 		E93503BE2660604A00887B83 /* RollRoundMO.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93503BD2660604A00887B83 /* RollRoundMO.swift */; };
-		E93503C426607A8700887B83 /* CoreDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93503C326607A8700887B83 /* CoreDataService.swift */; };
 		E93E93F12660131900F3972C /* ErrorMsg.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93E93F02660131900F3972C /* ErrorMsg.swift */; };
 		E985ACF5265EA5F700F8A7B2 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E985ACF4265EA5F700F8A7B2 /* SettingsView.swift */; };
 		E985ACF7265EADAF00F8A7B2 /* ModelBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = E985ACF6265EADAF00F8A7B2 /* ModelBase.swift */; };
@@ -27,18 +26,13 @@
 		E9DBE033265C94F400D22F31 /* RollDice.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E9DBE031265C94F400D22F31 /* RollDice.xcdatamodeld */; };
 		E9DBE03E265C969600D22F31 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9DBE03D265C969600D22F31 /* ContentView.swift */; };
 		E9DBE041265C97EB00D22F31 /* RollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9DBE040265C97EB00D22F31 /* RollView.swift */; };
-		E9E15F5F265FFD6F0045B7E1 /* ContentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9E15F5E265FFD6F0045B7E1 /* ContentViewModel.swift */; };
-		E9E15F61265FFDEC0045B7E1 /* RollViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9E15F60265FFDEC0045B7E1 /* RollViewModel.swift */; };
-		E9E15F63265FFF480045B7E1 /* DieViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9E15F62265FFF480045B7E1 /* DieViewModel.swift */; };
-		E9E15F652660031C0045B7E1 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9E15F642660031C0045B7E1 /* SettingsViewModel.swift */; };
-		E9E15F672660043E0045B7E1 /* HistoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9E15F662660043E0045B7E1 /* HistoryViewModel.swift */; };
 		E9E78015266030E6004F1A54 /* ModelCD.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9E78014266030E6004F1A54 /* ModelCD.swift */; };
+		E9ED946126616B32006E460D /* ErrorMsg-Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9ED946026616B32006E460D /* ErrorMsg-Alert.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		E93503BB2660597300887B83 /* UserDefaults-ValueExists.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults-ValueExists.swift"; sourceTree = "<group>"; };
 		E93503BD2660604A00887B83 /* RollRoundMO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RollRoundMO.swift; sourceTree = "<group>"; };
-		E93503C326607A8700887B83 /* CoreDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataService.swift; sourceTree = "<group>"; };
 		E93E93F02660131900F3972C /* ErrorMsg.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorMsg.swift; sourceTree = "<group>"; };
 		E985ACF4265EA5F700F8A7B2 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		E985ACF6265EADAF00F8A7B2 /* ModelBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelBase.swift; sourceTree = "<group>"; };
@@ -58,12 +52,8 @@
 		E9DBE034265C94F400D22F31 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E9DBE03D265C969600D22F31 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		E9DBE040265C97EB00D22F31 /* RollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RollView.swift; sourceTree = "<group>"; };
-		E9E15F5E265FFD6F0045B7E1 /* ContentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewModel.swift; sourceTree = "<group>"; };
-		E9E15F60265FFDEC0045B7E1 /* RollViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RollViewModel.swift; sourceTree = "<group>"; };
-		E9E15F62265FFF480045B7E1 /* DieViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DieViewModel.swift; sourceTree = "<group>"; };
-		E9E15F642660031C0045B7E1 /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
-		E9E15F662660043E0045B7E1 /* HistoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewModel.swift; sourceTree = "<group>"; };
 		E9E78014266030E6004F1A54 /* ModelCD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelCD.swift; sourceTree = "<group>"; };
+		E9ED946026616B32006E460D /* ErrorMsg-Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ErrorMsg-Alert.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -127,7 +117,6 @@
 				E9DBE026265C94F300D22F31 /* RollDiceApp.swift */,
 				E9DBE03B265C960300D22F31 /* Models */,
 				E9DBE03A265C95BE00D22F31 /* Views */,
-				E9E15F5D265FFD270045B7E1 /* ViewModels */,
 				E9B56033265DF8E9000FCD2B /* Extensions */,
 				E9DBE02A265C94F400D22F31 /* Assets.xcassets */,
 				E9DBE034265C94F400D22F31 /* Info.plist */,
@@ -148,6 +137,7 @@
 		E9DBE03A265C95BE00D22F31 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				E9ED945F26616B0B006E460D /* Extensions */,
 				E9DBE03D265C969600D22F31 /* ContentView.swift */,
 				E9DBE040265C97EB00D22F31 /* RollView.swift */,
 				E985ACF8265EC52100F8A7B2 /* DieView.swift */,
@@ -168,27 +158,22 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
-		E9E15F5D265FFD270045B7E1 /* ViewModels */ = {
-			isa = PBXGroup;
-			children = (
-				E9E15F5E265FFD6F0045B7E1 /* ContentViewModel.swift */,
-				E9E15F60265FFDEC0045B7E1 /* RollViewModel.swift */,
-				E9E15F62265FFF480045B7E1 /* DieViewModel.swift */,
-				E9E15F642660031C0045B7E1 /* SettingsViewModel.swift */,
-				E9E15F662660043E0045B7E1 /* HistoryViewModel.swift */,
-			);
-			path = ViewModels;
-			sourceTree = "<group>";
-		};
 		E9E7800F26602EFE004F1A54 /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
 				E9E78014266030E6004F1A54 /* ModelCD.swift */,
 				E93503BD2660604A00887B83 /* RollRoundMO.swift */,
 				E9DBE031265C94F400D22F31 /* RollDice.xcdatamodeld */,
-				E93503C326607A8700887B83 /* CoreDataService.swift */,
 			);
 			path = CoreData;
+			sourceTree = "<group>";
+		};
+		E9ED945F26616B0B006E460D /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				E9ED946026616B32006E460D /* ErrorMsg-Alert.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -263,23 +248,18 @@
 				E9E78015266030E6004F1A54 /* ModelCD.swift in Sources */,
 				E9BCDE11265F4503008E7C53 /* FileManager+DocumentsDir.swift in Sources */,
 				E9B5602D265DC3F4000FCD2B /* ModelFile.swift in Sources */,
-				E9E15F5F265FFD6F0045B7E1 /* ContentViewModel.swift in Sources */,
-				E93503C426607A8700887B83 /* CoreDataService.swift in Sources */,
 				E99646DB265CB4EC00862171 /* RollRoundProtocol.swift in Sources */,
 				E9B56032265DF540000FCD2B /* ModelPreview.swift in Sources */,
 				E985ACF7265EADAF00F8A7B2 /* ModelBase.swift in Sources */,
-				E9E15F61265FFDEC0045B7E1 /* RollViewModel.swift in Sources */,
 				E99646D7265CAD9100862171 /* HistoryView.swift in Sources */,
+				E9ED946126616B32006E460D /* ErrorMsg-Alert.swift in Sources */,
 				E99646D9265CAEFD00862171 /* ModelProtocol.swift in Sources */,
 				E9DBE041265C97EB00D22F31 /* RollView.swift in Sources */,
 				E9DBE027265C94F300D22F31 /* RollDiceApp.swift in Sources */,
-				E9E15F672660043E0045B7E1 /* HistoryViewModel.swift in Sources */,
 				E99646DD265CB65100862171 /* RollRoundFile.swift in Sources */,
 				E985ACF9265EC52100F8A7B2 /* DieView.swift in Sources */,
-				E9E15F652660031C0045B7E1 /* SettingsViewModel.swift in Sources */,
 				E9DBE033265C94F400D22F31 /* RollDice.xcdatamodeld in Sources */,
 				E93503BC2660597300887B83 /* UserDefaults-ValueExists.swift in Sources */,
-				E9E15F63265FFF480045B7E1 /* DieViewModel.swift in Sources */,
 				E9DBE03E265C969600D22F31 /* ContentView.swift in Sources */,
 				E93E93F12660131900F3972C /* ErrorMsg.swift in Sources */,
 				E985ACF5265EA5F700F8A7B2 /* SettingsView.swift in Sources */,

@@ -7,7 +7,21 @@
 
 import SwiftUI
 
-extension RollView: View {
+// MARK: - ViewModel
+struct RollView<T: ModelProtocol>: View {
+  @ObservedObject var model: T
+  
+  @State private var showingSettings = false
+  
+  private var noDiceText: String {
+    "Ready to roll \(model.numOfDice) \(model.numOfDice == 1 ? "die" : "dice") (\(model.sides)-sided)..."
+  }
+  
+  private func showSettings() {
+    showingSettings = true
+  }
+  
+// MARK: - View
   var body: some View {
     NavigationView {
       VStack {
@@ -76,9 +90,9 @@ extension RollView: View {
       }
     }
   }
-  
 }
 
+// MARK: - Preview
 struct RollView_Previews: PreviewProvider {
   static var previews: some View {
     RollView(model: ModelPreview())

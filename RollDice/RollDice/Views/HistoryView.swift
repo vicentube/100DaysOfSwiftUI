@@ -7,7 +7,12 @@
 
 import SwiftUI
 
-extension HistoryView: View {
+struct HistoryView<T: ModelProtocol>: View {
+  // MARK: - ViewModel
+  @ObservedObject var model: T
+  
+  
+  // MARK: - View
   var body: some View {
     NavigationView {
       List {
@@ -29,6 +34,7 @@ extension HistoryView: View {
   }
 }
 
+// MARK: - Preview
 struct HistoryView_Previews: PreviewProvider {
   static var previews: some View {
     HistoryView(model: ModelPreview())

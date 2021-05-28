@@ -7,7 +7,17 @@
 
 import SwiftUI
 
-extension SettingsView: View {
+struct SettingsView<T: ModelProtocol>: View {
+  // MARK: - ViewModel
+  @Environment(\.presentationMode) var presentationMode
+  @ObservedObject var model: T
+  
+  func saveSettings() {
+    model.saveSettings()
+    presentationMode.wrappedValue.dismiss()
+  }
+  
+  // MARK: - View
   var body: some View {
     NavigationView {
       Form {
@@ -43,6 +53,7 @@ extension SettingsView: View {
   }
 }
 
+// MARK: - Preview
 struct SettingsView_Previews: PreviewProvider {
   static var previews: some View {
     SettingsView(model: ModelPreview())

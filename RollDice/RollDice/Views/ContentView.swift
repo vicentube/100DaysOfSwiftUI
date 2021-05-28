@@ -7,7 +7,11 @@
 
 import SwiftUI
 
-extension ContentView: View {  
+// MARK: - ViewModel
+struct ContentView<T: ModelProtocol>: View {
+  @ObservedObject var model: T
+  
+// MARK: - View
   var body: some View {
     TabView {
       RollView(model: model)
@@ -22,10 +26,11 @@ extension ContentView: View {
           Text("History")
         }
     }
-    .alert(item: $model.errorMsg, content: showAlert)
+    .alert(item: $model.errorMsg) { $0.alert }
   }
 }
 
+// MARK: - Preview
 struct ContentView_Previews: PreviewProvider {
   static var previews: some View {
     ContentView(model: ModelPreview())
