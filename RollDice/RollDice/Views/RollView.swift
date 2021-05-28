@@ -13,12 +13,19 @@ struct RollView<T: ModelProtocol>: View {
   
   @State private var showingSettings = false
   
+  private let hapticService = HapticsService()
+  
   private var noDiceText: String {
     "Ready to roll \(model.numOfDice) \(model.numOfDice == 1 ? "die" : "dice") (\(model.sides)-sided)..."
   }
   
   private func showSettings() {
     showingSettings = true
+  }
+  
+  private func onTapRollDice() {
+    hapticService?.rollDiceEffect()
+    model.rollDice()
   }
   
 // MARK: - View
@@ -72,7 +79,7 @@ struct RollView<T: ModelProtocol>: View {
   }
   
   var rollButton: some View {
-    Button(action: model.rollDice) {
+    Button(action: onTapRollDice) {
       Text("Roll Dice")
     }
     .padding()

@@ -28,6 +28,7 @@
 		E9DBE041265C97EB00D22F31 /* RollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9DBE040265C97EB00D22F31 /* RollView.swift */; };
 		E9E78015266030E6004F1A54 /* ModelCD.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9E78014266030E6004F1A54 /* ModelCD.swift */; };
 		E9ED946126616B32006E460D /* ErrorMsg-Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9ED946026616B32006E460D /* ErrorMsg-Alert.swift */; };
+		E9ED94662661707E006E460D /* HapticsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9ED94652661707E006E460D /* HapticsService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -54,6 +55,7 @@
 		E9DBE040265C97EB00D22F31 /* RollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RollView.swift; sourceTree = "<group>"; };
 		E9E78014266030E6004F1A54 /* ModelCD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelCD.swift; sourceTree = "<group>"; };
 		E9ED946026616B32006E460D /* ErrorMsg-Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ErrorMsg-Alert.swift"; sourceTree = "<group>"; };
+		E9ED94652661707E006E460D /* HapticsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticsService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,6 +93,7 @@
 			children = (
 				E9BCDE10265F4503008E7C53 /* FileManager+DocumentsDir.swift */,
 				E93503BB2660597300887B83 /* UserDefaults-ValueExists.swift */,
+				E9ED946026616B32006E460D /* ErrorMsg-Alert.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -117,6 +120,7 @@
 				E9DBE026265C94F300D22F31 /* RollDiceApp.swift */,
 				E9DBE03B265C960300D22F31 /* Models */,
 				E9DBE03A265C95BE00D22F31 /* Views */,
+				E9ED946426617055006E460D /* Services */,
 				E9B56033265DF8E9000FCD2B /* Extensions */,
 				E9DBE02A265C94F400D22F31 /* Assets.xcassets */,
 				E9DBE034265C94F400D22F31 /* Info.plist */,
@@ -137,7 +141,6 @@
 		E9DBE03A265C95BE00D22F31 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				E9ED945F26616B0B006E460D /* Extensions */,
 				E9DBE03D265C969600D22F31 /* ContentView.swift */,
 				E9DBE040265C97EB00D22F31 /* RollView.swift */,
 				E985ACF8265EC52100F8A7B2 /* DieView.swift */,
@@ -168,12 +171,12 @@
 			path = CoreData;
 			sourceTree = "<group>";
 		};
-		E9ED945F26616B0B006E460D /* Extensions */ = {
+		E9ED946426617055006E460D /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				E9ED946026616B32006E460D /* ErrorMsg-Alert.swift */,
+				E9ED94652661707E006E460D /* HapticsService.swift */,
 			);
-			path = Extensions;
+			path = Services;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -263,6 +266,7 @@
 				E9DBE03E265C969600D22F31 /* ContentView.swift in Sources */,
 				E93E93F12660131900F3972C /* ErrorMsg.swift in Sources */,
 				E985ACF5265EA5F700F8A7B2 /* SettingsView.swift in Sources */,
+				E9ED94662661707E006E460D /* HapticsService.swift in Sources */,
 				E93503BE2660604A00887B83 /* RollRoundMO.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
