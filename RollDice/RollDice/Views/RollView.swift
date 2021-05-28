@@ -12,6 +12,7 @@ struct RollView<T: ModelProtocol>: View {
   @ObservedObject var model: T
   
   @State private var showingSettings = false
+  @State private var rotation = Angle(degrees: 0.0)
   
   private let hapticService = HapticsService()
   
@@ -19,17 +20,28 @@ struct RollView<T: ModelProtocol>: View {
     "Ready to roll \(model.numOfDice) \(model.numOfDice == 1 ? "die" : "dice") (\(model.sides)-sided)..."
   }
   
+  private var animatedRotation: Angle {
+    model.rolling ? rotation : .zero
+  }
+  
   private func showSettings() {
     showingSettings = true
   }
   
   private func onTapRollDice() {
+    var count = 1
     model.rollDice() {
       hapticService?.rollDiceEffect()
+      rotation = .degrees(Double((count * 20) % 360))
+      count += 1
     }
   }
   
-// MARK: - View
+  private func resetRotation(rolling: Bool) {
+    rotation = .zero
+  }
+  
+  // MARK: - View
   var body: some View {
     NavigationView {
       VStack {
@@ -52,7 +64,10 @@ struct RollView<T: ModelProtocol>: View {
     HStack {
       if let lastRoll = model.lastRoll {
         ForEach(lastRoll, id: \.self) { die in
-          DieView(value: die)
+          withAnimation {
+            DieView(value: die)
+              .rotation3DEffect(animatedRotation, axis: (x: 0.0, y: 1.0, z: 0.0))
+          }
         }
       }
     }
