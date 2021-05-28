@@ -24,8 +24,9 @@ struct RollView<T: ModelProtocol>: View {
   }
   
   private func onTapRollDice() {
-    hapticService?.rollDiceEffect()
-    model.rollDice()
+    model.rollDice() {
+      hapticService?.rollDiceEffect()
+    }
   }
   
 // MARK: - View
@@ -60,7 +61,14 @@ struct RollView<T: ModelProtocol>: View {
   
   var totalView: some View {
     Group {
-      if let lastRollTotal = model.lastRollTotal {
+      if model.rolling {
+        Text("Rolling...")
+          .font(.largeTitle)
+          .padding()
+          .foregroundColor(.white)
+          .background(Color.gray)
+          .clipShape(RoundedRectangle(cornerRadius: 20))
+      } else if let lastRollTotal = model.lastRollTotal {
         VStack {
           Text("Total")
             .font(.title)

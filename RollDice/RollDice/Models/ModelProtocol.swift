@@ -17,10 +17,11 @@ protocol ModelProtocol: ObservableObject {
   var lastRoll: [Int]? { get set }
   var history: [RollRoundType] { get set }
   var errorMsg: ErrorMsg? { get set }
+  var rolling: Bool { get set }
   
   init(sides: Int, numOfDice: Int)
   func createRound(_ value: Int) -> RollRoundType
-  func rollDice()
+  func rollDice(onTick: @escaping () -> Void)
   func initialLoad()
   func loadSettings()
   func saveSettings()
@@ -59,13 +60,22 @@ extension ModelProtocol {
     UserDefaults.standard.set(numOfDice, forKey: "NumOfDice")
   }
   
-  func rollDice() {
+  func rollDice(onTick: @escaping () -> Void) {
+    rolling = true
     let rolledDice = [Int].init(repeating: 0, count: numOfDice)
-    lastRoll = rolledDice.map { _ in Int.random(in: 1...sides) }
-    if let lastRollTotal = lastRollTotal {
-      let round = createRound(lastRollTotal)
-      history.insert(round, at: 0)
-      saveHistory()
+    for runCount in 1...40 {
+      DispatchQueue.main.asyncAfter(deadline: .now() + 0.05 * Double(runCount)) {
+        self.lastRoll = rolledDice.map { _ in Int.random(in: 1...self.sides) }
+        onTick()
+        if runCount == 40 {
+          self.rolling = false
+          if let lastRollTotal = self.lastRollTotal {
+            let round = self.createRound(lastRollTotal)
+            self.history.insert(round, at: 0)
+            self.saveHistory()
+          }
+        }
+      }
     }
   }
 }

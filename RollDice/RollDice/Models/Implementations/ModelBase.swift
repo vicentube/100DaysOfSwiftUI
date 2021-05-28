@@ -5,6 +5,7 @@
 // https://appeleando.com
 // Copyright © 2021 Vicente Úbeda. Todos los derechos reservados.
 
+import Foundation
 import Combine
 
 class ModelBase: ObservableObject {
@@ -12,6 +13,7 @@ class ModelBase: ObservableObject {
   @Published var numOfDice: Int
   @Published var lastRoll: [Int]?
   @Published var errorMsg: ErrorMsg?
+  @Published var rolling: Bool
   
   let possibleSides: [Int] = [4, 6, 8, 10, 12, 20, 100]
   
@@ -20,5 +22,6 @@ class ModelBase: ObservableObject {
     self.numOfDice = numOfDice
     self.lastRoll = nil
     self.errorMsg = nil
+    self.rolling = false
   }
 }
