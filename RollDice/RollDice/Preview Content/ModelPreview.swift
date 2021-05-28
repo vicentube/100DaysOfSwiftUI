@@ -8,11 +8,9 @@
 import Foundation
 
 final class ModelPreview: ModelBase, ModelProtocol {
-  var errorMsg: ErrorMsg?
-  
   @Published var history: [RollRoundFile]
   
-  override init(sides: Int = 6, numOfDice: Int = 1) {
+  override init(sides: Int, numOfDice: Int) {
     self.history = [
       RollRoundFile(1),
       RollRoundFile(2),
@@ -24,13 +22,15 @@ final class ModelPreview: ModelBase, ModelProtocol {
     super.init(sides: sides, numOfDice: numOfDice)
   }
   
-  required init(from decoder: Decoder) throws {
-    fatalError("init(from:) has not been implemented")
-  }
+  func loadHistory() { }
   
   func clearHistory() {
-    history = [RollRoundFile]()
+    history = []
   }
   
-  func saveData() { }
+  func saveHistory() { }
+  
+  func createRound(_ value: Int) -> RollRoundFile {
+    RollRoundFile(value)
+  }
 }

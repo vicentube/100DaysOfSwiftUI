@@ -8,11 +8,11 @@
 import Foundation
 
 struct RollRoundFile: RollRoundProtocol, Codable {
-  var id: UUID
+  var date: Date
   var result: Int
   
   init(_ result: Int) {
-    self.id = UUID()
+    self.date = Date()
     self.result = result
   }
 }

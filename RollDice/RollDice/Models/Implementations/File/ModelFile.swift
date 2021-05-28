@@ -9,62 +9,64 @@ import Foundation
 
 final class ModelFile: ModelBase, ModelProtocol {
   @Published var history: [RollRoundFile]
-  @Published var errorMsg: ErrorMsg?
   
-  static let url = FileManager.getDocumentsDirectory().appendingPathComponent("app_data")
+  let url = FileManager.getDocumentsDirectory().appendingPathComponent("app_data")
   
-  override init(sides: Int = 6, numOfDice: Int = 1) {
-    self.history = [RollRoundFile]()
+  override init(sides: Int, numOfDice: Int) {
+    self.history = []
     super.init(sides: sides, numOfDice: numOfDice)
   }
   
-  func clearHistory() {
-    history = [RollRoundFile]()
-    saveData()
+  func loadHistory() {
+    if let data = try? Data(contentsOf: url) {
+      if let decoded = try? JSONDecoder().decode([RollRoundFile].self, from: data) {
+        history = decoded
+        return
+      }
+    }
+    
+    errorMsg = ErrorMsg("Data could not be loaded")
   }
   
-  func saveData() {
-    guard let data = try? JSONEncoder().encode(self) else {
-      errorMsg = ErrorMsg("Data could not be encoded")
+  func clearHistory() {
+    history = []
+    saveHistory()
+  }
+  
+  func saveHistory() {
+    guard let data = try? JSONEncoder().encode(history) else {
+      errorMsg = ErrorMsg("History could not be encoded")
       return
     }
     do {
-      try data.write(to: ModelFile.url, options: [.atomicWrite, .completeFileProtection])
+      try data.write(to: url, options: [.atomicWrite, .completeFileProtection])
     } catch {
-      errorMsg = ErrorMsg("Data could not be written to disk")
+      errorMsg = ErrorMsg("History could not be written to disk")
       print(error.localizedDescription)
     }
   }
   
-  // - MARK: Codable
+  func createRound(_ value: Int) -> RollRoundFile {
+    RollRoundFile(value)
+  }
+}
+
+// - MARK: Codable
+extension ModelFile: Codable {
   enum CodingKeys: CodingKey {
     case history
   }
   
-  override func encode(to encoder: Encoder) throws {
+  func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-  
-    try container.encode(history, forKey: .history)
     
-    let superEncoder = container.superEncoder()
-    try super.encode(to: superEncoder)
+    try container.encode(history, forKey: .history)
   }
   
-  required init(from decoder: Decoder) throws {
+  convenience init(from decoder: Decoder) throws {
+    self.init()
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    let superDecoder = try container.superDecoder()
     
     history = try container.decode([RollRoundFile].self, forKey: .history)
-    try super.init(from: superDecoder)
-  }
-  
-  static func load() -> ModelFile {
-    if let data = try? Data(contentsOf: url) {
-      if let decoded = try? JSONDecoder().decode(ModelFile.self, from: data) {
-        return decoded
-      }
-    }
-    
-    return ModelFile()
   }
 }

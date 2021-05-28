@@ -7,9 +7,7 @@
 
 import Foundation
 
-protocol RollRoundProtocol: Codable, Identifiable {
-  var id: UUID { get }
+protocol RollRoundProtocol {
+  var date: Date { get set }
   var result: Int { get set }
-  
-  init(_ result: Int)
 }

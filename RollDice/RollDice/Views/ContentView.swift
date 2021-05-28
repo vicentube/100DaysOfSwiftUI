@@ -28,6 +28,6 @@ extension ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
   static var previews: some View {
-    ContentView(model: ModelFile())
+    ContentView(model: ModelPreview())
   }
 }

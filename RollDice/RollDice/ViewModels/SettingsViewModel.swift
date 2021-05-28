@@ -12,7 +12,7 @@ struct SettingsView<T: ModelProtocol> {
   @ObservedObject var model: T
   
   func saveSettings() {
-    model.saveData()
+    model.saveSettings()
     presentationMode.wrappedValue.dismiss()
   }
 }

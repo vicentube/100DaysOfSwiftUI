@@ -7,37 +7,18 @@
 
 import Combine
 
-class ModelBase: ObservableObject, Codable {
+class ModelBase: ObservableObject {
   @Published var sides: Int
   @Published var numOfDice: Int
   @Published var lastRoll: [Int]?
+  @Published var errorMsg: ErrorMsg?
   
   let possibleSides: [Int] = [4, 6, 8, 10, 12, 20, 100]
   
-  init(sides: Int = 6, numOfDice: Int = 1) {
+  init(sides: Int, numOfDice: Int) {
     self.sides = sides
     self.numOfDice = numOfDice
     self.lastRoll = nil
-  }
-  
-  // - MARK: Codable
-  enum CodingKeys: CodingKey {
-    case sides, numOfDice, lastRoll
-  }
-  
-  func encode(to encoder: Encoder) throws {
-    var container = encoder.container(keyedBy: CodingKeys.self)
-    
-    try container.encode(sides, forKey: .sides)
-    try container.encode(numOfDice, forKey: .numOfDice)
-    try container.encode(lastRoll, forKey: .lastRoll)
-  }
-  
-  required init(from decoder: Decoder) throws {
-    let container = try decoder.container(keyedBy: CodingKeys.self)
-    
-    sides = try container.decode(Int.self, forKey: .sides)
-    numOfDice = try container.decode(Int.self, forKey: .numOfDice)
-    lastRoll = try container.decode([Int]?.self, forKey: .lastRoll)
+    self.errorMsg = nil
   }
 }

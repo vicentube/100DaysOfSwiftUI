@@ -11,7 +11,7 @@ extension HistoryView: View {
   var body: some View {
     NavigationView {
       List {
-        ForEach(model.history) { item in
+        ForEach(model.history, id: \.date) { item in
           Text("\(item.result)")
         }
       }
