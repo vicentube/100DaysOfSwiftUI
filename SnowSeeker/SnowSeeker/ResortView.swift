@@ -82,7 +82,7 @@ struct ResortView: View {
               .font(.footnote)
               .foregroundColor(.white)
               .padding(.horizontal, 5)
-              .shadow(color: .black, radius: 2, x: 0.0, y: 0.0)
+              .shadow(color: .black, radius: 1, x: 0.0, y: 0.0)
           }
         })
   }
