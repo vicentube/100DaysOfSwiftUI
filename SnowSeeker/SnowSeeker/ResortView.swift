@@ -17,9 +17,7 @@ struct ResortView: View {
   var body: some View {
     ScrollView {
       VStack(alignment: .leading, spacing: 0) {
-        Image(decorative: resort.id)
-          .resizable()
-          .scaledToFit()
+        imageView
         
         Group {
           HStack {
@@ -70,9 +68,27 @@ struct ResortView: View {
       facility.alert
     }
   }
+  
+  var imageView: some View {
+    Image(decorative: resort.id)
+      .resizable()
+      .scaledToFit()
+      .overlay(
+        VStack {
+          Spacer()
+          HStack {
+            Spacer()
+            Text("Photo by: \(resort.imageCredit)")
+              .font(.footnote)
+              .foregroundColor(.white)
+              .padding(.horizontal, 5)
+              .shadow(color: .black, radius: 2, x: 0.0, y: 0.0)
+          }
+        })
+  }
 }
 struct ResortView_Previews: PreviewProvider {
   static var previews: some View {
-    ResortView(resort: Resort.example)
+    ResortView(resort: Resort.example).environmentObject(Favorites())
   }
 }
