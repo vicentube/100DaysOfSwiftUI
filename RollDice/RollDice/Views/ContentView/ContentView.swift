@@ -7,11 +7,10 @@
 
 import SwiftUI
 
-// MARK: - ViewModel
-struct ContentView<T: ModelProtocol>: View {
-  @ObservedObject var model: T
+struct ContentView: View {
+  @EnvironmentObject var appState: AppState
+  @EnvironmentObject var interactors: InteractorContainer
   
-// MARK: - View
   var body: some View {
     TabView {
       RollView(model: model)
@@ -26,13 +25,12 @@ struct ContentView<T: ModelProtocol>: View {
           Text("History")
         }
     }
-    .alert(item: $model.errorMsg) { $0.alert }
+    .alert(item: interactors.contentView.errorMsg) { $0.alert }
   }
 }
 
-// MARK: - Preview
 struct ContentView_Previews: PreviewProvider {
   static var previews: some View {
-    ContentView(model: ModelPreview())
+    ContentView()
   }
 }

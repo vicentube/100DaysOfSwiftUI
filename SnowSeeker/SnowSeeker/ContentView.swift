@@ -9,11 +9,16 @@ import SwiftUI
 
 struct ContentView: View {
   @StateObject private var favorites = Favorites()
+  
+  @State private var shownResorts = [Resort]()
+  @State private var showingSettings = false
+  @State private var settings = Settings()
+  
   let resorts: [Resort] = Bundle.main.decode("resorts.json")
   
   var body: some View {
     NavigationView {
-      List(resorts) { resort in
+      List(shownResorts) { resort in
         NavigationLink(destination: ResortView(resort: resort)) {
           Image(resort.country)
             .resizable()
@@ -44,15 +49,49 @@ struct ContentView: View {
         }
       }
       .navigationBarTitle("Resorts")
+      .toolbar { toolbar }
       
       WelcomeView()
     }
+    .onAppear {
+      shownResorts = resorts
+    }
+    .sheet(isPresented: $showingSettings) {
+      SettingsView(
+        resorts: resorts,
+        sortedAndFiltered: $shownResorts,
+        settings: $settings
+      )
+    }
     .environmentObject(favorites)
+  }
+  
+  var toolbar: some ToolbarContent {
+    ToolbarItem(placement: .navigationBarTrailing) {
+      Button(action: { showingSettings = true }) {
+        Image(systemName: "gearshape")
+      }
+    }
   }
 }
 
 struct ContentView_Previews: PreviewProvider {
   static var previews: some View {
     ContentView()
+  }
+}
+
+enum SortingField: CaseIterable {
+  case none, name, country
+  
+  func title() -> String {
+    switch self {
+    case .none:
+      return "None"
+    case .name:
+      return "By name"
+    case .country:
+      return "By country"
+    }
   }
 }

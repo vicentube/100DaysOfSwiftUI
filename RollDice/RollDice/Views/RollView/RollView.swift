@@ -7,14 +7,12 @@
 
 import SwiftUI
 
-// MARK: - ViewModel
-struct RollView<T: ModelProtocol>: View {
-  @ObservedObject var model: T
+struct RollView: View {
+  @EnvironmentObject var appState: AppState
+  @EnvironmentObject var interactors: InteractorContainer
   
   @State private var showingSettings = false
   @State private var rotation = Angle(degrees: 0.0)
-  
-  private let hapticService = HapticsService()
   
   private var noDiceText: String {
     "Ready to roll \(model.numOfDice) \(model.numOfDice == 1 ? "die" : "dice") (\(model.sides)-sided)..."
@@ -28,20 +26,10 @@ struct RollView<T: ModelProtocol>: View {
     showingSettings = true
   }
   
-  private func onTapRollDice() {
-    var count = 1
-    model.rollDice() {
-      hapticService?.rollDiceEffect()
-      rotation = .degrees(Double((count * 20) % 360))
-      count += 1
-    }
-  }
-  
   private func resetRotation(rolling: Bool) {
     rotation = .zero
   }
   
-  // MARK: - View
   var body: some View {
     NavigationView {
       VStack {

@@ -21,8 +21,10 @@
 		E943C3B3265E913C00A42E1F /* Day96_1.swift in Sources */ = {isa = PBXBuildFile; fileRef = E943C3B2265E913C00A42E1F /* Day96_1.swift */; };
 		E943C3B5265E93E700A42E1F /* Day96_2.swift in Sources */ = {isa = PBXBuildFile; fileRef = E943C3B4265E93E700A42E1F /* Day96_2.swift */; };
 		E943C3B7265E95EF00A42E1F /* Day96_3.swift in Sources */ = {isa = PBXBuildFile; fileRef = E943C3B6265E95EF00A42E1F /* Day96_3.swift */; };
+		E98316942662CAF500BC7172 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = E98316932662CAF500BC7172 /* Settings.swift */; };
 		E98CB2FA26613C4900998C5A /* Facility.swift in Sources */ = {isa = PBXBuildFile; fileRef = E98CB2F926613C4900998C5A /* Facility.swift */; };
 		E98CB2FC266143FB00998C5A /* Favorites.swift in Sources */ = {isa = PBXBuildFile; fileRef = E98CB2FB266143FB00998C5A /* Favorites.swift */; };
+		E9A635552662A21300E4C96E /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9A635542662A21300E4C96E /* SettingsView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,8 +44,10 @@
 		E943C3B2265E913C00A42E1F /* Day96_1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Day96_1.swift; sourceTree = "<group>"; };
 		E943C3B4265E93E700A42E1F /* Day96_2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Day96_2.swift; sourceTree = "<group>"; };
 		E943C3B6265E95EF00A42E1F /* Day96_3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Day96_3.swift; sourceTree = "<group>"; };
+		E98316932662CAF500BC7172 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		E98CB2F926613C4900998C5A /* Facility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Facility.swift; sourceTree = "<group>"; };
 		E98CB2FB266143FB00998C5A /* Favorites.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Favorites.swift; sourceTree = "<group>"; };
+		E9A635542662A21300E4C96E /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,6 +82,7 @@
 			children = (
 				E943C3A3265E90C100A42E1F /* SnowSeekerApp.swift */,
 				E943C3A5265E90C100A42E1F /* ContentView.swift */,
+				E9A635542662A21300E4C96E /* SettingsView.swift */,
 				E93E93F826601CFA00F3972C /* WelcomeView.swift */,
 				E93E93FA26601ED600F3972C /* ResortView.swift */,
 				E93E93FC26601F8B00F3972C /* SkiDetailsView.swift */,
@@ -85,6 +90,7 @@
 				E93E93F4266019A900F3972C /* Resort.swift */,
 				E98CB2F926613C4900998C5A /* Facility.swift */,
 				E98CB2FB266143FB00998C5A /* Favorites.swift */,
+				E98316932662CAF500BC7172 /* Settings.swift */,
 				E93E93F22660185800F3972C /* resorts.json */,
 				E943C3A7265E90C200A42E1F /* Assets.xcassets */,
 				E943C3AC265E90C200A42E1F /* Info.plist */,
@@ -182,7 +188,9 @@
 				E93E93FF26601FDA00F3972C /* ResortDetailsView.swift in Sources */,
 				E93E93FB26601ED600F3972C /* ResortView.swift in Sources */,
 				E98CB2FA26613C4900998C5A /* Facility.swift in Sources */,
+				E9A635552662A21300E4C96E /* SettingsView.swift in Sources */,
 				E93E93F926601CFA00F3972C /* WelcomeView.swift in Sources */,
+				E98316942662CAF500BC7172 /* Settings.swift in Sources */,
 				E943C3B7265E95EF00A42E1F /* Day96_3.swift in Sources */,
 				E93E93F5266019A900F3972C /* Resort.swift in Sources */,
 				E93E93F726601AC900F3972C /* Bundle-Decodable.swift in Sources */,
