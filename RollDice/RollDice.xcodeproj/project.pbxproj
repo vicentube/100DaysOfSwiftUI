@@ -19,9 +19,13 @@
 		E99646DD265CB65100862171 /* RollRoundFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = E99646DC265CB65100862171 /* RollRoundFile.swift */; };
 		E9B0300B266542E4004FBD10 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9B0300A266542E4004FBD10 /* AppState.swift */; };
 		E9B0300E266543AE004FBD10 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9B0300D266543AE004FBD10 /* Settings.swift */; };
-		E9B0301426654873004FBD10 /* ContentViewInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9B0301326654873004FBD10 /* ContentViewInteractor.swift */; };
-		E9B03016266588CB004FBD10 /* InteractorContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9B03015266588CB004FBD10 /* InteractorContainer.swift */; };
-		E9B03019266596FF004FBD10 /* RollViewInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9B03018266596FF004FBD10 /* RollViewInteractor.swift */; };
+		E9B03016266588CB004FBD10 /* InteractorsContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9B03015266588CB004FBD10 /* InteractorsContainer.swift */; };
+		E9B0301B2665CE56004FBD10 /* RollRound.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9B0301A2665CE56004FBD10 /* RollRound.swift */; };
+		E9B030212665DA12004FBD10 /* HistoryInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9B030202665DA12004FBD10 /* HistoryInteractor.swift */; };
+		E9B030232665EA26004FBD10 /* PreviewContentViewInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9B030222665EA26004FBD10 /* PreviewContentViewInteractor.swift */; };
+		E9B030272665F2E8004FBD10 /* SettingsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9B030262665F2E8004FBD10 /* SettingsInteractor.swift */; };
+		E9B030292665F445004FBD10 /* RollInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9B030282665F445004FBD10 /* RollInteractor.swift */; };
+		E9B0302B2665F62E004FBD10 /* DIContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9B0302A2665F62E004FBD10 /* DIContainer.swift */; };
 		E9B5602D265DC3F4000FCD2B /* ModelFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9B5602C265DC3F4000FCD2B /* ModelFile.swift */; };
 		E9B56032265DF540000FCD2B /* ModelPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9B56031265DF540000FCD2B /* ModelPreview.swift */; };
 		E9BCDE11265F4503008E7C53 /* FileManager+DocumentsDir.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9BCDE10265F4503008E7C53 /* FileManager+DocumentsDir.swift */; };
@@ -49,9 +53,13 @@
 		E99646DC265CB65100862171 /* RollRoundFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RollRoundFile.swift; sourceTree = "<group>"; };
 		E9B0300A266542E4004FBD10 /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
 		E9B0300D266543AE004FBD10 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
-		E9B0301326654873004FBD10 /* ContentViewInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewInteractor.swift; sourceTree = "<group>"; };
-		E9B03015266588CB004FBD10 /* InteractorContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InteractorContainer.swift; sourceTree = "<group>"; };
-		E9B03018266596FF004FBD10 /* RollViewInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RollViewInteractor.swift; sourceTree = "<group>"; };
+		E9B03015266588CB004FBD10 /* InteractorsContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InteractorsContainer.swift; sourceTree = "<group>"; };
+		E9B0301A2665CE56004FBD10 /* RollRound.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RollRound.swift; sourceTree = "<group>"; };
+		E9B030202665DA12004FBD10 /* HistoryInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryInteractor.swift; sourceTree = "<group>"; };
+		E9B030222665EA26004FBD10 /* PreviewContentViewInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewContentViewInteractor.swift; sourceTree = "<group>"; };
+		E9B030262665F2E8004FBD10 /* SettingsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsInteractor.swift; sourceTree = "<group>"; };
+		E9B030282665F445004FBD10 /* RollInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RollInteractor.swift; sourceTree = "<group>"; };
+		E9B0302A2665F62E004FBD10 /* DIContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DIContainer.swift; sourceTree = "<group>"; };
 		E9B5602C265DC3F4000FCD2B /* ModelFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelFile.swift; sourceTree = "<group>"; };
 		E9B56031265DF540000FCD2B /* ModelPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelPreview.swift; sourceTree = "<group>"; };
 		E9BCDE10265F4503008E7C53 /* FileManager+DocumentsDir.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FileManager+DocumentsDir.swift"; sourceTree = "<group>"; };
@@ -92,27 +100,20 @@
 		E9B0300F2665446B004FBD10 /* Interactors */ = {
 			isa = PBXGroup;
 			children = (
-				E9B03015266588CB004FBD10 /* InteractorContainer.swift */,
+				E9B03015266588CB004FBD10 /* InteractorsContainer.swift */,
+				E9B030262665F2E8004FBD10 /* SettingsInteractor.swift */,
+				E9B030282665F445004FBD10 /* RollInteractor.swift */,
+				E9B030202665DA12004FBD10 /* HistoryInteractor.swift */,
 			);
 			path = Interactors;
 			sourceTree = "<group>";
 		};
-		E9B0301226654852004FBD10 /* ContentView */ = {
+		E9B0301F2665D966004FBD10 /* HistoryView */ = {
 			isa = PBXGroup;
 			children = (
-				E9DBE03D265C969600D22F31 /* ContentView.swift */,
-				E9B0301326654873004FBD10 /* ContentViewInteractor.swift */,
+				E99646D6265CAD9100862171 /* HistoryView.swift */,
 			);
-			path = ContentView;
-			sourceTree = "<group>";
-		};
-		E9B03017266596AB004FBD10 /* RollView */ = {
-			isa = PBXGroup;
-			children = (
-				E9DBE040265C97EB00D22F31 /* RollView.swift */,
-				E9B03018266596FF004FBD10 /* RollViewInteractor.swift */,
-			);
-			path = RollView;
+			path = HistoryView;
 			sourceTree = "<group>";
 		};
 		E9B5602F265DF286000FCD2B /* Implementations */ = {
@@ -164,6 +165,7 @@
 			isa = PBXGroup;
 			children = (
 				E9DBE026265C94F300D22F31 /* RollDiceApp.swift */,
+				E9B0302A2665F62E004FBD10 /* DIContainer.swift */,
 				E9B0300C2665435F004FBD10 /* AppState */,
 				E9B0300F2665446B004FBD10 /* Interactors */,
 				E9DBE03B265C960300D22F31 /* Models */,
@@ -180,6 +182,7 @@
 		E9DBE02C265C94F400D22F31 /* Preview Content */ = {
 			isa = PBXGroup;
 			children = (
+				E9B030222665EA26004FBD10 /* PreviewContentViewInteractor.swift */,
 				E9B56031265DF540000FCD2B /* ModelPreview.swift */,
 				E9DBE02D265C94F400D22F31 /* Preview Assets.xcassets */,
 			);
@@ -189,11 +192,11 @@
 		E9DBE03A265C95BE00D22F31 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				E9B0301226654852004FBD10 /* ContentView */,
-				E9B03017266596AB004FBD10 /* RollView */,
-				E985ACF8265EC52100F8A7B2 /* DieView.swift */,
+				E9DBE03D265C969600D22F31 /* ContentView.swift */,
+				E9DBE040265C97EB00D22F31 /* RollView.swift */,
 				E985ACF4265EA5F700F8A7B2 /* SettingsView.swift */,
-				E99646D6265CAD9100862171 /* HistoryView.swift */,
+				E9B0301F2665D966004FBD10 /* HistoryView */,
+				E985ACF8265EC52100F8A7B2 /* DieView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -201,6 +204,7 @@
 		E9DBE03B265C960300D22F31 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				E9B0301A2665CE56004FBD10 /* RollRound.swift */,
 				E99646D8265CAEFD00862171 /* ModelProtocol.swift */,
 				E99646DA265CB4EC00862171 /* RollRoundProtocol.swift */,
 				E9B5602F265DF286000FCD2B /* Implementations */,
@@ -295,10 +299,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E9B030232665EA26004FBD10 /* PreviewContentViewInteractor.swift in Sources */,
 				E9E78015266030E6004F1A54 /* ModelCD.swift in Sources */,
+				E9B0301B2665CE56004FBD10 /* RollRound.swift in Sources */,
 				E9BCDE11265F4503008E7C53 /* FileManager+DocumentsDir.swift in Sources */,
-				E9B03016266588CB004FBD10 /* InteractorContainer.swift in Sources */,
+				E9B03016266588CB004FBD10 /* InteractorsContainer.swift in Sources */,
 				E9B5602D265DC3F4000FCD2B /* ModelFile.swift in Sources */,
+				E9B0302B2665F62E004FBD10 /* DIContainer.swift in Sources */,
+				E9B030212665DA12004FBD10 /* HistoryInteractor.swift in Sources */,
 				E99646DB265CB4EC00862171 /* RollRoundProtocol.swift in Sources */,
 				E9B56032265DF540000FCD2B /* ModelPreview.swift in Sources */,
 				E985ACF7265EADAF00F8A7B2 /* ModelBase.swift in Sources */,
@@ -310,15 +318,15 @@
 				E9DBE027265C94F300D22F31 /* RollDiceApp.swift in Sources */,
 				E99646DD265CB65100862171 /* RollRoundFile.swift in Sources */,
 				E985ACF9265EC52100F8A7B2 /* DieView.swift in Sources */,
-				E9B0301426654873004FBD10 /* ContentViewInteractor.swift in Sources */,
 				E9DBE033265C94F400D22F31 /* RollDice.xcdatamodeld in Sources */,
 				E93503BC2660597300887B83 /* UserDefaults-ValueExists.swift in Sources */,
+				E9B030292665F445004FBD10 /* RollInteractor.swift in Sources */,
 				E9DBE03E265C969600D22F31 /* ContentView.swift in Sources */,
+				E9B030272665F2E8004FBD10 /* SettingsInteractor.swift in Sources */,
 				E93E93F12660131900F3972C /* ErrorMsg.swift in Sources */,
 				E985ACF5265EA5F700F8A7B2 /* SettingsView.swift in Sources */,
 				E9ED94662661707E006E460D /* HapticsService.swift in Sources */,
 				E9B0300E266543AE004FBD10 /* Settings.swift in Sources */,
-				E9B03019266596FF004FBD10 /* RollViewInteractor.swift in Sources */,
 				E93503BE2660604A00887B83 /* RollRoundMO.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

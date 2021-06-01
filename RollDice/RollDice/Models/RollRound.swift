@@ -1,4 +1,4 @@
-// Settings.swift
+// RollRound.swift
 // RollDice
 //
 // Creado el 31/5/21 por Vicente Úbeda (@vicentube)
@@ -7,7 +7,12 @@
 
 import Foundation
 
-struct Settings {
-  var sides: Int = 6
-  var numOfDice: Int = 2
+struct RollRound: Identifiable {
+  var id: Date
+  var value: Int
+  
+  init(_ value: Int) {
+    self.id = Date()
+    self.value = value
+  }
 }

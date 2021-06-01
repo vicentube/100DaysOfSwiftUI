@@ -9,5 +9,6 @@ import Combine
 
 final class AppState: ObservableObject {
   @Published var settings = Settings()
+  @Published var history = [RollRound]()
   @Published var errorMsg: ErrorMsg? = nil
 }

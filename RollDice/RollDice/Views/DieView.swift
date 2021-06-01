@@ -8,11 +8,8 @@
 import SwiftUI
 
 struct DieView: View {
-  // MARK: - ViewModel
   let value: Int
   
-  
-  // MARK: - View
   var body: some View {
     ZStack {
       RoundedRectangle(cornerRadius: 20.0)
@@ -33,7 +30,6 @@ struct DieView: View {
   }
 }
 
-// MARK: - Preview
 struct DieView_Previews: PreviewProvider {
   static var previews: some View {
     DieView(value: 5)

@@ -9,25 +9,19 @@ import SwiftUI
 
 struct RollView: View {
   @EnvironmentObject var appState: AppState
-  @EnvironmentObject var interactors: InteractorContainer
+  @Environment(\.interactors) var interactors: InteractorsContainer
   
+  @State private var rolling = false
   @State private var showingSettings = false
   @State private var rotation = Angle(degrees: 0.0)
+  @State private var diceValues: [Int]? = nil
   
   private var noDiceText: String {
-    "Ready to roll \(model.numOfDice) \(model.numOfDice == 1 ? "die" : "dice") (\(model.sides)-sided)..."
+    "Ready to roll \(appState.settings.numOfDice) \(appState.settings.numOfDice == 1 ? "die" : "dice") (\(appState.settings.sides)-sided)..."
   }
   
   private var animatedRotation: Angle {
-    model.rolling ? rotation : .zero
-  }
-  
-  private func showSettings() {
-    showingSettings = true
-  }
-  
-  private func resetRotation(rolling: Bool) {
-    rotation = .zero
+    rolling ? rotation : .zero
   }
   
   var body: some View {
@@ -43,17 +37,17 @@ struct RollView: View {
       .navigationBarTitle("Roll Dice")
       .toolbar { toolbar }
       .sheet(isPresented: $showingSettings) {
-        SettingsView(model: model)
+        SettingsView()
       }
     }
   }
   
   var diceView: some View {
     HStack {
-      if let lastRoll = model.lastRoll {
-        ForEach(lastRoll, id: \.self) { die in
+      if let diceValues = diceValues {
+        ForEach(diceValues.indices, id: \.self) { index in
           withAnimation {
-            DieView(value: die)
+            DieView(value: diceValues[index])
               .rotation3DEffect(animatedRotation, axis: (x: 0.0, y: 1.0, z: 0.0))
           }
         }
@@ -64,18 +58,18 @@ struct RollView: View {
   
   var totalView: some View {
     Group {
-      if model.rolling {
+      if rolling {
         Text("Rolling...")
           .font(.largeTitle)
           .padding()
           .foregroundColor(.white)
           .background(Color.gray)
           .clipShape(RoundedRectangle(cornerRadius: 20))
-      } else if let lastRollTotal = model.lastRollTotal {
+      } else if let diceValues = diceValues {
         VStack {
           Text("Total")
             .font(.title)
-          Text("\(lastRollTotal)")
+          Text("\(diceValues.reduce(0, +))")
         }
         .font(.largeTitle)
         .foregroundColor(.white)
@@ -90,7 +84,7 @@ struct RollView: View {
   }
   
   var rollButton: some View {
-    Button(action: onTapRollDice) {
+    Button(action: { interactors.rollView.rollDice(diceValues: $diceValues, rolling: $rolling) }) {
       Text("Roll Dice")
     }
     .padding()
@@ -103,16 +97,15 @@ struct RollView: View {
   
   var toolbar: some ToolbarContent {
     ToolbarItem(placement: .navigationBarTrailing) {
-      Button(action: showSettings) {
+      Button(action: { showingSettings = true }) {
         Image(systemName: "gearshape")
       }
     }
   }
 }
 
-// MARK: - Preview
 struct RollView_Previews: PreviewProvider {
   static var previews: some View {
-    RollView(model: ModelPreview())
+    RollView()
   }
 }

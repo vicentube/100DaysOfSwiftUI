@@ -7,23 +7,19 @@
 
 import SwiftUI
 
-struct SettingsView<T: ModelProtocol>: View {
-  // MARK: - ViewModel
+struct SettingsView: View {
+  @EnvironmentObject var appState: AppState
+  @Environment(\.interactors) var interactors: InteractorsContainer
   @Environment(\.presentationMode) var presentationMode
-  @ObservedObject var model: T
   
-  func saveSettings() {
-    model.saveSettings()
-    presentationMode.wrappedValue.dismiss()
-  }
+  let possibleSides: [Int] = [4, 6, 8, 10, 12, 20, 100]
   
-  // MARK: - View
   var body: some View {
     NavigationView {
       Form {
         Section(header: Text("Number of sides")) {
-          Picker("Number of sides", selection: $model.sides) {
-            ForEach(model.possibleSides, id: \.self) { sides in
+          Picker("Number of sides", selection: $appState.settings.sides) {
+            ForEach(possibleSides, id: \.self) { sides in
               Text("\(sides)")
             }
           }
@@ -31,7 +27,7 @@ struct SettingsView<T: ModelProtocol>: View {
         }
         
         Section(header: Text("Number of dice")) {
-          Picker("Number of dice", selection: $model.numOfDice) {
+          Picker("Number of dice", selection: $appState.settings.numOfDice) {
             ForEach(1..<5, id: \.self) { num in
               Text("\(num)")
             }
@@ -46,16 +42,15 @@ struct SettingsView<T: ModelProtocol>: View {
   
   var toolbar: some ToolbarContent {
     ToolbarItem(placement: .navigationBarTrailing) {
-      Button(action: saveSettings) {
+      Button(action: { interactors.settings.saveSettings(presentationMode: presentationMode) }) {
         Text("Done")
       }
     }
   }
 }
 
-// MARK: - Preview
 struct SettingsView_Previews: PreviewProvider {
   static var previews: some View {
-    SettingsView(model: ModelPreview())
+    SettingsView()
   }
 }

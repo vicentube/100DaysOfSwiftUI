@@ -7,17 +7,15 @@
 
 import SwiftUI
 
-struct HistoryView<T: ModelProtocol>: View {
-  // MARK: - ViewModel
-  @ObservedObject var model: T
+struct HistoryView: View {
+  @EnvironmentObject var appState: AppState
+  @EnvironmentObject var interactors: InteractorContainer
   
-  
-  // MARK: - View
   var body: some View {
     NavigationView {
       List {
-        ForEach(model.history, id: \.date) { item in
-          Text("\(item.result)")
+        ForEach(appState.history) { round in
+          Text("\(round.value)")
         }
       }
       .navigationBarTitle("History")
@@ -27,17 +25,16 @@ struct HistoryView<T: ModelProtocol>: View {
   
   var toolbar: some ToolbarContent {
     ToolbarItem(placement: .navigationBarTrailing) {
-      Button(action: model.clearHistory) {
+      Button(action: interactors.historyView.clearHistory) {
         Text("Clear history")
       }
     }
   }
 }
 
-// MARK: - Preview
 struct HistoryView_Previews: PreviewProvider {
   static var previews: some View {
-    HistoryView(model: ModelPreview())
+    HistoryView()
   }
 }
 

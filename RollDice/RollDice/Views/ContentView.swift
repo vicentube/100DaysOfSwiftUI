@@ -9,28 +9,31 @@ import SwiftUI
 
 struct ContentView: View {
   @EnvironmentObject var appState: AppState
-  @EnvironmentObject var interactors: InteractorContainer
+  @Environment(\.interactors) var interactors: InteractorsContainer
   
   var body: some View {
     TabView {
-      RollView(model: model)
+      RollView()
         .tabItem {
           Image(systemName: "circle.fill.square.fill")
           Text("Roll")
         }
       
-      HistoryView(model: model)
+      HistoryView()
         .tabItem {
           Image(systemName: "clock.fill")
           Text("History")
         }
     }
-    .alert(item: interactors.contentView.errorMsg) { $0.alert }
+    .alert(item: $appState.errorMsg) { $0.alert }
+    .onAppear {
+      interactors.settings.loadSettings()
+    }
   }
 }
 
 struct ContentView_Previews: PreviewProvider {
   static var previews: some View {
-    ContentView()
+    ContentView(appState: AppState())
   }
 }

@@ -9,11 +9,11 @@ import SwiftUI
 
 @main
 struct RollDiceApp: App {
-  @StateObject private var model = ModelCD()
+  @StateObject private var appState = AppState()
   
   var body: some Scene {
     WindowGroup {
-      ContentView(model: model)
+      ContentView.inject(appState)
     }
   }
 }
