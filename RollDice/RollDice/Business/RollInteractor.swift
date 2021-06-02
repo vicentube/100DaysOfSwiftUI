@@ -35,14 +35,14 @@ struct RollInteractor: RollInteractorProtocol {
   }
   
   func rollDice(diceValues: Binding<[Int]?>, totalValue: Binding<Int?>, rolling: Binding<Bool>) {
-    let rollSteps = 50
+    let rollSteps = 25
     rolling.wrappedValue = true
     let initialValues = [Int].init(repeating: 0, count: appState.numOfDice)
     let finalValues = initialValues.map { _ in Int.random(in: 1...self.appState.sides) }
     let finalTotal = finalValues.reduce(0, +)
     totalValue.wrappedValue = finalTotal
     for runCount in 1...rollSteps {
-      DispatchQueue.main.asyncAfter(deadline: .now() + 0.05 * Double(runCount)) {
+      DispatchQueue.main.asyncAfter(deadline: .now() + Double(runCount) * 0.1) {
         self.hapticService?.rollDiceEffect()
         if runCount == rollSteps {
           rolling.wrappedValue = false

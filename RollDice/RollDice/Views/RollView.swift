@@ -15,6 +15,7 @@ struct RollView: View {
   @State private var totalValue: Int?
   @State private var showingSettings = false
   @State private var diceValues: [Int]? = nil
+  @State private var tictac = false
   
   private var noDiceText: String {
     let dieOrDice = appState.numOfDice == 1 ? "die" : "dice"
