@@ -2,7 +2,7 @@
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="18154" systemVersion="20F71" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="RollRoundMO" representedClassName="RollRoundMO" syncable="YES" codeGenerationType="class">
         <attribute name="dateM" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
-        <attribute name="resultM" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="valueM" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
     </entity>
     <elements>
         <element name="RollRoundMO" positionX="-63" positionY="-18" width="128" height="59"/>

@@ -8,7 +8,8 @@
 import Combine
 
 final class AppState: ObservableObject {
-  @Published var settings = Settings()
+  @Published var sides = 6
+  @Published var numOfDice = 2
   @Published var history = [RollRound]()
   @Published var errorMsg: ErrorMsg? = nil
 }

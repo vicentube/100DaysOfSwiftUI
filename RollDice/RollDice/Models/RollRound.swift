@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct RollRound: Identifiable {
+struct RollRound: Identifiable, Codable {
   var id: Date
   var value: Int
   

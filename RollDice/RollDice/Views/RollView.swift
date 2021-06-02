@@ -9,15 +9,17 @@ import SwiftUI
 
 struct RollView: View {
   @EnvironmentObject var appState: AppState
-  @Environment(\.interactors) var interactors: InteractorsContainer
+  @Environment(\.rollInteractor) var interactor: RollInteractorProtocol
   
   @State private var rolling = false
+  @State private var totalValue: Int?
   @State private var showingSettings = false
   @State private var rotation = Angle(degrees: 0.0)
   @State private var diceValues: [Int]? = nil
   
   private var noDiceText: String {
-    "Ready to roll \(appState.settings.numOfDice) \(appState.settings.numOfDice == 1 ? "die" : "dice") (\(appState.settings.sides)-sided)..."
+    let dieOrDice = appState.numOfDice == 1 ? "die" : "dice"
+    return "Ready to roll \(appState.numOfDice) \(dieOrDice) (\(appState.sides)-sided)..."
   }
   
   private var animatedRotation: Angle {
@@ -37,7 +39,7 @@ struct RollView: View {
       .navigationBarTitle("Roll Dice")
       .toolbar { toolbar }
       .sheet(isPresented: $showingSettings) {
-        SettingsView()
+        SettingsView().environmentObject(appState)
       }
     }
   }
@@ -65,11 +67,11 @@ struct RollView: View {
           .foregroundColor(.white)
           .background(Color.gray)
           .clipShape(RoundedRectangle(cornerRadius: 20))
-      } else if let diceValues = diceValues {
+      } else if let totalValue = totalValue {
         VStack {
           Text("Total")
             .font(.title)
-          Text("\(diceValues.reduce(0, +))")
+          Text("\(totalValue)")
         }
         .font(.largeTitle)
         .foregroundColor(.white)
@@ -84,7 +86,7 @@ struct RollView: View {
   }
   
   var rollButton: some View {
-    Button(action: { interactors.rollView.rollDice(diceValues: $diceValues, rolling: $rolling) }) {
+    Button(action: onRollDiceTap) {
       Text("Roll Dice")
     }
     .padding()
@@ -93,6 +95,7 @@ struct RollView: View {
     .background(Color.accentColor)
     .clipShape(RoundedRectangle(cornerRadius: 20))
     .padding(.bottom)
+    .disabled(rolling)
   }
   
   var toolbar: some ToolbarContent {
@@ -102,10 +105,16 @@ struct RollView: View {
       }
     }
   }
+  
+  func onRollDiceTap() {
+    interactor.rollDice(diceValues: $diceValues,
+                        totalValue: $totalValue,
+                        rolling: $rolling)
+  }
 }
 
 struct RollView_Previews: PreviewProvider {
   static var previews: some View {
-    RollView()
+    RollView().environmentObject(AppState())
   }
 }

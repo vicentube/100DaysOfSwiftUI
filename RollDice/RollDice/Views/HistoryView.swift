@@ -9,7 +9,7 @@ import SwiftUI
 
 struct HistoryView: View {
   @EnvironmentObject var appState: AppState
-  @EnvironmentObject var interactors: InteractorContainer
+  @Environment(\.historyInteractor) var interactor: HistoryInteractorProtocol
   
   var body: some View {
     NavigationView {
@@ -25,7 +25,7 @@ struct HistoryView: View {
   
   var toolbar: some ToolbarContent {
     ToolbarItem(placement: .navigationBarTrailing) {
-      Button(action: interactors.historyView.clearHistory) {
+      Button(action: interactor.clearHistory) {
         Text("Clear history")
       }
     }
@@ -34,7 +34,7 @@ struct HistoryView: View {
 
 struct HistoryView_Previews: PreviewProvider {
   static var previews: some View {
-    HistoryView()
+    HistoryView().environmentObject(AppState())
   }
 }
 

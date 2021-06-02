@@ -9,7 +9,7 @@ import SwiftUI
 
 struct SettingsView: View {
   @EnvironmentObject var appState: AppState
-  @Environment(\.interactors) var interactors: InteractorsContainer
+  @Environment(\.rollInteractor) var interactor: RollInteractorProtocol
   @Environment(\.presentationMode) var presentationMode
   
   let possibleSides: [Int] = [4, 6, 8, 10, 12, 20, 100]
@@ -18,7 +18,7 @@ struct SettingsView: View {
     NavigationView {
       Form {
         Section(header: Text("Number of sides")) {
-          Picker("Number of sides", selection: $appState.settings.sides) {
+          Picker("Number of sides", selection: $appState.sides) {
             ForEach(possibleSides, id: \.self) { sides in
               Text("\(sides)")
             }
@@ -27,7 +27,7 @@ struct SettingsView: View {
         }
         
         Section(header: Text("Number of dice")) {
-          Picker("Number of dice", selection: $appState.settings.numOfDice) {
+          Picker("Number of dice", selection: $appState.numOfDice) {
             ForEach(1..<5, id: \.self) { num in
               Text("\(num)")
             }
@@ -42,15 +42,19 @@ struct SettingsView: View {
   
   var toolbar: some ToolbarContent {
     ToolbarItem(placement: .navigationBarTrailing) {
-      Button(action: { interactors.settings.saveSettings(presentationMode: presentationMode) }) {
+      Button(action: onDoneTap) {
         Text("Done")
       }
     }
+  }
+  
+  func onDoneTap() {
+    interactor.saveSettings(presentationMode: presentationMode)
   }
 }
 
 struct SettingsView_Previews: PreviewProvider {
   static var previews: some View {
-    SettingsView()
+    SettingsView().environmentObject(AppState())
   }
 }

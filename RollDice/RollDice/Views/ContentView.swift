@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ContentView: View {
   @EnvironmentObject var appState: AppState
-  @Environment(\.interactors) var interactors: InteractorsContainer
+  @Environment(\.loadingInteractor) var interactor: LoadingInteractorProtocol
   
   var body: some View {
     TabView {
@@ -26,14 +26,22 @@ struct ContentView: View {
         }
     }
     .alert(item: $appState.errorMsg) { $0.alert }
-    .onAppear {
-      interactors.settings.loadSettings()
-    }
+    .onAppear(perform: interactor.loadData)
   }
 }
 
 struct ContentView_Previews: PreviewProvider {
   static var previews: some View {
-    ContentView(appState: AppState())
+    ContentView().environmentObject(AppState())
+  }
+}
+
+extension ErrorMsg {
+  var alert: Alert {
+    Alert(
+      title: Text("Error"),
+      message: Text(message),
+      dismissButton: .default(Text("OK"))
+    )
   }
 }

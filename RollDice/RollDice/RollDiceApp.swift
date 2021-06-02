@@ -9,11 +9,28 @@ import SwiftUI
 
 @main
 struct RollDiceApp: App {
-  @StateObject private var appState = AppState()
+  @StateObject private var appState: AppState
+  
+  private(set) var loadingInteractor: LoadingInteractorProtocol
+  private(set) var rollInteractor: RollInteractorProtocol
+  private(set) var historyInteractor: HistoryInteractorProtocol
+  
+  init() {
+    let state = AppState()
+    let persistence = CoreDataPersistence()
+    _appState = StateObject(wrappedValue: state)
+    loadingInteractor = LoadingInteractor(appState: state, persistence: persistence)
+    rollInteractor = RollInteractor(appState: state, persistence: persistence)
+    historyInteractor = HistoryInteractor(appState: state, persistence: persistence)
+  }
   
   var body: some Scene {
     WindowGroup {
-      ContentView.inject(appState)
+      ContentView()
+        .environmentObject(appState)
+        .environment(\.loadingInteractor, loadingInteractor)
+        .environment(\.rollInteractor, rollInteractor)
+        .environment(\.historyInteractor, historyInteractor)
     }
   }
 }
