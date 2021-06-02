@@ -49,7 +49,8 @@ struct SettingsView: View {
   }
   
   func onDoneTap() {
-    interactor.saveSettings(presentationMode: presentationMode)
+    interactor.saveSettings()
+    presentationMode.wrappedValue.dismiss()
   }
 }
 

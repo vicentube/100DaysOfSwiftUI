@@ -11,11 +11,14 @@ struct RollView: View {
   @EnvironmentObject var appState: AppState
   @Environment(\.rollInteractor) var interactor: RollInteractorProtocol
   
-  @State private var rolling = false
-  @State private var totalValue: Int?
-  @State private var showingSettings = false
-  @State private var diceValues: [Int]? = nil
-  @State private var tictac = false
+  @State private var viewState = ViewState()
+  
+  struct ViewState {
+    var rolling = false
+    var totalValue: Int?
+    var showingSettings = false
+    var diceValues: [Int]? = nil
+  }
   
   private var noDiceText: String {
     let dieOrDice = appState.numOfDice == 1 ? "die" : "dice"
@@ -39,7 +42,7 @@ struct RollView: View {
       .padding()
       .navigationBarTitle("Roll Dice")
       .toolbar { toolbar }
-      .sheet(isPresented: $showingSettings) {
+      .sheet(isPresented: $viewState.showingSettings) {
         SettingsView().environmentObject(appState)
       }
     }
@@ -47,12 +50,12 @@ struct RollView: View {
   
   var diceView: some View {
     HStack {
-      if let diceValues = diceValues {
+      if let diceValues = viewState.diceValues {
         ForEach(diceValues.indices, id: \.self) { index in
           DieView(value: diceValues[index])
-            .rotation3DEffect(Angle(degrees: rolling ? 360 : 0.0),
+            .rotation3DEffect(Angle(degrees: viewState.rolling ? 360 : 0.0),
                               axis: (x: 0.0, y: 1.0, z: 0.0))
-            .animation(rolling ? foreverAnimation : .default)
+            .animation(viewState.rolling ? foreverAnimation : .default)
         }
       }
     }
@@ -61,14 +64,14 @@ struct RollView: View {
   
   var totalView: some View {
     Group {
-      if rolling {
+      if viewState.rolling {
         Text("Rolling...")
           .font(.largeTitle)
           .padding()
           .foregroundColor(.white)
           .background(Color.gray)
           .clipShape(RoundedRectangle(cornerRadius: 20))
-      } else if let totalValue = totalValue {
+      } else if let totalValue = viewState.totalValue {
         VStack {
           Text("Total")
             .font(.title)
@@ -96,21 +99,19 @@ struct RollView: View {
     .background(Color.accentColor)
     .clipShape(RoundedRectangle(cornerRadius: 20))
     .padding(.bottom)
-    .disabled(rolling)
+    .disabled(viewState.rolling)
   }
   
   var toolbar: some ToolbarContent {
     ToolbarItem(placement: .navigationBarTrailing) {
-      Button(action: { showingSettings = true }) {
+      Button(action: { viewState.showingSettings = true }) {
         Image(systemName: "gearshape")
       }
     }
   }
   
   func onRollDiceTap() {
-    interactor.rollDice(diceValues: $diceValues,
-                        totalValue: $totalValue,
-                        rolling: $rolling)
+    interactor.rollDice(viewState: $viewState)
   }
 }
 

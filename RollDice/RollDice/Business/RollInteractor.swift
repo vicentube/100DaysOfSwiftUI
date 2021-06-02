@@ -8,8 +8,8 @@
 import SwiftUI
 
 protocol RollInteractorProtocol {
-  func rollDice(diceValues: Binding<[Int]?>, totalValue: Binding<Int?>, rolling: Binding<Bool>)
-  func saveSettings(presentationMode: Binding<PresentationMode>)
+  func rollDice(viewState: Binding<RollView.ViewState>)
+  func saveSettings()
 }
 
 struct RollInteractorKey: EnvironmentKey {
@@ -34,22 +34,22 @@ struct RollInteractor: RollInteractorProtocol {
     self.persistence = persistence
   }
   
-  func rollDice(diceValues: Binding<[Int]?>, totalValue: Binding<Int?>, rolling: Binding<Bool>) {
+  func rollDice(viewState: Binding<RollView.ViewState>) {
     let rollSteps = 25
-    rolling.wrappedValue = true
+    viewState.wrappedValue.rolling = true
     let initialValues = [Int].init(repeating: 0, count: appState.numOfDice)
     let finalValues = initialValues.map { _ in Int.random(in: 1...self.appState.sides) }
     let finalTotal = finalValues.reduce(0, +)
-    totalValue.wrappedValue = finalTotal
+    viewState.wrappedValue.totalValue = finalTotal
     for runCount in 1...rollSteps {
       DispatchQueue.main.asyncAfter(deadline: .now() + Double(runCount) * 0.1) {
         self.hapticService?.rollDiceEffect()
         if runCount == rollSteps {
-          rolling.wrappedValue = false
-          diceValues.wrappedValue = finalValues
+          viewState.wrappedValue.rolling = false
+          viewState.wrappedValue.diceValues = finalValues
           return
         }
-        diceValues.wrappedValue = initialValues.map { _ in Int.random(in: 1...self.appState.sides) }
+        viewState.wrappedValue.diceValues = initialValues.map { _ in Int.random(in: 1...self.appState.sides) }
       }
     }
     saveRound(finalTotal)
@@ -64,14 +64,13 @@ struct RollInteractor: RollInteractorProtocol {
     }
   }
   
-  func saveSettings(presentationMode: Binding<PresentationMode>) {
+  func saveSettings() {
     UserDefaults.standard.set(appState.sides, forKey: "Sides")
     UserDefaults.standard.set(appState.numOfDice, forKey: "NumOfDice")
-    presentationMode.wrappedValue.dismiss()
   }
 }
 
 struct FakeRollInteractor: RollInteractorProtocol {
-  func rollDice(diceValues: Binding<[Int]?>, totalValue: Binding<Int?>, rolling: Binding<Bool>) { }
-  func saveSettings(presentationMode: Binding<PresentationMode>) { }
+  func rollDice(viewState: Binding<RollView.ViewState>) { }
+  func saveSettings() { }
 }
