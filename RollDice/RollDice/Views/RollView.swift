@@ -14,7 +14,6 @@ struct RollView: View {
   @State private var rolling = false
   @State private var totalValue: Int?
   @State private var showingSettings = false
-  @State private var rotation = Angle(degrees: 0.0)
   @State private var diceValues: [Int]? = nil
   
   private var noDiceText: String {
@@ -22,8 +21,9 @@ struct RollView: View {
     return "Ready to roll \(appState.numOfDice) \(dieOrDice) (\(appState.sides)-sided)..."
   }
   
-  private var animatedRotation: Angle {
-    rolling ? rotation : .zero
+  var foreverAnimation: Animation {
+    Animation.linear(duration: 0.5)
+      .repeatForever(autoreverses: false)
   }
   
   var body: some View {
@@ -48,10 +48,10 @@ struct RollView: View {
     HStack {
       if let diceValues = diceValues {
         ForEach(diceValues.indices, id: \.self) { index in
-          withAnimation {
-            DieView(value: diceValues[index])
-              .rotation3DEffect(animatedRotation, axis: (x: 0.0, y: 1.0, z: 0.0))
-          }
+          DieView(value: diceValues[index])
+            .rotation3DEffect(Angle(degrees: rolling ? 360 : 0.0),
+                              axis: (x: 0.0, y: 1.0, z: 0.0))
+            .animation(rolling ? foreverAnimation : .default)
         }
       }
     }
