@@ -7,15 +7,22 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E90A262B266916CB000E2EBF /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = E90A262A266916CB000E2EBF /* AppState.swift */; };
+		E90A262E26691826000E2EBF /* AppController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E90A262D26691826000E2EBF /* AppController.swift */; };
+		E90A263126693200000E2EBF /* RollViewInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E90A263026693200000E2EBF /* RollViewInteractor.swift */; };
+		E90A2635266964E9000E2EBF /* RollViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = E90A2634266964E9000E2EBF /* RollViewState.swift */; };
+		E90A263826696B6E000E2EBF /* SettingsViewInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E90A263726696B6E000E2EBF /* SettingsViewInteractor.swift */; };
+		E90A263A26696C34000E2EBF /* SettingsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E90A263926696C34000E2EBF /* SettingsService.swift */; };
+		E90A263C26696DA5000E2EBF /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = E90A263B26696DA5000E2EBF /* Settings.swift */; };
 		E93503BC2660597300887B83 /* UserDefaults-ValueExists.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93503BB2660597300887B83 /* UserDefaults-ValueExists.swift */; };
 		E939A3ED2666B02600DDBDD0 /* CoreDataPersistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = E939A3EC2666B02600DDBDD0 /* CoreDataPersistence.swift */; };
 		E939A3F02666B0DF00DDBDD0 /* PersistenceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E939A3EF2666B0DF00DDBDD0 /* PersistenceProtocol.swift */; };
 		E939A3F22666B37300DDBDD0 /* FilePersistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = E939A3F12666B37300DDBDD0 /* FilePersistence.swift */; };
 		E93E93F12660131900F3972C /* ErrorMsg.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93E93F02660131900F3972C /* ErrorMsg.swift */; };
+		E976E8C52667C78F00E93BD5 /* ContentViewInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E976E8C42667C78F00E93BD5 /* ContentViewInteractor.swift */; };
 		E985ACF5265EA5F700F8A7B2 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E985ACF4265EA5F700F8A7B2 /* SettingsView.swift */; };
 		E985ACF9265EC52100F8A7B2 /* DieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E985ACF8265EC52100F8A7B2 /* DieView.swift */; };
 		E99646D7265CAD9100862171 /* HistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E99646D6265CAD9100862171 /* HistoryView.swift */; };
-		E9B0300B266542E4004FBD10 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9B0300A266542E4004FBD10 /* AppState.swift */; };
 		E9B0301B2665CE56004FBD10 /* RollRound.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9B0301A2665CE56004FBD10 /* RollRound.swift */; };
 		E9B030212665DA12004FBD10 /* HistoryInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9B030202665DA12004FBD10 /* HistoryInteractor.swift */; };
 		E9B030272665F2E8004FBD10 /* LoadingInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9B030262665F2E8004FBD10 /* LoadingInteractor.swift */; };
@@ -31,15 +38,22 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		E90A262A266916CB000E2EBF /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
+		E90A262D26691826000E2EBF /* AppController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppController.swift; sourceTree = "<group>"; };
+		E90A263026693200000E2EBF /* RollViewInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RollViewInteractor.swift; sourceTree = "<group>"; };
+		E90A2634266964E9000E2EBF /* RollViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RollViewState.swift; sourceTree = "<group>"; };
+		E90A263726696B6E000E2EBF /* SettingsViewInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewInteractor.swift; sourceTree = "<group>"; };
+		E90A263926696C34000E2EBF /* SettingsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsService.swift; sourceTree = "<group>"; };
+		E90A263B26696DA5000E2EBF /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		E93503BB2660597300887B83 /* UserDefaults-ValueExists.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults-ValueExists.swift"; sourceTree = "<group>"; };
 		E939A3EC2666B02600DDBDD0 /* CoreDataPersistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataPersistence.swift; sourceTree = "<group>"; };
 		E939A3EF2666B0DF00DDBDD0 /* PersistenceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceProtocol.swift; sourceTree = "<group>"; };
 		E939A3F12666B37300DDBDD0 /* FilePersistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilePersistence.swift; sourceTree = "<group>"; };
 		E93E93F02660131900F3972C /* ErrorMsg.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorMsg.swift; sourceTree = "<group>"; };
+		E976E8C42667C78F00E93BD5 /* ContentViewInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewInteractor.swift; sourceTree = "<group>"; };
 		E985ACF4265EA5F700F8A7B2 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		E985ACF8265EC52100F8A7B2 /* DieView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DieView.swift; sourceTree = "<group>"; };
 		E99646D6265CAD9100862171 /* HistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryView.swift; sourceTree = "<group>"; };
-		E9B0300A266542E4004FBD10 /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
 		E9B0301A2665CE56004FBD10 /* RollRound.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RollRound.swift; sourceTree = "<group>"; };
 		E9B030202665DA12004FBD10 /* HistoryInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryInteractor.swift; sourceTree = "<group>"; };
 		E9B030262665F2E8004FBD10 /* LoadingInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingInteractor.swift; sourceTree = "<group>"; };
@@ -67,10 +81,28 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E90A262F266931C5000E2EBF /* RollView */ = {
+			isa = PBXGroup;
+			children = (
+				E9DBE040265C97EB00D22F31 /* RollView.swift */,
+				E90A2634266964E9000E2EBF /* RollViewState.swift */,
+				E90A263026693200000E2EBF /* RollViewInteractor.swift */,
+			);
+			path = RollView;
+			sourceTree = "<group>";
+		};
+		E90A2636266969A9000E2EBF /* SettingsView */ = {
+			isa = PBXGroup;
+			children = (
+				E985ACF4265EA5F700F8A7B2 /* SettingsView.swift */,
+				E90A263726696B6E000E2EBF /* SettingsViewInteractor.swift */,
+			);
+			path = SettingsView;
+			sourceTree = "<group>";
+		};
 		E939A3EB2666974400DDBDD0 /* Business */ = {
 			isa = PBXGroup;
 			children = (
-				E9B0300A266542E4004FBD10 /* AppState.swift */,
 				E9B030262665F2E8004FBD10 /* LoadingInteractor.swift */,
 				E9B030282665F445004FBD10 /* RollInteractor.swift */,
 				E9B030202665DA12004FBD10 /* HistoryInteractor.swift */,
@@ -87,6 +119,15 @@
 				E939A3F12666B37300DDBDD0 /* FilePersistence.swift */,
 			);
 			path = Persistence;
+			sourceTree = "<group>";
+		};
+		E976E8C32667C76C00E93BD5 /* ContentView */ = {
+			isa = PBXGroup;
+			children = (
+				E9DBE03D265C969600D22F31 /* ContentView.swift */,
+				E976E8C42667C78F00E93BD5 /* ContentViewInteractor.swift */,
+			);
+			path = ContentView;
 			sourceTree = "<group>";
 		};
 		E9B56033265DF8E9000FCD2B /* Extensions */ = {
@@ -118,8 +159,10 @@
 			isa = PBXGroup;
 			children = (
 				E9DBE026265C94F300D22F31 /* RollDiceApp.swift */,
-				E939A3EB2666974400DDBDD0 /* Business */,
+				E90A262D26691826000E2EBF /* AppController.swift */,
+				E90A262A266916CB000E2EBF /* AppState.swift */,
 				E9DBE03A265C95BE00D22F31 /* Views */,
+				E939A3EB2666974400DDBDD0 /* Business */,
 				E9DBE03B265C960300D22F31 /* Models */,
 				E939A3EE2666B0BD00DDBDD0 /* Persistence */,
 				E9ED946426617055006E460D /* Services */,
@@ -142,9 +185,9 @@
 		E9DBE03A265C95BE00D22F31 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				E9DBE03D265C969600D22F31 /* ContentView.swift */,
-				E9DBE040265C97EB00D22F31 /* RollView.swift */,
-				E985ACF4265EA5F700F8A7B2 /* SettingsView.swift */,
+				E976E8C32667C76C00E93BD5 /* ContentView */,
+				E90A262F266931C5000E2EBF /* RollView */,
+				E90A2636266969A9000E2EBF /* SettingsView */,
 				E99646D6265CAD9100862171 /* HistoryView.swift */,
 				E985ACF8265EC52100F8A7B2 /* DieView.swift */,
 			);
@@ -156,6 +199,7 @@
 			children = (
 				E9B0301A2665CE56004FBD10 /* RollRound.swift */,
 				E93E93F02660131900F3972C /* ErrorMsg.swift */,
+				E90A263B26696DA5000E2EBF /* Settings.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -164,6 +208,7 @@
 			isa = PBXGroup;
 			children = (
 				E9ED94652661707E006E460D /* HapticsService.swift */,
+				E90A263926696C34000E2EBF /* SettingsService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -239,11 +284,16 @@
 			files = (
 				E9B0301B2665CE56004FBD10 /* RollRound.swift in Sources */,
 				E9BCDE11265F4503008E7C53 /* FileManager+DocumentsDir.swift in Sources */,
+				E90A263C26696DA5000E2EBF /* Settings.swift in Sources */,
+				E90A2635266964E9000E2EBF /* RollViewState.swift in Sources */,
 				E9B030212665DA12004FBD10 /* HistoryInteractor.swift in Sources */,
+				E90A263126693200000E2EBF /* RollViewInteractor.swift in Sources */,
 				E99646D7265CAD9100862171 /* HistoryView.swift in Sources */,
-				E9B0300B266542E4004FBD10 /* AppState.swift in Sources */,
+				E90A263826696B6E000E2EBF /* SettingsViewInteractor.swift in Sources */,
 				E939A3F02666B0DF00DDBDD0 /* PersistenceProtocol.swift in Sources */,
 				E9DBE041265C97EB00D22F31 /* RollView.swift in Sources */,
+				E90A262E26691826000E2EBF /* AppController.swift in Sources */,
+				E90A262B266916CB000E2EBF /* AppState.swift in Sources */,
 				E9DBE027265C94F300D22F31 /* RollDiceApp.swift in Sources */,
 				E985ACF9265EC52100F8A7B2 /* DieView.swift in Sources */,
 				E9DBE033265C94F400D22F31 /* RollDice.xcdatamodeld in Sources */,
@@ -253,9 +303,11 @@
 				E9B030292665F445004FBD10 /* RollInteractor.swift in Sources */,
 				E9DBE03E265C969600D22F31 /* ContentView.swift in Sources */,
 				E9B030272665F2E8004FBD10 /* LoadingInteractor.swift in Sources */,
+				E90A263A26696C34000E2EBF /* SettingsService.swift in Sources */,
 				E93E93F12660131900F3972C /* ErrorMsg.swift in Sources */,
 				E985ACF5265EA5F700F8A7B2 /* SettingsView.swift in Sources */,
 				E9ED94662661707E006E460D /* HapticsService.swift in Sources */,
+				E976E8C52667C78F00E93BD5 /* ContentViewInteractor.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

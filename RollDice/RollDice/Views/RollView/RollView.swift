@@ -9,26 +9,8 @@ import SwiftUI
 
 struct RollView: View {
   @EnvironmentObject var appState: AppState
-  @Environment(\.rollInteractor) var interactor: RollInteractorProtocol
-  
-  @State private var viewState = ViewState()
-  
-  struct ViewState {
-    var rolling = false
-    var totalValue: Int?
-    var showingSettings = false
-    var diceValues: [Int]? = nil
-  }
-  
-  private var noDiceText: String {
-    let dieOrDice = appState.numOfDice == 1 ? "die" : "dice"
-    return "Ready to roll \(appState.numOfDice) \(dieOrDice) (\(appState.sides)-sided)..."
-  }
-  
-  var foreverAnimation: Animation {
-    Animation.linear(duration: 0.5)
-      .repeatForever(autoreverses: false)
-  }
+  @StateObject private var viewState = RollView.State()
+  private let interactor = RollDiceApp.controller.rollViewInteractor
   
   var body: some View {
     NavigationView {
@@ -43,9 +25,19 @@ struct RollView: View {
       .navigationBarTitle("Roll Dice")
       .toolbar { toolbar }
       .sheet(isPresented: $viewState.showingSettings) {
-        SettingsView().environmentObject(appState)
+        SettingsView()
       }
     }
+  }
+  
+  var noDiceText: String {
+    let dieOrDice = appState.numOfDice == 1 ? "die" : "dice"
+    return "Ready to roll \(appState.numOfDice) \(dieOrDice) (\(appState.sides)-sided)..."
+  }
+  
+  var foreverAnimation: Animation {
+    Animation.linear(duration: 0.5)
+      .repeatForever(autoreverses: false)
   }
   
   var diceView: some View {
@@ -90,7 +82,7 @@ struct RollView: View {
   }
   
   var rollButton: some View {
-    Button(action: onRollDiceTap) {
+    Button(action: onRollButtonTap) {
       Text("Roll Dice")
     }
     .padding()
@@ -110,13 +102,15 @@ struct RollView: View {
     }
   }
   
-  func onRollDiceTap() {
-    interactor.rollDice(viewState: $viewState)
+  func onRollButtonTap() {
+    interactor.rollDice(viewState)
   }
 }
 
 struct RollView_Previews: PreviewProvider {
   static var previews: some View {
-    RollView().environmentObject(AppState())
+    RollDiceApp.controller = RollDiceApp.preview
+    let appState = RollDiceApp.controller.appState
+    return RollView().environmentObject(appState)
   }
 }

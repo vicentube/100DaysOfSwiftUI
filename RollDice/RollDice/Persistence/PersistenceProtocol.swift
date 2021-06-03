@@ -10,3 +10,17 @@ protocol PersistenceProtocol {
   func saveRound(_ round: RollRound) -> Bool
   func clearHistory(_ history: [RollRound]) -> Bool
 }
+
+final class FakePersistence: PersistenceProtocol {
+  func loadHistory() -> [RollRound]? {
+    return nil
+  }
+  
+  func saveRound(_ round: RollRound) -> Bool {
+    return true
+  }
+  
+  func clearHistory(_ history: [RollRound]) -> Bool {
+    return true
+  }
+}

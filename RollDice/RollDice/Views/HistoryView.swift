@@ -33,8 +33,11 @@ struct HistoryView: View {
 }
 
 struct HistoryView_Previews: PreviewProvider {
+  static let appState = AppState()
+  
   static var previews: some View {
-    HistoryView().environmentObject(AppState())
+    //RollDiceApp.viewModelFactory = PreviewViewModelFactory(appState: appState)
+    HistoryView().environmentObject(appState)
   }
 }
 

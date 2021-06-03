@@ -9,28 +9,24 @@ import SwiftUI
 
 @main
 struct RollDiceApp: App {
-  @StateObject private var appState: AppState
+  static var controller: AppControllerProtocol = RollDiceApp.app
   
-  private(set) var loadingInteractor: LoadingInteractorProtocol
-  private(set) var rollInteractor: RollInteractorProtocol
-  private(set) var historyInteractor: HistoryInteractorProtocol
-  
-  init() {
-    let state = AppState()
-    let persistence = CoreDataPersistence()
-    _appState = StateObject(wrappedValue: state)
-    loadingInteractor = LoadingInteractor(appState: state, persistence: persistence)
-    rollInteractor = RollInteractor(appState: state, persistence: persistence)
-    historyInteractor = HistoryInteractor(appState: state, persistence: persistence)
-  }
+  @StateObject private var appState = controller.appState
   
   var body: some Scene {
     WindowGroup {
       ContentView()
         .environmentObject(appState)
-        .environment(\.loadingInteractor, loadingInteractor)
-        .environment(\.rollInteractor, rollInteractor)
-        .environment(\.historyInteractor, historyInteractor)
     }
+  }
+}
+
+extension RollDiceApp {
+  static var app: AppController {
+    AppController(appState: AppState())
+  }
+  
+  static var preview: PreviewAppController {
+    PreviewAppController(appState: AppState())
   }
 }

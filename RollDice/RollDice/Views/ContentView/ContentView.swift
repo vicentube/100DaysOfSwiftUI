@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ContentView: View {
   @EnvironmentObject var appState: AppState
-  @Environment(\.loadingInteractor) var interactor: LoadingInteractorProtocol
+  private let interactor = RollDiceApp.controller.contentViewInteractor
   
   var body: some View {
     TabView {
@@ -30,18 +30,22 @@ struct ContentView: View {
   }
 }
 
-struct ContentView_Previews: PreviewProvider {
-  static var previews: some View {
-    ContentView().environmentObject(AppState())
-  }
-}
-
-extension ErrorMsg {
+private extension ErrorMsg {
   var alert: Alert {
     Alert(
       title: Text("Error"),
       message: Text(message),
       dismissButton: .default(Text("OK"))
     )
+  }
+}
+
+struct ContentView_Previews: PreviewProvider {
+  static let appState = AppState()
+  
+  static var previews: some View {
+    RollDiceApp.controller = RollDiceApp.preview
+    let appState = RollDiceApp.controller.appState
+    return ContentView().environmentObject(appState)
   }
 }
