@@ -39,7 +39,7 @@ struct RollView: View {
   var rollingAnimation: Animation {
     viewState.rolling
       ? Animation.linear(duration: 0.5).repeatForever(autoreverses: false)
-      : Animation.linear(duration: 0.5)
+      : Animation.linear(duration: 0)
   }
   
   var diceView: some View {
