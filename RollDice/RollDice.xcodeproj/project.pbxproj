@@ -19,7 +19,6 @@
 		E93E93F12660131900F3972C /* ErrorMsg.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93E93F02660131900F3972C /* ErrorMsg.swift */; };
 		E961303F26697FE600843E40 /* HistoryViewInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E961303E26697FE600843E40 /* HistoryViewInteractor.swift */; };
 		E96130412669808400843E40 /* CoreDataPersistenceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E96130402669808400843E40 /* CoreDataPersistenceService.swift */; };
-		E96130432669D6A400843E40 /* RollDiceApp+Preview.swift in Sources */ = {isa = PBXBuildFile; fileRef = E96130422669D6A400843E40 /* RollDiceApp+Preview.swift */; };
 		E96130452669D6ED00843E40 /* PreviewAppController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E96130442669D6ED00843E40 /* PreviewAppController.swift */; };
 		E96130472669D7F100843E40 /* PreviewPersistenceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E96130462669D7F100843E40 /* PreviewPersistenceService.swift */; };
 		E96130492669D83500843E40 /* PreviewSettingsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E96130482669D83500843E40 /* PreviewSettingsService.swift */; };
@@ -51,7 +50,6 @@
 		E93E93F02660131900F3972C /* ErrorMsg.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorMsg.swift; sourceTree = "<group>"; };
 		E961303E26697FE600843E40 /* HistoryViewInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewInteractor.swift; sourceTree = "<group>"; };
 		E96130402669808400843E40 /* CoreDataPersistenceService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataPersistenceService.swift; sourceTree = "<group>"; };
-		E96130422669D6A400843E40 /* RollDiceApp+Preview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RollDiceApp+Preview.swift"; sourceTree = "<group>"; };
 		E96130442669D6ED00843E40 /* PreviewAppController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewAppController.swift; sourceTree = "<group>"; };
 		E96130462669D7F100843E40 /* PreviewPersistenceService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewPersistenceService.swift; sourceTree = "<group>"; };
 		E96130482669D83500843E40 /* PreviewSettingsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewSettingsService.swift; sourceTree = "<group>"; };
@@ -169,7 +167,6 @@
 				E96130462669D7F100843E40 /* PreviewPersistenceService.swift */,
 				E96130482669D83500843E40 /* PreviewSettingsService.swift */,
 				E9DBE02D265C94F400D22F31 /* Preview Assets.xcassets */,
-				E96130422669D6A400843E40 /* RollDiceApp+Preview.swift */,
 			);
 			path = "Preview Content";
 			sourceTree = "<group>";
@@ -287,7 +284,6 @@
 				E96130492669D83500843E40 /* PreviewSettingsService.swift in Sources */,
 				E99646D7265CAD9100862171 /* HistoryView.swift in Sources */,
 				E90A263826696B6E000E2EBF /* SettingsViewInteractor.swift in Sources */,
-				E96130432669D6A400843E40 /* RollDiceApp+Preview.swift in Sources */,
 				E9DBE041265C97EB00D22F31 /* RollView.swift in Sources */,
 				E961303F26697FE600843E40 /* HistoryViewInteractor.swift in Sources */,
 				E96130452669D6ED00843E40 /* PreviewAppController.swift in Sources */,

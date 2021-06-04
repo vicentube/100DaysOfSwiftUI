@@ -8,18 +8,25 @@
 import SwiftUI
 
 struct ContentView: View {
-  @ObservedObject var appState = RollDiceApp.controller.appState
-  private let interactor = RollDiceApp.controller.contentViewInteractor
+  private let controller: AppControllerProtocol
+  private var interactor: ContentView.Interactor { controller.contentViewInteractor }
+  @ObservedObject var appState: AppState
+  
+  
+  init(_ controller: AppControllerProtocol) {
+    self.controller = controller
+    self.appState = controller.appState
+  }
   
   var body: some View {
     TabView {
-      RollView()
+      RollView(controller)
         .tabItem {
           Image(systemName: "circle.fill.square.fill")
           Text("Roll")
         }
       
-      HistoryView()
+      HistoryView(controller)
         .tabItem {
           Image(systemName: "clock.fill")
           Text("History")
@@ -42,7 +49,6 @@ private extension ErrorMsg {
 
 struct ContentView_Previews: PreviewProvider {
   static var previews: some View {
-    RollDiceApp.controller = RollDiceApp.preview
-    return ContentView()
+    ContentView(PreviewAppController())
   }
 }

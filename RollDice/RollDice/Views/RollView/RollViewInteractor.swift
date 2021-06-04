@@ -21,7 +21,7 @@ extension RollView {
     
     func rollDice(_ viewState: RollView.State) {
       hapticService.prepare()
-      let rollSteps = 40
+      let rollSteps = 20
       viewState.showingDice = true
       viewState.rolling = true
       let initialValues = [Int].init(repeating: 0, count: appState.numOfDice)
@@ -29,7 +29,7 @@ extension RollView {
       let finalTotal = finalValues.reduce(0, +)
       hapticService.rollingEffect()
       for runCount in 1...rollSteps {
-        DispatchQueue.main.asyncAfter(deadline: .now() + Double(runCount) * 0.05) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + Double(runCount) * 0.1) {
           self.hapticService.prepare()
           if runCount == rollSteps {
             viewState.rolling = false

@@ -8,8 +8,14 @@
 import SwiftUI
 
 struct HistoryView: View {
-  @ObservedObject var appState = RollDiceApp.controller.appState
-  private let interactor = RollDiceApp.controller.historyViewInteractor
+  private let controller: AppControllerProtocol
+  private var interactor: HistoryView.Interactor { controller.historyViewInteractor }
+  @ObservedObject var appState: AppState
+  
+  init(_ controller: AppControllerProtocol) {
+    self.controller = controller
+    self.appState = controller.appState
+  }
   
   var body: some View {
     NavigationView {
@@ -34,8 +40,7 @@ struct HistoryView: View {
 
 struct HistoryView_Previews: PreviewProvider {
   static var previews: some View {
-    RollDiceApp.controller = RollDiceApp.preview
-    return HistoryView()
+    HistoryView(PreviewAppController())
   }
 }
 

@@ -17,25 +17,32 @@ protocol AppControllerProtocol {
 
 final class AppController: AppControllerProtocol {
   private(set) var appState = AppState()
-  private let persistenceService: PersistenceServiceProtocol = CoreDataPersistenceService()
+  private(set) var contentViewInteractor: ContentView.Interactor
+  private(set) var rollViewInteractor: RollView.Interactor
+  private(set) var settingsViewInteractor: SettingsView.Interactor
+  private(set) var historyViewInteractor: HistoryView.Interactor
   
-  var contentViewInteractor: ContentView.Interactor {
-    ContentView.Interactor(appState: appState, settingsService: SettingsService(), persistenceService: persistenceService)
-  }
-  
-  var rollViewInteractor: RollView.Interactor {
-    RollView.Interactor(appState: appState, persistenceService: persistenceService)
-  }
-  
-  var settingsViewInteractor: SettingsView.Interactor {
-    SettingsView.Interactor(appState: appState, settingsService: SettingsService())
-  }
-  
-  var historyViewInteractor: HistoryView.Interactor {
-    HistoryView.Interactor(appState: appState, persistenceService: persistenceService)
-  }
-  
-  private func coreDataSetup() {
+  init(appState: AppState,
+       persistenceService: PersistenceServiceProtocol,
+       settingsService: SettingsServiceProtocol) {
     
+    self.appState = appState
+    
+    self.contentViewInteractor = ContentView.Interactor(
+      appState: appState,
+      settingsService: settingsService,
+      persistenceService: persistenceService)
+    
+    self.rollViewInteractor = RollView.Interactor(
+      appState: appState,
+      persistenceService: persistenceService)
+    
+    self.settingsViewInteractor = SettingsView.Interactor(
+      appState: appState,
+      settingsService: settingsService)
+    
+    self.historyViewInteractor = HistoryView.Interactor(
+      appState: appState,
+      persistenceService: persistenceService)
   }
 }

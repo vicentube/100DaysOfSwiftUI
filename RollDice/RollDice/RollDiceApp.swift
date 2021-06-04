@@ -9,19 +9,21 @@ import SwiftUI
 
 @main
 struct RollDiceApp: App {
-  static var controller: AppControllerProtocol = RollDiceApp.app
+  private let controller: AppController
   
-  @ObservedObject private var appState = controller.appState
+  init() {
+    let appState = AppState()
+    let persistenceService = CoreDataPersistenceService()
+    let settingsService = SettingsService()
+    self.controller = AppController(
+      appState: appState,
+      persistenceService: persistenceService,
+      settingsService: settingsService)
+  }
   
   var body: some Scene {
     WindowGroup {
-      ContentView()
+      ContentView(controller)
     }
-  }
-}
-
-extension RollDiceApp {
-  static var app: AppController {
-    AppController()
   }
 }

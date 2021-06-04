@@ -8,9 +8,15 @@
 import SwiftUI
 
 struct RollView: View {
-  @ObservedObject var appState = RollDiceApp.controller.appState
+  private let controller: AppControllerProtocol
+  private var interactor: RollView.Interactor { controller.rollViewInteractor }
+  @ObservedObject var appState: AppState
   @StateObject private var viewState = RollView.State()
-  private let interactor = RollDiceApp.controller.rollViewInteractor
+  
+  init(_ controller: AppControllerProtocol) {
+    self.controller = controller
+    self.appState = controller.appState
+  }
   
   var body: some View {
     NavigationView {
@@ -26,7 +32,7 @@ struct RollView: View {
       .navigationBarTitle("Roll Dice")
       .toolbar { toolbar }
       .sheet(isPresented: $viewState.showingSettings, onDismiss: onDismissSettings) {
-        SettingsView()
+        SettingsView(controller)
       }
     }
   }
@@ -110,7 +116,6 @@ struct RollView: View {
 
 struct RollView_Previews: PreviewProvider {
   static var previews: some View {
-    RollDiceApp.controller = RollDiceApp.preview
-    return RollView()
+    RollView(PreviewAppController())
   }
 }
