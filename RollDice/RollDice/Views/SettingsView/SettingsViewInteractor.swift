@@ -18,6 +18,7 @@ extension SettingsView {
     func saveSettings() {
       let settings = Settings(sides: appState.sides, numOfDice: appState.numOfDice)
       settingsService.save(settings)
+      appState.resetDice()
     }
   }
 }

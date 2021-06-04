@@ -9,7 +9,7 @@ import SwiftUI
 
 struct SettingsView: View {
   @Environment(\.presentationMode) var presentationMode
-  @EnvironmentObject var appState: AppState
+  @ObservedObject var appState = RollDiceApp.controller.appState
   private let interactor = RollDiceApp.controller.settingsViewInteractor
   
   private let possibleSides: [Int] = [4, 6, 8, 10, 12, 20, 100]
@@ -57,7 +57,6 @@ struct SettingsView: View {
 struct SettingsView_Previews: PreviewProvider {
   static var previews: some View {
     RollDiceApp.controller = RollDiceApp.preview
-    let appState = RollDiceApp.controller.appState
-    return SettingsView().environmentObject(appState)
+    return SettingsView()
   }
 }

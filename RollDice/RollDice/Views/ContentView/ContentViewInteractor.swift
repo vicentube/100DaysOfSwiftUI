@@ -5,20 +5,25 @@
 // https://appeleando.com
 // Copyright © 2021 Vicente Úbeda. Todos los derechos reservados.
 
-import SwiftUI
-
 extension ContentView {
   final class Interactor {
     private let appState: AppState
     private let settingsService: SettingsServiceProtocol
+    private let persistenceService: PersistenceServiceProtocol
     
-    init(appState: AppState, settingsService: SettingsServiceProtocol) {
+    init(appState: AppState, settingsService: SettingsServiceProtocol, persistenceService: PersistenceServiceProtocol) {
       self.appState = appState
       self.settingsService = settingsService
+      self.persistenceService = persistenceService
     }
     
     func loadData() {
-      // Load settings
+      loadSettings()
+      appState.resetDice()
+      loadHistory()
+    }
+    
+    private func loadSettings() {
       let settings = settingsService.load()
       if let sides = settings.sides {
         appState.sides = sides
@@ -26,16 +31,15 @@ extension ContentView {
       if let numOfDice = settings.numOfDice {
         appState.numOfDice = numOfDice
       }
-      //loadHistory()
     }
     
-    //  private func loadHistory() {
-    //    if let history = appState.persistence.loadHistory() {
-    //      appState.history = history
-    //    } else {
-    //      appState.errorMsg = ErrorMsg("Loading history failed")
-    //    }
-    //  }
+    private func loadHistory() {
+      if let history = persistenceService.loadHistory() {
+        appState.history = history
+      } else {
+        appState.errorMsg = ErrorMsg("Loading history failed")
+      }
+    }
   }
 }
 

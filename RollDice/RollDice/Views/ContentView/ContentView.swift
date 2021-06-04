@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ContentView: View {
-  @EnvironmentObject var appState: AppState
+  @ObservedObject var appState = RollDiceApp.controller.appState
   private let interactor = RollDiceApp.controller.contentViewInteractor
   
   var body: some View {
@@ -41,11 +41,8 @@ private extension ErrorMsg {
 }
 
 struct ContentView_Previews: PreviewProvider {
-  static let appState = AppState()
-  
   static var previews: some View {
     RollDiceApp.controller = RollDiceApp.preview
-    let appState = RollDiceApp.controller.appState
-    return ContentView().environmentObject(appState)
+    return ContentView()
   }
 }

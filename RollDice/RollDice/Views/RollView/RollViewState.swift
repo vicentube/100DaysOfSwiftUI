@@ -10,8 +10,7 @@ import SwiftUI
 extension RollView {
   final class State: ObservableObject {
     @Published var rolling = false
-    @Published var totalValue: Int?
     @Published var showingSettings = false
-    @Published var diceValues: [Int]? = nil
+    @Published var showingDice = false
   }
 }

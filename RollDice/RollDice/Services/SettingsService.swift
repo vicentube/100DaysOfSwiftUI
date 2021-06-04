@@ -29,8 +29,3 @@ final class SettingsService: SettingsServiceProtocol {
     UserDefaults.standard.set(settings.numOfDice, forKey: "NumOfDice")
   }
 }
-
-final class PreviewSettingsService: SettingsServiceProtocol {  
-  func load() -> Settings { Settings(sides: 6, numOfDice: 2) }
-  func save(_ settings: Settings) { }
-}

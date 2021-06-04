@@ -8,8 +8,8 @@
 import SwiftUI
 
 struct HistoryView: View {
-  @EnvironmentObject var appState: AppState
-  @Environment(\.historyInteractor) var interactor: HistoryInteractorProtocol
+  @ObservedObject var appState = RollDiceApp.controller.appState
+  private let interactor = RollDiceApp.controller.historyViewInteractor
   
   var body: some View {
     NavigationView {
@@ -33,11 +33,9 @@ struct HistoryView: View {
 }
 
 struct HistoryView_Previews: PreviewProvider {
-  static let appState = AppState()
-  
   static var previews: some View {
-    //RollDiceApp.viewModelFactory = PreviewViewModelFactory(appState: appState)
-    HistoryView().environmentObject(appState)
+    RollDiceApp.controller = RollDiceApp.preview
+    return HistoryView()
   }
 }
 

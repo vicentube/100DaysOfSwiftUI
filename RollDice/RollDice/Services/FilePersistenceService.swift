@@ -1,4 +1,4 @@
-// FilePersistence.swift
+// FilePersistenceService.swift
 // RollDice
 //
 // Creado el 1/6/21 por Vicente Úbeda (@vicentube)
@@ -7,8 +7,7 @@
 
 import Foundation
 
-final class FilePersistence: PersistenceProtocol {
-  
+final class FilePersistenceService: PersistenceServiceProtocol {
   let url = FileManager.getDocumentsDirectory().appendingPathComponent("app_data")
   
   func loadHistory() -> [RollRound]? {
@@ -33,7 +32,7 @@ final class FilePersistence: PersistenceProtocol {
     }
   }
   
-  func clearHistory(_ history: [RollRound]) -> Bool {
+  func clearHistory() -> Bool {
     guard let data = try? JSONEncoder().encode([RollRound]()) else { return false }
     do {
       try data.write(to: url, options: [.atomicWrite, .completeFileProtection])

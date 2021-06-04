@@ -1,23 +1,30 @@
-// CoreDataPersistence.swift
+// CoreDataPersistenceService.swift
 // RollDice
 //
-// Creado el 1/6/21 por Vicente Úbeda (@vicentube)
+// Creado el 3/6/21 por Vicente Úbeda (@vicentube)
 // https://appeleando.com
 // Copyright © 2021 Vicente Úbeda. Todos los derechos reservados.
 
+import Foundation
 import CoreData
 
-final class CoreDataPersistence: PersistenceProtocol {
-  
+protocol PersistenceServiceProtocol {
+  func loadHistory() -> [RollRound]?
+  func saveRound(_ round: RollRound) -> Bool
+  func clearHistory() -> Bool
+}
+
+final class CoreDataPersistenceService: PersistenceServiceProtocol {
   private let container = NSPersistentContainer(name: "RollDice")
   private var moc: NSManagedObjectContext { container.viewContext }
   
   init() {
-    container.loadPersistentStores(completionHandler: { (storeDescription, error) in
-      if let error = error as NSError? {
-        fatalError("Unresolved error \(error), \(error.userInfo)")
+    container.loadPersistentStores { _, error in
+      if let error = error {
+        print(error.localizedDescription)
+        fatalError()
       }
-    })
+    }
   }
   
   func loadHistory() -> [RollRound]? {
@@ -46,7 +53,7 @@ final class CoreDataPersistence: PersistenceProtocol {
     }
   }
   
-  func clearHistory(_ history: [RollRound]) -> Bool {
+  func clearHistory() -> Bool {
     let request: NSFetchRequest<NSFetchRequestResult> = NSFetchRequest(entityName: "RollRoundMO")
     do {
       let rounds = try moc.fetch(request) as! [RollRoundMO]

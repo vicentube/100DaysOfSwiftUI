@@ -11,22 +11,17 @@ import SwiftUI
 struct RollDiceApp: App {
   static var controller: AppControllerProtocol = RollDiceApp.app
   
-  @StateObject private var appState = controller.appState
+  @ObservedObject private var appState = controller.appState
   
   var body: some Scene {
     WindowGroup {
       ContentView()
-        .environmentObject(appState)
     }
   }
 }
 
 extension RollDiceApp {
   static var app: AppController {
-    AppController(appState: AppState())
-  }
-  
-  static var preview: PreviewAppController {
-    PreviewAppController(appState: AppState())
+    AppController()
   }
 }

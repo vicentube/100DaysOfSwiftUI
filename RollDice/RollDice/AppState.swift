@@ -12,4 +12,13 @@ final class AppState: ObservableObject {
   @Published var numOfDice = 2
   @Published var history = [RollRound]()
   @Published var errorMsg: ErrorMsg? = nil
+  @Published var diceValues = [0, 0]
+  
+  var totalValue: Int {
+    diceValues.reduce(0, +)
+  }
+  
+  func resetDice() {
+    diceValues = [Int].init(repeating: 0, count: numOfDice)
+  }
 }
