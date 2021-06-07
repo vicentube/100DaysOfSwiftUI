@@ -8,30 +8,29 @@
 import SwiftUI
 
 struct HistoryView: View {
-  private let controller: AppControllerProtocol
-  private var interactor: HistoryView.Interactor { controller.historyViewInteractor }
-  @ObservedObject var appState: AppState
+  @EnvironmentObject var model: AppModel
+  @StateObject private var vm = HistoryViewModel()
   
-  init(_ controller: AppControllerProtocol) {
-    self.controller = controller
-    self.appState = controller.appState
+  func initView() {
+    vm.initViewModel(model: model)
   }
   
   var body: some View {
     NavigationView {
       List {
-        ForEach(appState.history) { round in
+        ForEach(model.history) { round in
           Text("\(round.value)")
         }
       }
       .navigationBarTitle("History")
       .toolbar { toolbar }
     }
+    .onAppear(perform: initView)
   }
   
   var toolbar: some ToolbarContent {
     ToolbarItem(placement: .navigationBarTrailing) {
-      Button(action: interactor.clearHistory) {
+      Button(action: vm.onClearHistoryTap) {
         Text("Clear history")
       }
     }
@@ -40,7 +39,7 @@ struct HistoryView: View {
 
 struct HistoryView_Previews: PreviewProvider {
   static var previews: some View {
-    HistoryView(PreviewAppController())
+    HistoryView().environmentObject(AppModel.preview)
   }
 }
 

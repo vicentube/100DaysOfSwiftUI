@@ -6,24 +6,15 @@
 // Copyright © 2021 Vicente Úbeda. Todos los derechos reservados.
 
 import SwiftUI
+import CoreData
 
 @main
 struct RollDiceApp: App {
-  private let controller: AppController
-  
-  init() {
-    let appState = AppState()
-    let persistenceService = CoreDataPersistenceService()
-    let settingsService = SettingsService()
-    self.controller = AppController(
-      appState: appState,
-      persistenceService: persistenceService,
-      settingsService: settingsService)
-  }
+  @StateObject private var model = AppModel.app
   
   var body: some Scene {
     WindowGroup {
-      ContentView(controller)
+      ContentView().environmentObject(model)
     }
   }
 }

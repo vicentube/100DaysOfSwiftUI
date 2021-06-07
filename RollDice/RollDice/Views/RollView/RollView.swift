@@ -8,20 +8,17 @@
 import SwiftUI
 
 struct RollView: View {
-  private let controller: AppControllerProtocol
-  private var interactor: RollView.Interactor { controller.rollViewInteractor }
-  @ObservedObject var appState: AppState
-  @StateObject private var viewState = RollView.State()
+  @EnvironmentObject var model: AppModel
+  @StateObject private var vm = RollViewModel()
   
-  init(_ controller: AppControllerProtocol) {
-    self.controller = controller
-    self.appState = controller.appState
+  func initView() {
+    vm.initViewModel(model: model)
   }
   
   var body: some View {
     NavigationView {
       VStack {
-        Text(diceInfoText)
+        Text(model.diceInfoText)
         diceView
         Spacer()
         totalView
@@ -31,61 +28,58 @@ struct RollView: View {
       .padding()
       .navigationBarTitle("Roll Dice")
       .toolbar { toolbar }
-      .sheet(isPresented: $viewState.showingSettings, onDismiss: onDismissSettings) {
-        SettingsView(controller)
+      .sheet(isPresented: $model.showingSettings) {
+        SettingsView().environmentObject(model)
       }
     }
-  }
-  
-  var diceInfoText: String {
-    let dieOrDice = appState.numOfDice == 1 ? "die" : "dice"
-    return "Rolling \(appState.numOfDice) \(dieOrDice) (\(appState.sides)-sided)..."
+    .onAppear(perform: initView)
   }
   
   var rollingAnimation: Animation {
-    viewState.rolling
+    vm.rolling
       ? Animation.linear(duration: 0.5).repeatForever(autoreverses: false)
       : Animation.linear(duration: 0)
   }
   
   var diceView: some View {
     HStack {
-      ForEach(appState.diceValues.indices, id: \.self) { index in
-        DieView(value: appState.diceValues[index], show: viewState.showingDice)
-          .rotation3DEffect(Angle(degrees: viewState.rolling ? 360 : 0.0),
+      ForEach(model.diceValues.indices, id: \.self) { index in
+        DieView(value: model.diceValues[index])
+          .rotation3DEffect(Angle(degrees: vm.rolling ? 360 : 0.0),
                             axis: (x: 0.0, y: 0.0, z: 1.0))
           .animation(rollingAnimation)
       }
     }
+    .isHidden(model.hiddenDice)
     .frame(maxWidth: .infinity)
   }
   
   var totalView: some View {
     Group {
-      if viewState.rolling {
-        Text("Rolling...")
-          .font(.largeTitle)
-          .padding()
-          .foregroundColor(.white)
-          .background(Color.gray)
-          .clipShape(RoundedRectangle(cornerRadius: 20))
-      } else if viewState.showingDice {
-        VStack {
-          Text("Total")
-            .font(.title)
-          Text("\(appState.totalValue)")
-        }
+      Text("Rolling...")
         .font(.largeTitle)
+        .padding()
         .foregroundColor(.white)
-        .frame(width: 150, height: 150)
         .background(Color.gray)
         .clipShape(RoundedRectangle(cornerRadius: 20))
+        .isHidden(!vm.rolling, remove: true)
+      
+      VStack {
+        Text("Total")
+          .font(.title)
+        Text("\(model.totalValue)")
+          .font(.largeTitle)
+          .foregroundColor(.white)
+          .frame(width: 150, height: 150)
+          .background(Color.gray)
+          .clipShape(RoundedRectangle(cornerRadius: 20))
       }
+      .isHidden(vm.rolling || model.hiddenDice, remove: true)
     }
   }
   
   var rollButton: some View {
-    Button(action: onRollButtonTap) {
+    Button(action: vm.onRollButtonTap) {
       Text("Roll Dice")
     }
     .padding()
@@ -94,28 +88,20 @@ struct RollView: View {
     .background(Color.accentColor)
     .clipShape(RoundedRectangle(cornerRadius: 20))
     .padding(.bottom)
-    .disabled(viewState.rolling)
+    .disabled(vm.rolling)
   }
   
   var toolbar: some ToolbarContent {
     ToolbarItem(placement: .navigationBarTrailing) {
-      Button(action: { viewState.showingSettings = true }) {
+      Button(action: vm.onSettingsTap) {
         Image(systemName: "gearshape")
       }
     }
   }
-  
-  func onDismissSettings() {
-    viewState.showingDice = false
-  }
-  
-  func onRollButtonTap() {
-    interactor.rollDice(viewState)
-  }
 }
 
-struct RollView_Previews: PreviewProvider {
+struct RollView_Previews: PreviewProvider {  
   static var previews: some View {
-    RollView(PreviewAppController())
+    RollView().environmentObject(AppModel.preview)
   }
 }

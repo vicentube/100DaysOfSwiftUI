@@ -8,24 +8,19 @@
 import SwiftUI
 
 struct SettingsView: View {
-  private let controller: AppControllerProtocol
-  private var interactor: SettingsView.Interactor { controller.settingsViewInteractor }
-  @ObservedObject var appState: AppState
-  @Environment(\.presentationMode) var presentationMode
+  @EnvironmentObject var model: AppModel
+  @StateObject private var vm = SettingsViewModel()
   
-  private let possibleSides: [Int] = [4, 6, 8, 10, 12, 20, 100]
-  
-  init(_ controller: AppControllerProtocol) {
-    self.controller = controller
-    self.appState = controller.appState
+  func initView() {
+    vm.initViewModel(model: model)
   }
   
   var body: some View {
     NavigationView {
       Form {
         Section(header: Text("Number of sides")) {
-          Picker("Number of sides", selection: $appState.sides) {
-            ForEach(possibleSides, id: \.self) { sides in
+          Picker("Number of sides", selection: $model.settings.sides) {
+            ForEach(model.possibleSides, id: \.self) { sides in
               Text("\(sides)")
             }
           }
@@ -33,7 +28,7 @@ struct SettingsView: View {
         }
         
         Section(header: Text("Number of dice")) {
-          Picker("Number of dice", selection: $appState.numOfDice) {
+          Picker("Number of dice", selection: $model.settings.numOfDice) {
             ForEach(1..<5, id: \.self) { num in
               Text("\(num)")
             }
@@ -44,24 +39,20 @@ struct SettingsView: View {
       .navigationBarTitleDisplayMode(.inline)
       .toolbar { toolbar }
     }
+    .onAppear(perform: initView)
   }
   
   var toolbar: some ToolbarContent {
     ToolbarItem(placement: .navigationBarTrailing) {
-      Button(action: onDoneTap) {
+      Button(action: vm.onDoneTap) {
         Text("Done")
       }
     }
-  }
-  
-  func onDoneTap() {
-    interactor.saveSettings()
-    presentationMode.wrappedValue.dismiss()
   }
 }
 
 struct SettingsView_Previews: PreviewProvider {
   static var previews: some View {
-    SettingsView(PreviewAppController())
+    SettingsView().environmentObject(AppModel.preview)
   }
 }

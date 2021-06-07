@@ -6,6 +6,6 @@
 // Copyright © 2021 Vicente Úbeda. Todos los derechos reservados.
 
 struct Settings {
-  var sides: Int?
-  var numOfDice: Int?
+  var sides = 6
+  var numOfDice = 2
 }

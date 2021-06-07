@@ -9,7 +9,6 @@ import SwiftUI
 
 struct DieView: View {
   let value: Int
-  let show: Bool
   
   var body: some View {
     ZStack {
@@ -20,7 +19,7 @@ struct DieView: View {
             startPoint: .topLeading, endPoint: .bottomTrailing
           )
         )
-      Text(show ? "\(value)" : "")
+      Text("\(value)")
         .font(.largeTitle)
         .fontWeight(.bold)
         .foregroundColor(.white)
@@ -33,6 +32,6 @@ struct DieView: View {
 
 struct DieView_Previews: PreviewProvider {
   static var previews: some View {
-    DieView(value: 5, show: true)
+    DieView(value: 5)
   }
 }

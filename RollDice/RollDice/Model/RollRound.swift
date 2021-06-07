@@ -11,6 +11,11 @@ struct RollRound: Identifiable, Codable {
   var id: Date
   var value: Int
   
+  init(id: Date, value: Int) {
+    self.id = id
+    self.value = value
+  }
+  
   init(_ value: Int) {
     self.id = Date()
     self.value = value
