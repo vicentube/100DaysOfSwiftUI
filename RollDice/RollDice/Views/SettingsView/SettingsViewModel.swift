@@ -5,18 +5,20 @@
 // https://appeleando.com
 // Copyright © 2021 Vicente Úbeda. Todos los derechos reservados.
 
-import SwiftUI
+import Combine
 
 final class SettingsViewModel: ObservableObject {
-  private(set) var model: AppModel!
+  private let model = AppModel.shared
+  var cancellable : AnyCancellable? = nil
   
-  func initViewModel(model: AppModel) {
-    self.model = model
-  }
+  @Published var settings = Settings()
   
-  func onDoneTap() {
-    model.settingsService.save(model.settings)
-    model.resetDice()
-    model.showingSettings = false
+  let possibleSides: [Int] = [4, 6, 8, 10, 12, 20, 100]
+  
+  init() {
+    settings = model.settings
+    cancellable = self.model.objectWillChange.sink { [weak self] _ in
+      self?.objectWillChange.send()
+    }
   }
 }

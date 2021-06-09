@@ -5,18 +5,21 @@
 // https://appeleando.com
 // Copyright © 2021 Vicente Úbeda. Todos los derechos reservados.
 
-import SwiftUI
-import CoreData
+import Combine
 
 final class HistoryViewModel: ObservableObject {
-  private(set) var model: AppModel!
+  private let model = AppModel.shared
+  var cancellable : AnyCancellable? = nil
   
-  func initViewModel(model: AppModel) {
-    self.model = model
+  init() {
+    self.cancellable = self.model.objectWillChange.sink { [weak self] _ in
+      self?.objectWillChange.send()
+    }
   }
   
+  var history: [RollRound] { model.history }
+  
   func onClearHistoryTap() {
-    model.dataService.clearHistory()
-    model.history = []
+    model.clearHistory()
   }
 }

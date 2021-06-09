@@ -8,37 +8,35 @@
 import SwiftUI
 
 final class AppModel: ObservableObject {
+  static var shared: AppModel = .app
+  
   @Published var settings = Settings()
-  @Published var diceValues = [0]
-  @Published var hiddenDice = true
-  @Published var showingSettings = false
   @Published var history: [RollRound] = []
   
-  let possibleSides: [Int] = [4, 6, 8, 10, 12, 20, 100]
-  
-  let dataService: DataServiceProtocol
-  let settingsService: SettingsServiceProtocol
+  private let dataService: DataServiceProtocol
+  private let settingsService: SettingsServiceProtocol
   
   init(dataService: DataServiceProtocol, settingsService: SettingsServiceProtocol) {
     self.dataService = dataService
     self.settingsService = settingsService
     settings = settingsService.load()
-    resetDice()
     history = dataService.fetchHistory()
   }
   
-  var diceInfoText: String {
-    let dieOrDice = settings.numOfDice == 1 ? "die" : "dice"
-    return "Rolling \(settings.numOfDice) \(dieOrDice) (\(settings.sides)-sided)..."
+  func saveRound(_ value: Int) {
+    let round = RollRound(value)
+    dataService.addRound(round)
+    history.insert(round, at: 0)
   }
   
-  var totalValue: Int {
-    diceValues.reduce(0, +)
+  func changeSettings(settings: Settings) {
+    self.settings = settings
+    settingsService.save(settings)
   }
   
-  func resetDice() {
-    diceValues = [Int].init(repeating: 0, count: settings.numOfDice)
-    hiddenDice = true
+  func clearHistory() {
+    dataService.clearHistory()
+    history = []
   }
 }
 

@@ -10,11 +10,11 @@ import CoreData
 
 @main
 struct RollDiceApp: App {
-  @StateObject private var model = AppModel.app
+  @StateObject private var model = AppModel.shared
   
   var body: some Scene {
     WindowGroup {
-      ContentView().environmentObject(model)
+      ContentView()
     }
   }
 }

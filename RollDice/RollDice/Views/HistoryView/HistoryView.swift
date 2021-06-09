@@ -8,24 +8,18 @@
 import SwiftUI
 
 struct HistoryView: View {
-  @EnvironmentObject var model: AppModel
   @StateObject private var vm = HistoryViewModel()
-  
-  func initView() {
-    vm.initViewModel(model: model)
-  }
   
   var body: some View {
     NavigationView {
       List {
-        ForEach(model.history) { round in
+        ForEach(vm.history) { round in
           Text("\(round.value)")
         }
       }
       .navigationBarTitle("History")
       .toolbar { toolbar }
     }
-    .onAppear(perform: initView)
   }
   
   var toolbar: some ToolbarContent {
@@ -39,7 +33,7 @@ struct HistoryView: View {
 
 struct HistoryView_Previews: PreviewProvider {
   static var previews: some View {
-    HistoryView().environmentObject(AppModel.preview)
+    HistoryView()
   }
 }
 

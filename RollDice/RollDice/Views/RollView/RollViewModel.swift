@@ -5,27 +5,49 @@
 // https://appeleando.com
 // Copyright © 2021 Vicente Úbeda. Todos los derechos reservados.
 
-import SwiftUI
+import Foundation
+import Combine
 
 final class RollViewModel: ObservableObject {
-  @Published var rolling = false
+  private let model = AppModel.shared
+  var cancellable : AnyCancellable? = nil
   
-  private(set) var model: AppModel!
+  @Published var rolling = false
+  @Published var showingSettings = false
+  @Published var diceValues = [0]
+  @Published var hiddenDice = true
   
   private let hapticService = HapticsService()
   
-  func initViewModel(model: AppModel) {
-    self.model = model
+  init() {
+    self.cancellable = self.model.objectWillChange.sink { [weak self] _ in
+      self?.objectWillChange.send()
+    }
+    resetDice()
+  }
+  
+  var diceInfoText: String {
+    let dieOrDice = model.settings.numOfDice == 1 ? "die" : "dice"
+    return "Rolling \(model.settings.numOfDice) \(dieOrDice) (\(model.settings.sides)-sided)..."
+  }
+  
+  var totalValue: Int {
+    diceValues.reduce(0, +)
+  }
+  
+  func resetDice() {
+    diceValues = [Int].init(repeating: 0, count: model.settings.numOfDice)
+    hiddenDice = true
   }
   
   func onSettingsTap() {
-    model.showingSettings = true
+    showingSettings = true
   }
   
   func onRollButtonTap() {
     hapticService.prepare()
     let rollSteps = 20
-    model.hiddenDice = false
+    hiddenDice = false
     let initialValues = [Int].init(repeating: 0, count: model.settings.numOfDice)
     let finalValues = initialValues.map { _ in Int.random(in: 1...model.settings.sides) }
     let finalTotal = finalValues.reduce(0, +)
@@ -36,19 +58,19 @@ final class RollViewModel: ObservableObject {
         self.hapticService.prepare()
         if runCount == rollSteps {
           self.rolling = false
-          self.model.diceValues = finalValues
+          self.diceValues = finalValues
           self.hapticService.rollingEffect()
           return
         }
-        self.model.diceValues = initialValues.map { _ in Int.random(in: 1...self.model.settings.sides) }
+        self.diceValues = initialValues.map { _ in Int.random(in: 1...self.model.settings.sides) }
       }
     }
-    saveRound(finalTotal)
+    model.saveRound(finalTotal)
   }
   
-  private func saveRound(_ value: Int) {
-    let round = RollRound(value)
-    model.dataService.addRound(round)
-    model.history.insert(round, at: 0)
+  func onSettingsChanged(_ settings: Settings) {
+    model.changeSettings(settings: settings)
+    resetDice()
+    showingSettings = false
   }
 }

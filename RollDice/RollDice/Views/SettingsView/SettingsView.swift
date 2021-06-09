@@ -8,19 +8,15 @@
 import SwiftUI
 
 struct SettingsView: View {
-  @EnvironmentObject var model: AppModel
   @StateObject private var vm = SettingsViewModel()
-  
-  func initView() {
-    vm.initViewModel(model: model)
-  }
+  let onDone: (Settings) -> Void
   
   var body: some View {
     NavigationView {
       Form {
         Section(header: Text("Number of sides")) {
-          Picker("Number of sides", selection: $model.settings.sides) {
-            ForEach(model.possibleSides, id: \.self) { sides in
+          Picker("Number of sides", selection: $vm.settings.sides) {
+            ForEach(vm.possibleSides, id: \.self) { sides in
               Text("\(sides)")
             }
           }
@@ -28,7 +24,7 @@ struct SettingsView: View {
         }
         
         Section(header: Text("Number of dice")) {
-          Picker("Number of dice", selection: $model.settings.numOfDice) {
+          Picker("Number of dice", selection: $vm.settings.numOfDice) {
             ForEach(1..<5, id: \.self) { num in
               Text("\(num)")
             }
@@ -39,12 +35,11 @@ struct SettingsView: View {
       .navigationBarTitleDisplayMode(.inline)
       .toolbar { toolbar }
     }
-    .onAppear(perform: initView)
   }
   
   var toolbar: some ToolbarContent {
     ToolbarItem(placement: .navigationBarTrailing) {
-      Button(action: vm.onDoneTap) {
+      Button(action: { onDone(vm.settings) }) {
         Text("Done")
       }
     }
@@ -53,6 +48,7 @@ struct SettingsView: View {
 
 struct SettingsView_Previews: PreviewProvider {
   static var previews: some View {
-    SettingsView().environmentObject(AppModel.preview)
+    AppModel.shared = AppModel.preview
+    return SettingsView() { _ in }
   }
 }

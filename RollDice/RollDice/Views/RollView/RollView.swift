@@ -8,17 +8,12 @@
 import SwiftUI
 
 struct RollView: View {
-  @EnvironmentObject var model: AppModel
   @StateObject private var vm = RollViewModel()
-  
-  func initView() {
-    vm.initViewModel(model: model)
-  }
   
   var body: some View {
     NavigationView {
       VStack {
-        Text(model.diceInfoText)
+        Text(vm.diceInfoText)
         diceView
         Spacer()
         totalView
@@ -28,11 +23,10 @@ struct RollView: View {
       .padding()
       .navigationBarTitle("Roll Dice")
       .toolbar { toolbar }
-      .sheet(isPresented: $model.showingSettings) {
-        SettingsView().environmentObject(model)
+      .sheet(isPresented: $vm.showingSettings) {
+        SettingsView(onDone: vm.onSettingsChanged)
       }
     }
-    .onAppear(perform: initView)
   }
   
   var rollingAnimation: Animation {
@@ -43,14 +37,14 @@ struct RollView: View {
   
   var diceView: some View {
     HStack {
-      ForEach(model.diceValues.indices, id: \.self) { index in
-        DieView(value: model.diceValues[index])
+      ForEach(vm.diceValues.indices, id: \.self) { index in
+        DieView(value: vm.diceValues[index])
           .rotation3DEffect(Angle(degrees: vm.rolling ? 360 : 0.0),
                             axis: (x: 0.0, y: 0.0, z: 1.0))
           .animation(rollingAnimation)
       }
     }
-    .isHidden(model.hiddenDice)
+    .isHidden(vm.hiddenDice)
     .frame(maxWidth: .infinity)
   }
   
@@ -67,14 +61,14 @@ struct RollView: View {
       VStack {
         Text("Total")
           .font(.title)
-        Text("\(model.totalValue)")
+        Text("\(vm.totalValue)")
           .font(.largeTitle)
           .foregroundColor(.white)
           .frame(width: 150, height: 150)
           .background(Color.gray)
           .clipShape(RoundedRectangle(cornerRadius: 20))
       }
-      .isHidden(vm.rolling || model.hiddenDice, remove: true)
+      .isHidden(vm.rolling || vm.hiddenDice, remove: true)
     }
   }
   
@@ -102,6 +96,7 @@ struct RollView: View {
 
 struct RollView_Previews: PreviewProvider {  
   static var previews: some View {
-    RollView().environmentObject(AppModel.preview)
+    AppModel.shared = AppModel.preview
+    return RollView()
   }
 }
