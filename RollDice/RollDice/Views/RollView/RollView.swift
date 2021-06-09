@@ -29,19 +29,10 @@ struct RollView: View {
     }
   }
   
-  var rollingAnimation: Animation {
-    vm.rolling
-      ? Animation.linear(duration: 0.5).repeatForever(autoreverses: false)
-      : Animation.linear(duration: 0)
-  }
-  
   var diceView: some View {
     HStack {
       ForEach(vm.diceValues.indices, id: \.self) { index in
-        DieView(value: vm.diceValues[index])
-          .rotation3DEffect(Angle(degrees: vm.rolling ? 360 : 0.0),
-                            axis: (x: 0.0, y: 0.0, z: 1.0))
-          .animation(rollingAnimation)
+        DieView(value: vm.diceValues[index], rolling: vm.rolling)
       }
     }
     .isHidden(vm.hiddenDice)

@@ -9,6 +9,7 @@ import SwiftUI
 
 struct DieView: View {
   let value: Int
+  let rolling: Bool
   
   var body: some View {
     ZStack {
@@ -19,6 +20,9 @@ struct DieView: View {
             startPoint: .topLeading, endPoint: .bottomTrailing
           )
         )
+        .rotation3DEffect(Angle(degrees: rolling ? 360 : 0.0),
+                          axis: (x: 0.0, y: 0.0, z: 1.0))
+        .animation(rollingAnimation)
       Text("\(value)")
         .font(.largeTitle)
         .fontWeight(.bold)
@@ -28,10 +32,16 @@ struct DieView: View {
     .aspectRatio(1.0, contentMode: .fit)
     .shadow(radius: 10)
   }
+  
+  var rollingAnimation: Animation {
+    rolling
+      ? Animation.linear(duration: 0.5).repeatForever(autoreverses: false)
+      : Animation.linear(duration: 0)
+  }
 }
 
 struct DieView_Previews: PreviewProvider {
   static var previews: some View {
-    DieView(value: 5)
+    DieView(value: 5, rolling: false)
   }
 }
