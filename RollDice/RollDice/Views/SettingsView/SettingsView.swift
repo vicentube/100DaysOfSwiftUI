@@ -48,7 +48,7 @@ struct SettingsView: View {
 
 struct SettingsView_Previews: PreviewProvider {
   static var previews: some View {
-    AppModel.shared = AppModel.preview
-    return SettingsView() { _ in }
+    AppModel.shared = .preview
+    return SettingsView(onDone: { _ in })
   }
 }

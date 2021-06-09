@@ -96,7 +96,7 @@ struct RollView: View {
 
 struct RollView_Previews: PreviewProvider {  
   static var previews: some View {
-    AppModel.shared = AppModel.preview
+    AppModel.shared = .preview
     return RollView()
   }
 }

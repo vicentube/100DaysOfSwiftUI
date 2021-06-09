@@ -37,6 +37,7 @@ private extension ErrorMsg {
 
 struct ContentView_Previews: PreviewProvider {
   static var previews: some View {
-    ContentView()
+    AppModel.shared = .preview
+    return ContentView()
   }
 }

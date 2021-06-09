@@ -9,9 +9,7 @@ import SwiftUI
 import CoreData
 
 @main
-struct RollDiceApp: App {
-  @StateObject private var model = AppModel.shared
-  
+struct RollDiceApp: App {  
   var body: some Scene {
     WindowGroup {
       ContentView()
