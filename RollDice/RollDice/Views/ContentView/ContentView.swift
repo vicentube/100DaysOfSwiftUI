@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct ContentView: View {
+  @StateObject private var vm = ViewModel()
+  
   var body: some View {
     TabView {
       RollView()
@@ -22,14 +24,13 @@ struct ContentView: View {
           Text("History")
         }
     }
+    .alert(item: $vm.error, content: errorView)
   }
-}
-
-private extension ErrorMsg {
-  var alert: Alert {
+  
+  func errorView(_ error: ErrorMsg) -> Alert {
     Alert(
       title: Text("Error"),
-      message: Text(message),
+      message: Text(error.message),
       dismissButton: .default(Text("OK"))
     )
   }

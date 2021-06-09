@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct RollView: View {
-  @StateObject private var vm = RollViewModel()
+  @StateObject private var vm = ViewModel()
   
   var body: some View {
     NavigationView {

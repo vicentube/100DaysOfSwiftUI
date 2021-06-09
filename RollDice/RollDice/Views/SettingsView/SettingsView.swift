@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct SettingsView: View {
-  @StateObject private var vm = SettingsViewModel()
+  @StateObject private var vm = ViewModel()
   let onDone: (Settings) -> Void
   
   var body: some View {

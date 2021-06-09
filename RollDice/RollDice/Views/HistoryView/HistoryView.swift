@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct HistoryView: View {
-  @StateObject private var vm = HistoryViewModel()
+  @StateObject private var vm = ViewModel()
   
   var body: some View {
     NavigationView {

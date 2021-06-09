@@ -12,6 +12,7 @@ final class AppModel: ObservableObject {
   
   @Published var settings = Settings()
   @Published var history: [RollRound] = []
+  @Published var errorMessage: ErrorMsg? = nil
   
   private let dataService: DataServiceProtocol
   private let settingsService: SettingsServiceProtocol
@@ -19,14 +20,12 @@ final class AppModel: ObservableObject {
   init(dataService: DataServiceProtocol, settingsService: SettingsServiceProtocol) {
     self.dataService = dataService
     self.settingsService = settingsService
-    settings = settingsService.load()
-    history = dataService.fetchHistory()
+    loadSettings()
+    loadHistory()
   }
   
-  func saveRound(_ value: Int) {
-    let round = RollRound(value)
-    dataService.addRound(round)
-    history.insert(round, at: 0)
+  private func loadSettings() {
+    settings = settingsService.load()
   }
   
   func changeSettings(settings: Settings) {
@@ -34,9 +33,35 @@ final class AppModel: ObservableObject {
     settingsService.save(settings)
   }
   
+  private func loadHistory() {
+    do {
+      history = try dataService.fetchHistory()
+    } catch {
+      history = []
+      print(error.localizedDescription)
+      errorMessage = ErrorMsg("History data could not be loaded")
+    }
+  }
+  
+  func saveRound(_ value: Int) {
+    let round = RollRound(value)
+    do {
+      try dataService.addRound(round)
+      history.insert(round, at: 0)
+    } catch {
+      print(error.localizedDescription)
+      errorMessage = ErrorMsg("Dice values could not be stored in history")
+    }
+  }
+  
   func clearHistory() {
-    dataService.clearHistory()
-    history = []
+    do {
+      try dataService.clearHistory()
+      history = []
+    } catch {
+      print(error.localizedDescription)
+      errorMessage = ErrorMsg("History data could not be deleted")
+    }
   }
 }
 

@@ -9,9 +9,9 @@ import Foundation
 import CoreData
 
 protocol DataServiceProtocol {
-  func addRound(_ round: RollRound)
-  func fetchHistory() -> [RollRound]
-  func clearHistory()
+  func addRound(_ round: RollRound) throws
+  func fetchHistory() throws -> [RollRound]
+  func clearHistory() throws
 }
 
 final class CoreDataService: DataServiceProtocol {
@@ -29,13 +29,16 @@ final class CoreDataService: DataServiceProtocol {
     return persistentContainer.viewContext
   }
   
-  private var historyMO = [RollRoundMO]()
-  var historyss: [RollRound] {
-    historyMO.map(convertToRollRound)
-  }
-  
   private func convertToRollRound(_ mo: RollRoundMO) -> RollRound{
     RollRound(id: mo.dateM ?? Date(), value: Int(mo.valueM))
+  }
+  
+  private func fetchHistoryMO() throws -> [RollRoundMO] {
+    let request = NSFetchRequest<NSFetchRequestResult>(entityName: "RollRoundMO")
+    let sort = NSSortDescriptor(key: "dateM", ascending: false)
+    request.sortDescriptors = [sort]
+    let historyMO = try CoreDataService.moc.fetch(request) as! [RollRoundMO]
+    return historyMO
   }
   
   private func save() throws {
@@ -44,37 +47,21 @@ final class CoreDataService: DataServiceProtocol {
     }
   }
   
-  func addRound(_ round: RollRound) {
+  func addRound(_ round: RollRound) throws {
     let roundMO = RollRoundMO(context: CoreDataService.moc)
     roundMO.dateM = round.id
     roundMO.valueM = Int32(round.value)
-    do {
-      try save()
-    } catch {
-      print(error.localizedDescription)
-    }
+    try save()
   }
   
-  func fetchHistory() -> [RollRound] {
-    let request = NSFetchRequest<NSFetchRequestResult>(entityName: "RollRoundMO")
-    let sort = NSSortDescriptor(key: "dateM", ascending: false)
-    request.sortDescriptors = [sort]
-    do {
-      let historyMO = try CoreDataService.moc.fetch(request) as! [RollRoundMO]
-      return historyMO.map(convertToRollRound)
-    } catch {
-      print(error.localizedDescription)
-      return []
-    }
+  func fetchHistory() throws -> [RollRound] {
+    let historyMO = try fetchHistoryMO()
+    return historyMO.map(convertToRollRound)
   }
   
-  func clearHistory() {
-    do {
-      historyMO.forEach(CoreDataService.moc.delete)
-      try save()
-      historyMO = []
-    } catch {
-      print(error.localizedDescription)
-    }
+  func clearHistory() throws {
+    let historyMO = try fetchHistoryMO()
+    historyMO.forEach(CoreDataService.moc.delete)
+    try save()
   }
 }

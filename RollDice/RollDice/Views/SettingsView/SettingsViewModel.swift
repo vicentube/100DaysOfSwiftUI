@@ -7,18 +7,20 @@
 
 import Combine
 
-final class SettingsViewModel: ObservableObject {
-  private let model = AppModel.shared
-  var cancellable : AnyCancellable? = nil
-  
-  @Published var settings = Settings()
-  
-  let possibleSides: [Int] = [4, 6, 8, 10, 12, 20, 100]
-  
-  init() {
-    settings = model.settings
-    cancellable = self.model.objectWillChange.sink { [weak self] _ in
-      self?.objectWillChange.send()
+extension SettingsView {
+  final class ViewModel: ObservableObject {
+    private let model = AppModel.shared
+    var cancellable : AnyCancellable? = nil
+    
+    @Published var settings = Settings()
+    
+    let possibleSides: [Int] = [4, 6, 8, 10, 12, 20, 100]
+    
+    init() {
+      settings = model.settings
+      cancellable = self.model.objectWillChange.sink { [weak self] _ in
+        self?.objectWillChange.send()
+      }
     }
   }
 }
